@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace GymBro
 {
-    class ApplicationContext : DbContext
+    partial class ApplicationContext : ObservableObject
     {
+        [ObservableProperty]
+        private string pep;
     }
 }
