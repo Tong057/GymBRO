@@ -6,5 +6,10 @@
         {
             InitializeComponent();
         }
+
+        public void balvana()
+        {
+
+        }
     }
 }
