@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymBro.Controls.DayBox.DayBox">
+    <AbsoluteLayout>
+        <AbsoluteLayout.GestureRecognizers>
+            <TapGestureRecognizer
+                Tapped="OnTapped"
+                NumberOfTapsRequired="1"/>
+        </AbsoluteLayout.GestureRecognizers>
+
+            <Label
+                x:Name="Day"
+                FontSize="12"
+                AbsoluteLayout.LayoutBounds="0.5, 0.5"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                HorizontalTextAlignment="Center"
+                ZIndex="1"/>
+
+            <Ellipse
+                x:Name="BackgroundCircle"
+                WidthRequest="45"
+                HeightRequest="45"
+                StrokeThickness="4"
+                ZIndex="0"
+                />
+    </AbsoluteLayout>
+</ContentView>
+
