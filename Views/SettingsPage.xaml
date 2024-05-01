@@ -21,16 +21,14 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <sv:SettingsView HasUnevenRows="True" HeaderPadding="10">
         <sv:Section Title="{DynamicResource Account}">
             <sv:CommandCell IconSource="account.svg" 
                             IconSize="60,60" 
                             IconRadius="30" 
                             Title="Name Surname" 
-                            Description="usermail@gmail.com" 
-                            Command="{Binding ToProfileCommand}" 
-                            CommandParameter="{Binding Parameter}"/>
+                            Description="usermail@gmail.com" />
         </sv:Section>
 
         <sv:Section Title="{DynamicResource Theme}" sv:RadioCell.SelectedValue="{Binding SelectedTheme}">

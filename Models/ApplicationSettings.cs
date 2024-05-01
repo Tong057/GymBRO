@@ -14,11 +14,13 @@ namespace GymBro.Models
             switch (appTheme)
             {
                 case "Dark":
+                    Application.Current.UserAppTheme = AppTheme.Dark;
                     Application.Current.Resources.MergedDictionaries.Add(new DarkTheme());
                     CurrentTheme = "Dark";
                     break;
 
                 case "Light":
+                    Application.Current.UserAppTheme = AppTheme.Light;
                     Application.Current.Resources.MergedDictionaries.Add(new LightTheme());
                     CurrentTheme = "Light";
                     break;

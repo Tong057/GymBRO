@@ -98,7 +98,6 @@
 	<ItemGroup>
 	  <Folder Include="Models\Data\" />
 	  <Folder Include="Controls\" />
-<<<<<<< HEAD
 	  <Folder Include="Models\Interfaces\" />
 	  <Folder Include="Utilities\" />
 	</ItemGroup>
@@ -113,9 +112,7 @@
 	  <Compile Update="Resources\Languages\RussianLanguage.xaml.cs">
 	    <DependentUpon>RussianLanguage.xaml</DependentUpon>
 	  </Compile>
-=======
 	  <Folder Include="Controls\DayBox\" />
->>>>>>> 89dd521 (Added DayBox Control)
 	</ItemGroup>
 
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionGymBroHideInfoBar="True" /></VisualStudio></ProjectExtensions>

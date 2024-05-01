@@ -14,7 +14,8 @@ namespace GymBro
                 .UseMauiApp<App>()
                 .ConfigureMauiHandlers(handlers =>
                 {
-                    handlers.AddSettingsViewHandler();
+                    if (DeviceInfo.Platform != DevicePlatform.WinUI)
+                        handlers.AddSettingsViewHandler();
                 })
                 .ConfigureFonts(fonts =>
                 {
@@ -24,10 +25,9 @@ namespace GymBro
 
 #if DEBUG
             builder.Logging.AddDebug();
-
+#endif
             builder.Services.AddTransient<SettingsViewModel>();
             builder.Services.AddTransient<SettingsPage>();
-#endif
 
             return builder.Build();
         }
