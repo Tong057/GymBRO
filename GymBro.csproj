@@ -79,7 +79,14 @@
 	<ItemGroup>
 	  <Folder Include="Models\Data\" />
 	  <Folder Include="Controls\" />
+<<<<<<< HEAD
 	  <Folder Include="Models\Interfaces\" />
+=======
+	  <Folder Include="Controls\DayBox\" />
+>>>>>>> 89dd521 (Added DayBox Control)
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Controls\DayBox\" />
+	</ItemGroup>
 </Project>
