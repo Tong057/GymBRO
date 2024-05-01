@@ -1,4 +1,4 @@
-namespace GymBro;
+namespace GymBro.Views;
 
 public partial class StatisticPage : ContentPage
 {

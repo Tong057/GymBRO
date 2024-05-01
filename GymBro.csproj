@@ -68,9 +68,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="StatisticPage.xaml">
+	  <MauiXaml Update="Views\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\StatisticPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Models\" />
+	  <Folder Include="Models\Data\" />
+	  <Folder Include="Controls\" />
 	</ItemGroup>
 
 </Project>

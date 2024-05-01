@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using GymBro.ViewModels;
+using GymBro.Views;
+using Microsoft.Extensions.Logging;
 
 namespace GymBro
 {
@@ -17,6 +19,9 @@ namespace GymBro
 
 #if DEBUG
     		builder.Logging.AddDebug();
+
+            builder.Services.AddTransient<SettingsViewModel>();
+            builder.Services.AddTransient<SettingsPage>();
 #endif
 
             return builder.Build();
