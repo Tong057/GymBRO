@@ -13,6 +13,18 @@
                 HeightRequest="185"
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
+
+            <HorizontalStackLayout>
+                <controls:DayBox DayName="Пон" SelectedColor="Pink" IsChecked="True"/>
+                <controls:DayBox DayName="Втр"/>
+                <controls:DayBox DayName="Срд"/>
+                <controls:DayBox DayName="Чтв"/>
+                <controls:DayBox DayName="Птц"/>
+                <controls:DayBox DayName="Суб"/>
+                <controls:DayBox DayName="Вск"/>
+
+            </HorizontalStackLayout>
+
             <Label
                 Text="Hello, World!"
                 Style="{StaticResource Headline}"

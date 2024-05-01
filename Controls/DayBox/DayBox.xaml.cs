@@ -75,10 +75,21 @@ public partial class DayBox : ContentView
 
     private void ChangeBackgroundCircleColor(Color color)
     {
-        BackgroundCircle.Stroke = color;
+        BackgroundCircle.Stroke= color;
+
+        Animation animation;
+        if (IsChecked)
+        {
+            animation = new Animation(v => BackgroundCircle.StrokeThickness = v, 4, 6, Easing.Linear);
+        } else
+        {
+            animation = new Animation(v => BackgroundCircle.StrokeThickness = v, 6, 4, Easing.SpringOut);
+        }
+        
+        BackgroundCircle.Animate("StrokeAnimation", animation, 32, 200);
     }
 
-    void OnTapped(object sender, TappedEventArgs e)
+    private void OnTapped(object sender, TappedEventArgs e)
     {
         IsChecked = !IsChecked;
         UpdateFillColor();
