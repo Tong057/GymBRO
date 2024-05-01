@@ -77,9 +77,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Models\" />
 	  <Folder Include="Models\Data\" />
 	  <Folder Include="Controls\" />
+	  <Folder Include="Models\Interfaces\" />
 	</ItemGroup>
 
 </Project>
