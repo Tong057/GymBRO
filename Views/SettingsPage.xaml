@@ -1,8 +1,47 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GymBro.Views.SettingsPage"
-             Title="Settings">
+<ContentPage 
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:sv="clr-namespace:AiForms.Settings;assembly=SettingsView"
+	x:Class="GymBro.Views.SettingsPage"
+    Title="Settings">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="sv:SettingsView">
+                <Setter Property="ShowSectionTopBottomBorder" Value="False" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}" />
+                <Setter Property="CellBackgroundColor" Value="{DynamicResource SecondaryColor}" />
+                <Setter Property="CellTitleColor" Value="{DynamicResource PrimaryTextColor}" />
+                <Setter Property="CellDescriptionColor" Value="{DynamicResource SecondaryTextColor}" />
+                <Setter Property="CellAccentColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="HeaderTextColor" Value="{DynamicResource PrimaryFocusColor}" />
+                <Setter Property="SelectedColor" Value="{DynamicResource SecondaryFocusColor}" />
+                <Setter Property="CellTitleFontSize" Value="18" />
+                <Setter Property="HeaderFontSize" Value="20" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     
-    
+    <sv:SettingsView HasUnevenRows="True" HeaderPadding="10">
+        <sv:Section Title="{DynamicResource Account}">
+            <sv:CommandCell IconSource="account.svg" 
+                            IconSize="60,60" 
+                            IconRadius="30" 
+                            Title="Name Surname" 
+                            Description="usermail@gmail.com" 
+                            Command="{Binding ToProfileCommand}" 
+                            CommandParameter="{Binding Parameter}"/>
+        </sv:Section>
+
+        <sv:Section Title="{DynamicResource Theme}" sv:RadioCell.SelectedValue="{Binding SelectedTheme}">
+            <sv:RadioCell Title="{DynamicResource Dark}" Value="Dark" />
+            <sv:RadioCell Title="{DynamicResource Light}" Value="Light" />
+        </sv:Section>
+
+        <sv:Section Title="{DynamicResource Language}" sv:RadioCell.SelectedValue="{Binding SelectedLanguage}">
+            <sv:RadioCell Title="{DynamicResource English}" Value="English" />
+            <sv:RadioCell Title="{DynamicResource Russian}" Value="Russian" />
+            <sv:RadioCell Title="{DynamicResource Polish}" Value="Polish" />
+        </sv:Section>
+    </sv:SettingsView>
 </ContentPage>

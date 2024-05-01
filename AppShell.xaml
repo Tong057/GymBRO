@@ -5,12 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:GymBro.Views"
     Shell.FlyoutBehavior="Flyout"
+    FlyoutBackgroundColor="{DynamicResource BackgroundColor}"
+    Shell.TabBarBackgroundColor="{DynamicResource BackgroundColor}"
+    Shell.TabBarForegroundColor="{DynamicResource PrimaryTextColor}"
+    Shell.TabBarTitleColor="{DynamicResource PrimaryColor}"
     Title="GymBro">
 
     <FlyoutItem Title="GymBRO">
-        <!--<FlyoutItem>
-            
-        </FlyoutItem>-->
         <Tab Title="Home">
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
         </Tab>

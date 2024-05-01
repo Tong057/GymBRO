@@ -8,7 +8,7 @@ public partial class SettingsPage : ContentPage
 	public SettingsPage(SettingsViewModel settingsViewModel)
 	{
 		InitializeComponent();
-		//BindingContext = settingsViewModel;
-		//_settingsViewModel = settingsViewModel;
+		BindingContext = settingsViewModel;
+		_settingsViewModel = settingsViewModel;
 	}
 }

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymBro.Resources.Languages.PolishLanguage">
+    <!-- Settings Header-->
+    <x:String x:Key="Account">Konto</x:String>
+    <x:String x:Key="Theme">Motyw</x:String>
+    <x:String x:Key="Language">Język</x:String>
+    <!--Theme labels-->
+    <x:String x:Key="Dark">Ciemny</x:String>
+    <x:String x:Key="Light">Jasny</x:String>
+    <!--Languages labels-->
+    <x:String x:Key="English">Angielski</x:String>
+    <x:String x:Key="Russian">Rosyjski</x:String>
+    <x:String x:Key="Polish">Polski</x:String>
+</ResourceDictionary>
