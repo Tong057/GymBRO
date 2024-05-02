@@ -9,19 +9,23 @@
     Shell.TabBarBackgroundColor="{DynamicResource BackgroundColor}"
     Shell.TabBarForegroundColor="{DynamicResource PrimaryTextColor}"
     Shell.TabBarTitleColor="{DynamicResource PrimaryColor}"
+    Shell.TitleColor="{DynamicResource PrimaryTextColor}"
     Title="GymBro">
 
     <FlyoutItem Title="GymBRO">
         <Tab Title="Home">
             <ShellContent ContentTemplate="{DataTemplate local:TrainingDaysPage}" />
         </Tab>
-
         <Tab Title="Statistics">
             <ShellContent ContentTemplate="{DataTemplate local:StatisticPage}" />
         </Tab>
     </FlyoutItem>
+    
     <FlyoutItem Title="Settings">
         <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" />
     </FlyoutItem>
 
+    <FlyoutItem Title="About">
+        <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
+    </FlyoutItem>
 </Shell>
