@@ -13,4 +13,8 @@
     <x:String x:Key="English">Английский</x:String>
     <x:String x:Key="Russian">Русский</x:String>
     <x:String x:Key="Polish">Польский</x:String>
+
+    <x:String x:Key="ErrorMessage">Ошибка! Попробуйте перезагрузить.</x:String>
+    <x:String x:Key="Reload">Перезагрузить</x:String>
+
 </ResourceDictionary>

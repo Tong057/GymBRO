@@ -14,4 +14,7 @@
     <x:String x:Key="Russian">Russian</x:String>
     <x:String x:Key="Polish">Polish</x:String>
 
+    <x:String x:Key="ErrorMessage">Error! Try to reload.</x:String>
+    <x:String x:Key="Reload">Reload</x:String>
+
 </ResourceDictionary>

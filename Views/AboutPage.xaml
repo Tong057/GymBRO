@@ -2,12 +2,36 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GymBro.Views.AboutPage"
-             Title="About">
+             Shell.NavBarIsVisible="False">
 
-    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-        <WebView Source="https://gymbro.site"
+    <Grid>
+        <WebView x:Name="WebView"
+                 Source="https://gymbro.site"
+                 Navigating="OnNavigating"
+                 Navigated="OnNavigated"
                  VerticalOptions="FillAndExpand"
-                 HorizontalOptions="FillAndExpand"/>
-    </StackLayout>
+                 HorizontalOptions="FillAndExpand" />
+
+        <ActivityIndicator x:Name="LoadingIndicator"
+                           IsVisible="True"
+                           IsRunning="True"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+
+        <StackLayout x:Name="ErrorLayout" IsVisible="False" VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+            <Label Text="{DynamicResource ErrorMessage}"
+                   TextColor="Red" 
+                   FontAttributes="Bold"
+                   FontSize="16"
+                   HorizontalOptions="Center" />
+            <Button Text="{DynamicResource Reload}"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Background="Red"
+                    Clicked="OnReloadClicked"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+        </StackLayout>
+    </Grid>
 
 </ContentPage>

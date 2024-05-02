@@ -13,4 +13,8 @@
     <x:String x:Key="English">Angielski</x:String>
     <x:String x:Key="Russian">Rosyjski</x:String>
     <x:String x:Key="Polish">Polski</x:String>
+
+    <x:String x:Key="ErrorMessage">Błąd! Spróbuj ponownie załadować stronę.</x:String>
+    <x:String x:Key="Reload">Przeładuj</x:String>
+
 </ResourceDictionary>
