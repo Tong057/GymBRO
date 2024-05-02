@@ -13,6 +13,7 @@
                 HeightRequest="185"
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
+
             <HorizontalStackLayout HorizontalOptions="Center">
                 <controls:DayBox DayName="Пон" SelectedColor="{StaticResource PrimaryFocusColor}" IsChecked="True"/>
                 <controls:DayBox DayName="Втр" SelectedColor="{StaticResource PrimaryFocusColor}"/>
