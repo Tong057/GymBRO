@@ -80,10 +80,10 @@ public partial class DayBox : ContentView
         Animation animation;
         if (IsChecked)
         {
-            animation = new Animation(v => BackgroundCircle.StrokeThickness = v, 4, 6, Easing.Linear);
+            animation = new Animation(v => BackgroundCircle.StrokeThickness = v, 4, 5.5, Easing.Linear);
         } else
         {
-            animation = new Animation(v => BackgroundCircle.StrokeThickness = v, 6, 4, Easing.SpringOut);
+            animation = new Animation(v => BackgroundCircle.StrokeThickness = v, 5.5, 4, Easing.Linear);
         }
         
         BackgroundCircle.Animate("StrokeAnimation", animation, 32, 200);

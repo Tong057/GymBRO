@@ -13,16 +13,14 @@
                 HeightRequest="185"
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
-
-            <HorizontalStackLayout>
-                <controls:DayBox DayName="Пон" SelectedColor="Pink" IsChecked="True"/>
-                <controls:DayBox DayName="Втр"/>
-                <controls:DayBox DayName="Срд"/>
-                <controls:DayBox DayName="Чтв"/>
-                <controls:DayBox DayName="Птц"/>
-                <controls:DayBox DayName="Суб"/>
-                <controls:DayBox DayName="Вск"/>
-
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <controls:DayBox DayName="Пон" SelectedColor="{StaticResource PrimaryFocusColor}" IsChecked="True"/>
+                <controls:DayBox DayName="Втр" SelectedColor="{StaticResource PrimaryFocusColor}"/>
+                <controls:DayBox DayName="Срд" SelectedColor="{StaticResource PrimaryFocusColor}"/>
+                <controls:DayBox DayName="Чтв" SelectedColor="{StaticResource PrimaryFocusColor}"/>
+                <controls:DayBox DayName="Птц" SelectedColor="{StaticResource PrimaryFocusColor}"/>
+                <controls:DayBox DayName="Суб" SelectedColor="{StaticResource PrimaryFocusColor}"/>
+                <controls:DayBox DayName="Вск" SelectedColor="{StaticResource PrimaryFocusColor}"/>
             </HorizontalStackLayout>
 
             <Label
