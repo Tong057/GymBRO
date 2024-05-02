@@ -1,4 +1,7 @@
 ﻿using AiForms.Settings;
+using GymBro.Models.Data.EntityFramework;
+using GymBro.Models.Data.EntityFramework.DbProviders;
+using GymBro.Models.Data.EntityFramework.Repositories;
 using GymBro.ViewModels;
 using GymBro.Views;
 using Microsoft.Extensions.Logging;
@@ -26,8 +29,18 @@ namespace GymBro
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+
+            //Pages
             builder.Services.AddTransient<SettingsViewModel>();
             builder.Services.AddTransient<SettingsPage>();
+
+            builder.Services.AddTransient<TrainingDaysViewModel>();
+            builder.Services.AddTransient<TrainingDaysPage>();
+
+            //EntityFramework
+            builder.Services.AddTransient<ApplicationContext>();
+            builder.Services.AddTransient<Provider>();
+            builder.Services.AddTransient<Repository>();
 
             return builder.Build();
 

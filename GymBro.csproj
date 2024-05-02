@@ -60,6 +60,9 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Resources\Images\account.svg" />
+	  <None Remove="Models\Data\EntityFramework\" />
+	  <None Remove="Models\Data\EntityFramework\DbProviders\" />
+	  <None Remove="Models\Data\EntityFramework\Repositories\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -100,6 +103,9 @@
 	  <Folder Include="Controls\" />
 	  <Folder Include="Models\Interfaces\" />
 	  <Folder Include="Utilities\" />
+	  <Folder Include="Models\Data\EntityFramework\" />
+	  <Folder Include="Models\Data\EntityFramework\DbProviders\" />
+	  <Folder Include="Models\Data\EntityFramework\Repositories\" />
 	</ItemGroup>
 
 	<ItemGroup>
