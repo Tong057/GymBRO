@@ -1,22 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:GymBro.Controls.DayBox"
+             xmlns:controls="clr-namespace:GymBro.Controls.DayOfWeekPicker"
              x:Class="GymBro.Views.TrainingDaysPage">
 
     <ScrollView>
 
-        <VerticalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="3">
-                <controls:DayBox DayName="Пон" SelectedColor="{StaticResource PrimaryFocusColor}" IsChecked="True"/>
-                <controls:DayBox DayName="Втр" SelectedColor="{StaticResource PrimaryFocusColor}"/>
-                <controls:DayBox DayName="Срд" SelectedColor="{StaticResource PrimaryFocusColor}"/>
-                <controls:DayBox DayName="Чтв" SelectedColor="{StaticResource PrimaryFocusColor}"/>
-                <controls:DayBox DayName="Птц" SelectedColor="{StaticResource PrimaryFocusColor}"/>
-                <controls:DayBox DayName="Суб" SelectedColor="{StaticResource PrimaryFocusColor}"/>
-                <controls:DayBox DayName="Вск" SelectedColor="{StaticResource PrimaryFocusColor}"/>
-            </HorizontalStackLayout>
-        </VerticalStackLayout>
+        <!--<VerticalStackLayout>
+            <ScrollView Orientation="Horizontal">
+                <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="1">
+                    <controls:DayBox DayName="Пн" SelectedColor="{StaticResource PrimaryColor}" IsChecked="True"/>
+                    <controls:DayBox DayName="Вт" SelectedColor="{StaticResource PrimaryColor}"/>
+                    <controls:DayBox DayName="Ср" SelectedColor="{StaticResource PrimaryColor}"/>
+                    <controls:DayBox DayName="Чт" SelectedColor="{StaticResource PrimaryColor}"/>
+                    <controls:DayBox DayName="Пт" SelectedColor="{StaticResource PrimaryColor}"/>
+                    <controls:DayBox DayName="Сб" SelectedColor="{StaticResource PrimaryColor}"/>
+                    <controls:DayBox DayName="Вс" SelectedColor="{StaticResource PrimaryColor}"/>
+                </HorizontalStackLayout>
+            </ScrollView>
+
+        </VerticalStackLayout>-->
+        <StackLayout Margin="0, 10">
+            <controls:DayOfWeekPicker
+                SelectedColor="{DynamicResource PrimaryColor}"
+                SelectedDays="{Binding SelectedDays}" Margin="0, 20"/>
+            <Button
+                Text="Показать выбранные дни"
+                Command="{Binding ShowSelectedDaysCommand}" BackgroundColor="{DynamicResource PrimaryColor}"/>
+        </StackLayout>
+        
+        
 
 
     </ScrollView>

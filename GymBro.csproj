@@ -75,6 +75,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\DayOfWeekPicker\DayOfWeekPicker.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Languages\EnglishLanguage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -99,7 +102,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Controls\" />
 	  <Folder Include="Models\Interfaces\" />
 	  <Folder Include="Utilities\" />
 	  <Folder Include="Models\Data\EntityFramework\DbProviders\" />
@@ -116,7 +118,6 @@
 	  <Compile Update="Resources\Languages\RussianLanguage.xaml.cs">
 	    <DependentUpon>RussianLanguage.xaml</DependentUpon>
 	  </Compile>
-	  <Folder Include="Controls\DayBox\" />
 	</ItemGroup>
 
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionGymBroHideInfoBar="True" /></VisualStudio></ProjectExtensions>

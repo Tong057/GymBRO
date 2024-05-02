@@ -1,10 +1,13 @@
 ﻿using System.Globalization;
+using System.Runtime.CompilerServices;
 using Microsoft.Maui.Controls.Shapes;
 
-namespace GymBro.Controls.DayBox;
+namespace GymBro.Controls.DayOfWeekPicker;
 
 public partial class DayBox : ContentView
 {
+    public event EventHandler<bool> CheckedChanged;
+
     public static readonly BindableProperty DayNameProperty = BindableProperty.Create(nameof(DayName), typeof(string), typeof(DayBox), propertyChanged: (bindable, oldValue, newValue) =>
     {
         var control = (DayBox)bindable;
@@ -93,5 +96,7 @@ public partial class DayBox : ContentView
     {
         IsChecked = !IsChecked;
         UpdateFillColor();
+
+        CheckedChanged?.Invoke(this, IsChecked);
     }
 }

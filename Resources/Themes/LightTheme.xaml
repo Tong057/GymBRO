@@ -6,7 +6,7 @@
     <Color x:Key="PrimaryColor">#28C85A</Color>
     <Color x:Key="PrimaryFocusColor">#1d9944</Color>
     <Color x:Key="PrimaryDisabledColor">#B0C4B1</Color>
-    <Color x:Key="SecondaryColor">#f7f7f7</Color>
+    <Color x:Key="SecondaryColor">#f5f2f2</Color>
     <Color x:Key="SecondaryFocusColor">#AAAAAA</Color>
     <Color x:Key="SecondaryDisabledColor">#DDDDDD</Color>
     <Color x:Key="PrimaryTextColor">#000000</Color>
