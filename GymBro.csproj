@@ -99,11 +99,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Models\Data\" />
 	  <Folder Include="Controls\" />
 	  <Folder Include="Models\Interfaces\" />
 	  <Folder Include="Utilities\" />
-	  <Folder Include="Models\Data\EntityFramework\" />
 	  <Folder Include="Models\Data\EntityFramework\DbProviders\" />
 	  <Folder Include="Models\Data\EntityFramework\Repositories\" />
 	</ItemGroup>

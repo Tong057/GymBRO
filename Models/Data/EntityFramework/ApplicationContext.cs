@@ -5,12 +5,14 @@ namespace GymBro.Models.Data.EntityFramework
 {
 	public class ApplicationContext : DbContext
 	{
-		public ApplicationContext(DbContextOptions options) : base(options)
-		{
+        public ApplicationContext() => Database.EnsureCreated();
 
-		}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite(@"Data Source=" + Constants.DatabasePath);
+        }
 
-		//DB Sets below
-	}
+        //DB Sets below
+    }
 }
 

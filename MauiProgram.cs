@@ -39,7 +39,7 @@ namespace GymBro
 
             //EntityFramework
             builder.Services.AddTransient<ApplicationContext>();
-            builder.Services.AddTransient<Provider>();
+            builder.Services.AddTransient<IProvider, Provider>();
             builder.Services.AddTransient<Repository>();
 
             return builder.Build();

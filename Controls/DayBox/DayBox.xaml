@@ -19,11 +19,12 @@
 
             <Ellipse
                 x:Name="BackgroundCircle"
-                WidthRequest="45"
-                HeightRequest="45"
+                AbsoluteLayout.LayoutBounds="0.5, 0.5"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                WidthRequest="52"
+                HeightRequest="52"
                 StrokeThickness="4"
-                ZIndex="0"
-                />
+                ZIndex="0"/>
     </AbsoluteLayout>
 </ContentView>
 

@@ -6,7 +6,8 @@
 
     <ScrollView>
 
-            <HorizontalStackLayout HorizontalOptions="Center">
+        <VerticalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="3">
                 <controls:DayBox DayName="Пон" SelectedColor="{StaticResource PrimaryFocusColor}" IsChecked="True"/>
                 <controls:DayBox DayName="Втр" SelectedColor="{StaticResource PrimaryFocusColor}"/>
                 <controls:DayBox DayName="Срд" SelectedColor="{StaticResource PrimaryFocusColor}"/>
@@ -15,6 +16,8 @@
                 <controls:DayBox DayName="Суб" SelectedColor="{StaticResource PrimaryFocusColor}"/>
                 <controls:DayBox DayName="Вск" SelectedColor="{StaticResource PrimaryFocusColor}"/>
             </HorizontalStackLayout>
+        </VerticalStackLayout>
+
 
     </ScrollView>
 
