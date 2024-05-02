@@ -30,6 +30,7 @@ namespace GymBro
             builder.Services.AddTransient<SettingsPage>();
 
             return builder.Build();
+
         }
     }
 }
