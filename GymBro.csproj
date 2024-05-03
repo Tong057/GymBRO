@@ -74,9 +74,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Controls\DayOfWeekPicker\DayOfWeekPicker.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Resources\Languages\EnglishLanguage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

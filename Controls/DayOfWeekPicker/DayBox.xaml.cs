@@ -97,6 +97,6 @@ public partial class DayBox : ContentView
         IsChecked = !IsChecked;
         UpdateFillColor();
 
-        CheckedChanged?.Invoke(this, IsChecked);
+        CheckedChanged.Invoke(this, IsChecked);
     }
 }

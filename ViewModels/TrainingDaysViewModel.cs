@@ -10,23 +10,25 @@ namespace GymBro.ViewModels
 {
 	public partial class TrainingDaysViewModel : ObservableObject
 	{
+
+		[ObservableProperty]
+		private bool[] _checked = new bool[7];
+
 		public TrainingDaysViewModel(Repository repository)
 		{
-            SelectedDays = new ObservableCollection<string>();
-            SelectedDays.CollectionChanged += (s, e) =>
-            {
-                AppShell.Current.DisplayAlert("TETE", "wadad", "OK");
-            };
+			
         }
 
-        [ObservableProperty]
-        private ObservableCollection<string> _selectedDays;
-
-        [RelayCommand]
-		private void ShowSelectedDays()
+		[RelayCommand]
+		private void Test()
 		{
-            foreach (var day in SelectedDays)
-                AppShell.Current.DisplayAlert("TETE", day, "OK");
+			string info = "";
+			foreach(bool val in _checked)
+			{
+				info += val.ToString() + "; ";
+			}
+
+            AppShell.Current.DisplayAlert("Слюнявчик", info, "Ok");
         }
     }
 }
