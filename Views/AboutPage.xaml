@@ -12,6 +12,14 @@
                  VerticalOptions="FillAndExpand"
                  HorizontalOptions="FillAndExpand" />
 
+        <ImageButton Source="{OnPlatform iOS=Icons/arrow_back_ios.svg, Default=Icons/arrow_back.svg}"
+                     HorizontalOptions="Start" 
+                     VerticalOptions="Start"
+                     WidthRequest="30"
+                     HeightRequest="30"
+                     Margin="5, 13"
+                     Clicked="OnBackButtonClicked" />
+
         <ActivityIndicator x:Name="LoadingIndicator"
                            IsVisible="True"
                            IsRunning="True"
@@ -24,6 +32,7 @@
                    FontAttributes="Bold"
                    FontSize="16"
                    HorizontalOptions="Center" />
+            
             <Button Text="{DynamicResource Reload}"
                     FontAttributes="Bold"
                     FontSize="16"
@@ -32,6 +41,7 @@
                     HorizontalOptions="Center"
                     VerticalOptions="Center" />
         </StackLayout>
+        
     </Grid>
 
 </ContentPage>

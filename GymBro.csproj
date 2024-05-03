@@ -66,6 +66,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="AiForms.Maui.SettingsView" Version="1.0.9" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="8.0.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.21" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.21" />
@@ -126,5 +127,10 @@
 
 	<ItemGroup>
 	  <None Remove="Controls\DayBox\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\Icons\arrow_back.svg" />
+	  <MauiImage Include="Resources\Images\Icons\arrow_back_ios.svg" />
 	</ItemGroup>
 </Project>

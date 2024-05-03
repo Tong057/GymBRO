@@ -3,14 +3,20 @@
     x:Class="GymBro.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
     xmlns:local="clr-namespace:GymBro.Views"
     Shell.FlyoutBehavior="Flyout"
     FlyoutBackgroundColor="{DynamicResource BackgroundColor}"
     Shell.TabBarBackgroundColor="{DynamicResource BackgroundColor}"
-    Shell.TabBarForegroundColor="{DynamicResource PrimaryTextColor}"
     Shell.TabBarTitleColor="{DynamicResource PrimaryColor}"
+    Shell.TabBarForegroundColor="{DynamicResource PrimaryTextColor}"
     Shell.TitleColor="{DynamicResource PrimaryTextColor}"
+    Shell.ForegroundColor="{DynamicResource PrimaryTextColor}"
     Title="GymBro">
+
+    <Shell.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="{DynamicResource BackgroundColor}" />
+    </Shell.Behaviors>
 
     <FlyoutItem Title="GymBRO">
         <Tab Title="Home">

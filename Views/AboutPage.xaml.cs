@@ -47,5 +47,10 @@ namespace GymBro.Views
         {
             WebView.Reload();
         }
+
+        private void OnBackButtonClicked(object sender, EventArgs e)
+        {
+            AppShell.Current.FlyoutIsPresented = true;
+        }
     }
 }

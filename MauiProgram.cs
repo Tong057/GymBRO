@@ -1,4 +1,5 @@
 ﻿using AiForms.Settings;
+using CommunityToolkit.Maui;
 using GymBro.Models.Data.EntityFramework;
 using GymBro.Models.Data.EntityFramework.DbProviders;
 using GymBro.Models.Data.EntityFramework.Repositories;
@@ -15,6 +16,7 @@ namespace GymBro
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureMauiHandlers(handlers =>
                 {
                     if (DeviceInfo.Platform != DevicePlatform.WinUI)
