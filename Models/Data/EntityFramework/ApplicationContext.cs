@@ -1,4 +1,5 @@
 ﻿using System;
+using GymBro.Models.Data.EntityFramework.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GymBro.Models.Data.EntityFramework
@@ -12,7 +13,16 @@ namespace GymBro.Models.Data.EntityFramework
             optionsBuilder.UseSqlite(@"Data Source=" + Constants.DatabasePath);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
+
+
         //DB Sets below
+        public DbSet<ScheduleDay> ScheduleDays { get; set; }
+        public DbSet<TrainingSchedule> TrainingSchedules { get; set; }
     }
 }
 
