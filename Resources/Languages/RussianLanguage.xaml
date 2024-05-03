@@ -17,4 +17,15 @@
     <x:String x:Key="ErrorMessage">Ошибка! Попробуйте перезагрузить.</x:String>
     <x:String x:Key="Reload">Перезагрузить</x:String>
 
+    <!--Week day names-->
+    <x:Array Type="{x:Type x:String}" x:Key="WeekNames">
+        <x:String>Пон</x:String>
+        <x:String>Вто</x:String>
+        <x:String>Сре</x:String>
+        <x:String>Чет</x:String>
+        <x:String>Пят</x:String>
+        <x:String>Суб</x:String>
+        <x:String>Вос</x:String>
+    </x:Array>
+
 </ResourceDictionary>

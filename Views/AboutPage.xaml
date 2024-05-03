@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GymBro.Views.AboutPage"
@@ -10,7 +10,7 @@
                  Navigating="OnNavigating"
                  Navigated="OnNavigated"
                  VerticalOptions="FillAndExpand"
-                 HorizontalOptions="FillAndExpand" />
+                 HorizontalOptions="FillAndExpand"/>
 
         <ImageButton Source="{OnPlatform iOS=Icons/arrow_back_ios.svg, Default=Icons/arrow_back.svg}"
                      HorizontalOptions="Start" 

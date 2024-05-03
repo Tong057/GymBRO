@@ -17,4 +17,15 @@
     <x:String x:Key="ErrorMessage">Error! Try to reload.</x:String>
     <x:String x:Key="Reload">Reload</x:String>
 
+    <!--Week day names-->
+    <x:Array Type="{x:Type x:String}" x:Key="WeekNames">
+        <x:String>Mon</x:String>
+        <x:String>Tue</x:String>
+        <x:String>Wed</x:String>
+        <x:String>Thu</x:String>
+        <x:String>Fri</x:String>
+        <x:String>Sat</x:String>
+        <x:String>Sun</x:String>
+    </x:Array>
+
 </ResourceDictionary>

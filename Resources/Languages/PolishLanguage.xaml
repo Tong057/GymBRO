@@ -17,4 +17,15 @@
     <x:String x:Key="ErrorMessage">Błąd! Spróbuj ponownie załadować stronę.</x:String>
     <x:String x:Key="Reload">Przeładuj</x:String>
 
+    <!--Week day names-->
+    <x:Array Type="{x:Type x:String}" x:Key="WeekNames">
+        <x:String>Pon</x:String>
+        <x:String>Wto</x:String>
+        <x:String>Śro</x:String>
+        <x:String>Czw</x:String>
+        <x:String>Pią</x:String>
+        <x:String>Sob</x:String>
+        <x:String>Nie</x:String>
+    </x:Array>
+
 </ResourceDictionary>
