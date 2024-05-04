@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.VisualBasic;
 using static Android.Net.Http.SslCertificate;
 
 namespace GymBro.Controls.DayOfWeekPicker;
@@ -49,18 +51,18 @@ public partial class WeekDayPicker : ContentView
     }
 
 
-    public static readonly BindableProperty CheckedProperty = BindableProperty.Create(nameof(Checked), typeof(ObservableCollection<DayOfWeek>), typeof(WeekDayPicker), propertyChanged: (bindable, oldValue, newValue) =>
+    public static readonly BindableProperty CheckedProperty = BindableProperty.Create(nameof(Checked), typeof(ObservableHashSet<DayOfWeek>), typeof(WeekDayPicker), propertyChanged: (bindable, oldValue, newValue) =>
     {
         var control = (WeekDayPicker)bindable;
 
-        ObservableCollection<DayOfWeek> isCheckeds = newValue as ObservableCollection<DayOfWeek>;
+        ObservableHashSet<DayOfWeek> isCheckeds = newValue as ObservableHashSet<DayOfWeek>;
         isCheckeds.CollectionChanged += (s, e) => control.UpdateIsChecked(isCheckeds);
         control.UpdateIsChecked(isCheckeds);
     });
 
-    public ObservableCollection<DayOfWeek> Checked
+    public ObservableHashSet<DayOfWeek> Checked
     {
-        get => (ObservableCollection<DayOfWeek>)GetValue(CheckedProperty);
+        get => (ObservableHashSet<DayOfWeek>)GetValue(CheckedProperty);
         set => SetValue(CheckedProperty, value);
     }
 
@@ -111,19 +113,10 @@ public partial class WeekDayPicker : ContentView
 
         if (isChecked)
         {
-            if (Checked.Contains(dayOfWeek))
-                return;
-
             Checked.Add(dayOfWeek);
         } else
         {
-            foreach (DayOfWeek item in Checked.ToList())
-            {
-                if (item == dayOfWeek)
-                {
-                    Checked.Remove(item);
-                }
-            }
+            Checked.Remove(dayOfWeek);
         }
     }
 
@@ -144,7 +137,7 @@ public partial class WeekDayPicker : ContentView
         }
     }
 
-    private void UpdateIsChecked(ObservableCollection<DayOfWeek> isChecked)
+    private void UpdateIsChecked(ObservableHashSet<DayOfWeek> isChecked)
     {
         DayBoxMonday.IsChecked = isChecked.Contains(DayOfWeek.Monday);
         DayBoxTuesday.IsChecked = isChecked.Contains(DayOfWeek.Tuesday);

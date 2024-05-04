@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using GymBro.Controls.DayOfWeekPicker;
 using GymBro.Models.Data.EntityFramework.Models;
 using GymBro.Models.Data.EntityFramework.Repositories;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace GymBro.ViewModels
 {
@@ -13,7 +14,7 @@ namespace GymBro.ViewModels
 	{
 
 		[ObservableProperty]
-		private ObservableCollection<DayOfWeek> _checked = new ObservableCollection<DayOfWeek>();
+		private ObservableHashSet<DayOfWeek> _checked = new ObservableHashSet<DayOfWeek>();
 
 
 		private Repository _repository;
