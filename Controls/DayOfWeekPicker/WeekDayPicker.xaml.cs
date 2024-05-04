@@ -1,8 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.VisualBasic;
-using static Android.Net.Http.SslCertificate;
 
 namespace GymBro.Controls.DayOfWeekPicker;
 

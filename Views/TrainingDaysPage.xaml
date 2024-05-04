@@ -9,7 +9,7 @@
 
     <ScrollView>
 
-        <StackLayout Margin="0, 10">
+        <StackLayout Margin="0, 10" Spacing="10">
             <controls:WeekDayPicker WeekNames="{DynamicResource WeekNames}" SelectedColor="Pink" Checked="{Binding Checked}"/>
             <Button Text="Get Info" Command="{Binding TestCommand}"/>
             <Button Text="Set All Checked" Command="{Binding SetAllCheckedCommand}"/>
