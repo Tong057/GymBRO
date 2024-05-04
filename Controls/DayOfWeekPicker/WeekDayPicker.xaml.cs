@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using static Android.Net.Http.SslCertificate;
 
 namespace GymBro.Controls.DayOfWeekPicker;
 

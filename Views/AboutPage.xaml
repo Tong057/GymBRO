@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:icons="clr-namespace:GymBro.Utilities"
              x:Class="GymBro.Views.AboutPage"
              Shell.NavBarIsVisible="False">
-
     <Grid>
         <WebView x:Name="WebView"
                  Source="https://gymbro.site"
@@ -12,13 +12,13 @@
                  VerticalOptions="FillAndExpand"
                  HorizontalOptions="FillAndExpand"/>
 
-        <ImageButton Source="{OnPlatform iOS=Icons/arrow_back_ios.svg, Default=Icons/arrow_back.svg}"
-                     HorizontalOptions="Start" 
+        <ImageButton HorizontalOptions="Start" 
                      VerticalOptions="Start"
-                     WidthRequest="30"
-                     HeightRequest="30"
-                     Margin="5, 13"
-                     Clicked="OnBackButtonClicked" />
+                     WidthRequest="28"
+                     HeightRequest="28"
+                     Margin="5, 14"
+                     Clicked="OnBackButtonClicked" 
+                     Source="{OnPlatform Default={StaticResource ArrowBackIcon}, iOS={StaticResource ArrowBackIcon_ios}}" />
 
         <ActivityIndicator x:Name="LoadingIndicator"
                            IsVisible="True"
@@ -32,7 +32,7 @@
                    FontAttributes="Bold"
                    FontSize="16"
                    HorizontalOptions="Center" />
-            
+
             <Button Text="{DynamicResource Reload}"
                     FontAttributes="Bold"
                     FontSize="16"
@@ -41,7 +41,6 @@
                     HorizontalOptions="Center"
                     VerticalOptions="Center" />
         </StackLayout>
-        
-    </Grid>
 
+    </Grid>
 </ContentPage>

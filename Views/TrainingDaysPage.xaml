@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:GymBro.Controls.DayOfWeekPicker"
+             xmlns:icons="clr-namespace:GymBro.Utilities"
              x:Class="GymBro.Views.TrainingDaysPage"
+             Style="{StaticResource ContentPageStyle}"
              Title="Training Days">
 
     <ScrollView>

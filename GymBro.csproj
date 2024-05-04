@@ -46,7 +46,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#28C85A" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -58,10 +58,27 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 	<ItemGroup>
+	  <AndroidResource Remove="Resources\Images\Icons\**" />
+	  <Compile Remove="Resources\Images\Icons\**" />
+	  <EmbeddedResource Remove="Resources\Images\Icons\**" />
+	  <MauiCss Remove="Resources\Images\Icons\**" />
+	  <MauiImage Remove="Resources\Images\Icons\**" />
+	  <MauiXaml Remove="Resources\Images\Icons\**" />
+	  <None Remove="Resources\Images\Icons\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Resources\Fonts\FontAwesome-Brands.otf" />
+	  <None Remove="Resources\Fonts\FontAwesome-Solid.otf" />
+	  <None Remove="Resources\Images\about_dark.svg" />
+	  <None Remove="Resources\Images\about_light.svg" />
 	  <None Remove="Resources\Images\account.svg" />
 	  <None Remove="Models\Data\EntityFramework\" />
 	  <None Remove="Models\Data\EntityFramework\DbProviders\" />
 	  <None Remove="Models\Data\EntityFramework\Repositories\" />
+	  <None Remove="Resources\Images\dumbell_dark.svg" />
+	  <None Remove="Resources\Images\dumbell_light.svg" />
+	  <None Remove="Resources\Images\settings_dark.svg" />
+	  <None Remove="Resources\Images\settings_light.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -103,7 +120,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Models\Interfaces\" />
-	  <Folder Include="Utilities\" />
 	  <Folder Include="Models\Data\EntityFramework\DbProviders\" />
 	  <Folder Include="Models\Data\EntityFramework\Repositories\" />
 	</ItemGroup>
@@ -124,10 +140,5 @@
 
 	<ItemGroup>
 	  <None Remove="Controls\DayBox\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiImage Include="Resources\Images\Icons\arrow_back.svg" />
-	  <MauiImage Include="Resources\Images\Icons\arrow_back_ios.svg" />
 	</ItemGroup>
 </Project>
