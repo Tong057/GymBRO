@@ -13,7 +13,7 @@ namespace GymBro.ViewModels
 	{
 
 		[ObservableProperty]
-		private bool[] _checked = new bool[7];
+		private ObservableCollection<DayOfWeek> _checked = new ObservableCollection<DayOfWeek>();
 
 
 		private Repository _repository;
@@ -27,7 +27,7 @@ namespace GymBro.ViewModels
 		private void Test()
 		{
 			string info = "";
-			foreach(bool val in _checked)
+			foreach(DayOfWeek val in Checked)
 			{
 				info += val.ToString() + "; ";
 			}
@@ -47,6 +47,18 @@ namespace GymBro.ViewModels
 			trainingSchedule.ScheduleDays.Add(scheduleDay);
 			await _repository.UpdateTrainingSchedule(trainingSchedule);
 		}
+
+		[RelayCommand]
+		public void SetAllChecked()
+		{
+			Checked.Add(DayOfWeek.Monday);
+            Checked.Add(DayOfWeek.Tuesday);
+            Checked.Add(DayOfWeek.Wednesday);
+            Checked.Add(DayOfWeek.Thursday);
+            Checked.Add(DayOfWeek.Friday);
+            Checked.Add(DayOfWeek.Saturday);
+            Checked.Add(DayOfWeek.Sunday);
+        }
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using static Android.Net.Http.SslCertificate;
 
 namespace GymBro.Controls.DayOfWeekPicker;
@@ -48,20 +49,20 @@ public partial class WeekDayPicker : ContentView
     }
 
 
-    public static readonly BindableProperty CheckedProperty = BindableProperty.Create(nameof(Checked), typeof(bool[]), typeof(WeekDayPicker), propertyChanged: (bindable, oldValue, newValue) =>
+    public static readonly BindableProperty CheckedProperty = BindableProperty.Create(nameof(Checked), typeof(ObservableCollection<DayOfWeek>), typeof(WeekDayPicker), propertyChanged: (bindable, oldValue, newValue) =>
     {
         var control = (WeekDayPicker)bindable;
 
-        bool[] isCheckeds = newValue as bool[];
+        ObservableCollection<DayOfWeek> isCheckeds = newValue as ObservableCollection<DayOfWeek>;
+        isCheckeds.CollectionChanged += (s, e) => control.UpdateIsChecked(isCheckeds);
         control.UpdateIsChecked(isCheckeds);
     });
 
-    public bool[] Checked
+    public ObservableCollection<DayOfWeek> Checked
     {
-        get => (bool[])GetValue(CheckedProperty);
+        get => (ObservableCollection<DayOfWeek>)GetValue(CheckedProperty);
         set => SetValue(CheckedProperty, value);
     }
-
 
     public WeekDayPicker()
 	{
@@ -76,22 +77,52 @@ public partial class WeekDayPicker : ContentView
         if (Checked == null)
             return;
 
-        var layout = DayBoxList;
-
-        int index = 0;
-        foreach (var element in layout.Children)
+        
+        DayOfWeek dayOfWeek;
+        if (sender == DayBoxMonday)
         {
-            if (element is DayBox)
+            dayOfWeek = DayOfWeek.Monday;
+        }
+        else if (sender == DayBoxTuesday)
+        {
+            dayOfWeek = DayOfWeek.Tuesday;
+        }
+        else if (sender == DayBoxWednesday)
+        {
+            dayOfWeek = DayOfWeek.Wednesday;
+        }
+        else if (sender == DayBoxThursday)
+        {
+            dayOfWeek = DayOfWeek.Thursday;
+        }
+        else if (sender == DayBoxFriday)
+        {
+            dayOfWeek = DayOfWeek.Friday;
+        }
+        else if (sender == DayBoxSaturday)
+        {
+            dayOfWeek = DayOfWeek.Saturday;
+        }
+        else
+        {
+            dayOfWeek = DayOfWeek.Sunday;
+        }
+
+
+        if (isChecked)
+        {
+            if (Checked.Contains(dayOfWeek))
+                return;
+
+            Checked.Add(dayOfWeek);
+        } else
+        {
+            foreach (DayOfWeek item in Checked.ToList())
             {
-                DayBox dayBox = element as DayBox;
-
-                if(dayBox == sender)
+                if (item == dayOfWeek)
                 {
-                    Checked[index] = isChecked;
-                    return;
+                    Checked.Remove(item);
                 }
-
-                index++;
             }
         }
     }
@@ -113,21 +144,15 @@ public partial class WeekDayPicker : ContentView
         }
     }
 
-    private void UpdateIsChecked(bool[] isChecked)
+    private void UpdateIsChecked(ObservableCollection<DayOfWeek> isChecked)
     {
-        var layout = DayBoxList;
-        int index = 0;
-
-        foreach (var element in layout.Children)
-        {
-            if (element is DayBox)
-            {
-                DayBox dayBox = element as DayBox;
-                dayBox.IsChecked = isChecked[index];
-
-                index++;
-            }
-        }
+        DayBoxMonday.IsChecked = isChecked.Contains(DayOfWeek.Monday);
+        DayBoxTuesday.IsChecked = isChecked.Contains(DayOfWeek.Tuesday);
+        DayBoxWednesday.IsChecked = isChecked.Contains(DayOfWeek.Wednesday);
+        DayBoxThursday.IsChecked = isChecked.Contains(DayOfWeek.Thursday);
+        DayBoxFriday.IsChecked = isChecked.Contains(DayOfWeek.Friday);
+        DayBoxSaturday.IsChecked = isChecked.Contains(DayOfWeek.Saturday);
+        DayBoxSunday.IsChecked = isChecked.Contains(DayOfWeek.Sunday);
     }
 
     private void PerformActionOnDayBox(Action<DayBox> action)
