@@ -1,25 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:GymBro.Controls.DayOfWeekPicker"
+             xmlns:controls="clr-namespace:GymBro.Controls.WeekDayPicker"
              xmlns:icons="clr-namespace:GymBro.Utilities"
              x:Class="GymBro.Views.TrainingDaysPage"
              Style="{StaticResource ContentPageStyle}"
              Title="Training Days">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="{StaticResource AddIcon}" Command="{Binding OpenCreateTrainingDay}"/>
+    </ContentPage.ToolbarItems>
 
     <ScrollView>
-
-        <StackLayout Margin="0, 10" Spacing="10">
-            <controls:WeekDayPicker WeekNames="{DynamicResource WeekNames}" SelectedColor="Pink" Checked="{Binding Checked}"/>
+        <StackLayout Margin="5, 10" Spacing="10">
+            <controls:WeekDayPicker WeekNames="{DynamicResource WeekNames}" SelectedColor="{DynamicResource PrimaryColor}" Checked="{Binding Checked}"/>
             <Button Text="Get Info" Command="{Binding TestCommand}"/>
             <Button Text="Set All Checked" Command="{Binding SetAllCheckedCommand}"/>
             <Button Text="Create TrainingSchedule" Command="{Binding CreateScheduleDayCommand}"/>
         </StackLayout>
-        
-        
-        
-
-
     </ScrollView>
 
 </ContentPage>

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace GymBro.Controls.DayOfWeekPicker;
+namespace GymBro.Controls.WeekDayPicker;
 
 public partial class WeekDayPicker : ContentView
 {

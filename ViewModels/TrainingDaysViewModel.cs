@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using GymBro.Controls.DayOfWeekPicker;
 using GymBro.Models.Data.EntityFramework.Models;
 using GymBro.Models.Data.EntityFramework.Repositories;
 using Microsoft.EntityFrameworkCore.ChangeTracking;

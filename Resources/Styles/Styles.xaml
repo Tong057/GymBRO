@@ -9,7 +9,7 @@
         <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="OpenSansRegular" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="16" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
@@ -28,7 +28,7 @@
         <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
         <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
-        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontSize" Value="16"/>
         <Setter Property="BorderWidth" Value="0"/>
         <Setter Property="CornerRadius" Value="8"/>
         <Setter Property="Padding" Value="14,10"/>
@@ -126,6 +126,12 @@
                      Glyph="{x:Static icons:FontAwesomeIcons.HamburgerMenu}" 
                      Color="{DynamicResource PrimaryTextColor}" 
                      Size="32" />
+    
+    <FontImageSource x:Key="AddIcon" 
+                     FontFamily="FontAwesomeSolid" 
+                     Glyph="{x:Static icons:FontAwesomeIcons.Plus}" 
+                     Color="White" 
+                     Size="32" />
 
     <FontImageSource x:Key="ArrowBackIcon" 
                      FontFamily="FontAwesomeSolid" 
@@ -138,6 +144,7 @@
                      Glyph="{x:Static icons:FontAwesomeIcons.ArrowBack}" 
                      Color="#1c1c1c" 
                      Size="30" />
+
     <!--End Icon Styles-->
 
 </ResourceDictionary>

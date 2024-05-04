@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GymBro.Utilities
+﻿namespace GymBro.Utilities
 {
     public static class FontAwesomeIcons
     {
@@ -15,5 +9,6 @@ namespace GymBro.Utilities
         public const string ArrowBack_ios = "\uf104;";
         public const string HamburgerMenu = "\uf0c9"; 
         public const string ChartLine = "\uf201";
+        public const string Plus = "\u002b";
     }
 }

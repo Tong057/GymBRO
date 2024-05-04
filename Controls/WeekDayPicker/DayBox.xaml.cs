@@ -1,8 +1,4 @@
-﻿using System.Globalization;
-using System.Runtime.CompilerServices;
-using Microsoft.Maui.Controls.Shapes;
-
-namespace GymBro.Controls.DayOfWeekPicker;
+﻿namespace GymBro.Controls.WeekDayPicker;
 
 public partial class DayBox : ContentView
 {
