@@ -41,6 +41,9 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -75,6 +78,7 @@
 	  <None Remove="Models\Data\EntityFramework\" />
 	  <None Remove="Models\Data\EntityFramework\DbProviders\" />
 	  <None Remove="Models\Data\EntityFramework\Repositories\" />
+	  <None Remove="Models\Data\EntityFramework\Models\" />
 	  <None Remove="Resources\Images\dumbell_dark.svg" />
 	  <None Remove="Resources\Images\dumbell_light.svg" />
 	  <None Remove="Resources\Images\settings_dark.svg" />
@@ -122,6 +126,7 @@
 	  <Folder Include="Models\Interfaces\" />
 	  <Folder Include="Models\Data\EntityFramework\DbProviders\" />
 	  <Folder Include="Models\Data\EntityFramework\Repositories\" />
+	  <Folder Include="Models\Data\EntityFramework\Models\" />
 	</ItemGroup>
 
 	<ItemGroup>
