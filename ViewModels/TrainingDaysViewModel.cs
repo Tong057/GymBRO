@@ -40,13 +40,37 @@ namespace GymBro.ViewModels
 		[RelayCommand]
 		public async void CreateScheduleDay()
 		{
+			//Create Schedule
 			TrainingSchedule trainingSchedule = new TrainingSchedule("Test Schedule");
 			await _repository.CreateTrainingSchedule(trainingSchedule);
 
             ScheduleDay scheduleDay = new ScheduleDay(DayOfWeek.Monday);
-
 			trainingSchedule.ScheduleDays.Add(scheduleDay);
-			await _repository.UpdateTrainingSchedule(trainingSchedule);
+
+			TrainingScheduleExercises trainingScheduleExercises = new TrainingScheduleExercises();
+			trainingSchedule.TrainingScheduleExercises = trainingScheduleExercises;
+
+			trainingScheduleExercises.Exercises.Add(new Exercise("Pull-Up", "Do PullUps"));
+            trainingScheduleExercises.Exercises.Add(new Exercise("Drops", "Do Drops"));
+            trainingScheduleExercises.Exercises.Add(new Exercise("Pelmeski", "Eat Pelmeni"));
+            await _repository.UpdateTrainingSchedule(trainingSchedule);
+
+
+
+
+			//Create Training
+			Training training = new Training(trainingSchedule);
+			training.StartTime = DateTime.Now;
+
+			ExerciseStatus exerciseStatus = new ExerciseStatus(trainingSchedule.TrainingScheduleExercises.Exercises.ElementAt(0));
+			exerciseStatus.ExerciseWeights.Add(new ExerciseWeight(10));
+
+            training.ExerciseStatuses.Add(exerciseStatus);
+			await _repository.CreateTraining(training);
+
+
+			AppShell.Current.DisplayAlert("Alert",
+				$"{training.StartTime} | Amount: {training.ExerciseStatuses.ElementAt(0).Exercise.Name}", "OK");
 		}
 
 		[RelayCommand]

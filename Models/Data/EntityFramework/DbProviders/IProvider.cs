@@ -1,5 +1,4 @@
-﻿using System;
-using GymBro.Models.Data.EntityFramework.Models;
+﻿using GymBro.Models.Data.EntityFramework.Models;
 
 namespace GymBro.Models.Data.EntityFramework.DbProviders
 {
@@ -8,10 +7,12 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
 
 		//Create
 		Task CreateTrainingSchedule(TrainingSchedule trainingSchedule);
+		Task CreateTraining(Training training);
 
 
 		//Update
 		Task UpdateTrainingSchedule(TrainingSchedule trainingSchedule);
+		Task UpdateTraining(Training training);
 	}
 }
 

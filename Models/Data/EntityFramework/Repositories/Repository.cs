@@ -19,10 +19,20 @@ namespace GymBro.Models.Data.EntityFramework.Repositories
             await _provider.CreateTrainingSchedule(trainingSchedule);
         }
 
+        public async Task CreateTraining(Training training)
+        {
+            await _provider.CreateTraining(training);
+        }
+
         //Update
         public async Task? UpdateTrainingSchedule(TrainingSchedule trainingSchedule)
         {
             await _provider.UpdateTrainingSchedule(trainingSchedule);
+        }
+
+        public async Task? UpdateTraining(Training training)
+        {
+            await _provider.UpdateTraining(training);
         }
     }
 }

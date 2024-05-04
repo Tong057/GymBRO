@@ -7,10 +7,10 @@ namespace GymBro.Models.Data.EntityFramework.Models
 		public int Id { get; set; }
 		public string Title { get; set; }
 
-		public ICollection<ScheduleDay> ScheduleDays { get; set; } = new List<ScheduleDay>();
+        public ICollection<ScheduleDay> ScheduleDays { get; set; } = new List<ScheduleDay>();
+		public TrainingScheduleExercises TrainingScheduleExercises { get; set; }
 
-
-		public TrainingSchedule(string title)
+        public TrainingSchedule(string title)
 		{
 			Title = title;
 		}
