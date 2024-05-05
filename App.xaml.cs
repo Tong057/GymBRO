@@ -1,6 +1,5 @@
 ﻿using GymBro.Models;
 
-
 namespace GymBro
 {
     public partial class App : Application

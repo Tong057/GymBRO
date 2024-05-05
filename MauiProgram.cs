@@ -22,7 +22,7 @@ namespace GymBro
                     if (DeviceInfo.Platform != DevicePlatform.WinUI)
                         handlers.AddSettingsViewHandler();
 
-                     handlers.AddHandler<Shell, CustomShellHandler>();
+                    handlers.AddHandler<Shell, CustomShellHandler>();
                 })
                 .ConfigureFonts(fonts =>
                 {
@@ -42,6 +42,9 @@ namespace GymBro
 
             builder.Services.AddTransient<TrainingDaysViewModel>();
             builder.Services.AddTransient<TrainingDaysPage>();
+
+            builder.Services.AddTransient<CreateTrainingScheduleViewModel>();
+            builder.Services.AddTransient<CreateTrainingSchedulePage>();
 
             //EntityFramework
             builder.Services.AddTransient<ApplicationContext>();

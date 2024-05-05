@@ -10,5 +10,7 @@
         public const string HamburgerMenu = "\uf0c9"; 
         public const string ChartLine = "\uf201";
         public const string Plus = "\u002b";
+        public const string PlusCircle = "\uf055";
+        public const string Check = "\uf00c";
     }
 }

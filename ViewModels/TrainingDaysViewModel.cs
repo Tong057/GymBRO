@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using GymBro.Models.Data.EntityFramework.Models;
 using GymBro.Models.Data.EntityFramework.Repositories;
+using GymBro.Views;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace GymBro.ViewModels
@@ -79,6 +80,12 @@ namespace GymBro.ViewModels
             Checked.Add(DayOfWeek.Friday);
             Checked.Add(DayOfWeek.Saturday);
             Checked.Add(DayOfWeek.Sunday);
+        }
+
+		[RelayCommand]
+		public async Task OpenCreateTrainingSchedule()
+		{
+            await Shell.Current.GoToAsync(nameof(CreateTrainingSchedulePage));
         }
     }
 }

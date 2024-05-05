@@ -8,7 +8,6 @@
     xmlns:local="clr-namespace:GymBro.Views"
     Shell.FlyoutBehavior="Flyout"
     Shell.ItemTemplate="{StaticResource ShellItemTemplate}"
-    FlyoutIcon="{StaticResource MenuIcon}"
     FlyoutBackgroundColor="{DynamicResource BackgroundColor}"
     Title="GymBro">
 

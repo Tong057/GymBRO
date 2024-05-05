@@ -133,6 +133,18 @@
                      Color="White" 
                      Size="32" />
 
+    <FontImageSource x:Key="AddCircleIcon" 
+                     FontFamily="FontAwesomeSolid" 
+                     Glyph="{x:Static icons:FontAwesomeIcons.PlusCircle}" 
+                     Color="{DynamicResource PrimaryColor}" 
+                     Size="32" />
+
+    <FontImageSource x:Key="AcceptIcon" 
+                     FontFamily="FontAwesomeSolid" 
+                     Glyph="{x:Static icons:FontAwesomeIcons.Check}" 
+                     Color="White" 
+                     Size="32" />
+
     <FontImageSource x:Key="ArrowBackIcon" 
                      FontFamily="FontAwesomeSolid" 
                      Glyph="{x:Static icons:FontAwesomeIcons.ArrowBack}" 
