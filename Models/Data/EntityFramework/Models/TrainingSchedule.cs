@@ -8,7 +8,7 @@ namespace GymBro.Models.Data.EntityFramework.Models
 		public string Title { get; set; }
 
         public ICollection<ScheduleDay> ScheduleDays { get; set; } = new List<ScheduleDay>();
-		public TrainingScheduleExercises TrainingScheduleExercises { get; set; }
+		public TrainingScheduleExercises TrainingScheduleExercises { get; set; } = new TrainingScheduleExercises();
 
         public TrainingSchedule(string title)
 		{
@@ -18,6 +18,11 @@ namespace GymBro.Models.Data.EntityFramework.Models
         public TrainingSchedule()
         {
         }
+
+		public List<TrainingScheduleSingleDayModel> ToSingleDayModels()
+		{
+			return ScheduleDays.Select(day => new TrainingScheduleSingleDayModel(Id, Title, day, TrainingScheduleExercises)).ToList();
+		}
     }
 }
 

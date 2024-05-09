@@ -12,5 +12,6 @@
         public const string Plus = "\u002b";
         public const string PlusCircle = "\uf055";
         public const string Check = "\uf00c";
+        public const string SadSmile = "\uf57a";
     }
 }

@@ -13,6 +13,9 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
 		//Update
 		Task UpdateTrainingSchedule(TrainingSchedule trainingSchedule);
 		Task UpdateTraining(Training training);
+
+		//Get
+		Task<List<TrainingSchedule>> GetAllTrainingSchedules();
 	}
 }
 

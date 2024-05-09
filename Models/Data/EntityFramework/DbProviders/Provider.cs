@@ -1,4 +1,5 @@
 ﻿using GymBro.Models.Data.EntityFramework.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GymBro.Models.Data.EntityFramework.DbProviders
 {
@@ -51,6 +52,17 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
             findedTraining.ExerciseStatuses = training.ExerciseStatuses;
 
             await _context.SaveChangesAsync();
+        }
+
+
+        //Get
+        public async Task<List<TrainingSchedule>> GetAllTrainingSchedules()
+        {
+            return await _context.TrainingSchedules
+                .Include(training => training.ScheduleDays)
+                .Include(training => training.TrainingScheduleExercises)
+                    .ThenInclude(scheduleExercises => scheduleExercises.Exercises)
+                .ToListAsync();
         }
     }
 }

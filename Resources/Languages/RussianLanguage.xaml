@@ -17,6 +17,11 @@
     <x:String x:Key="ErrorMessage">Ошибка! Попробуйте перезагрузить.</x:String>
     <x:String x:Key="Reload">Перезагрузить</x:String>
 
+    <x:String x:Key="NothingHereMessage">Nothing here...</x:String>
+    <x:String x:Key="CreateYourFirstGymDayMessage">Create your first Gym-Day</x:String>
+
+    <x:String x:Key="Exercises">Упражнения</x:String>
+
     <!--Week day names-->
     <x:Array Type="{x:Type x:String}" x:Key="WeekNames">
         <x:String>Пон</x:String>
@@ -26,6 +31,16 @@
         <x:String>Пят</x:String>
         <x:String>Суб</x:String>
         <x:String>Вос</x:String>
+    </x:Array>
+
+    <x:Array Type="{x:Type x:String}" x:Key="FullWeekNames">
+        <x:String>Понедельник</x:String>
+        <x:String>Вторник</x:String>
+        <x:String>Среда</x:String>
+        <x:String>Четверг</x:String>
+        <x:String>Пятница</x:String>
+        <x:String>Суббота</x:String>
+        <x:String>Воскресенье</x:String>
     </x:Array>
 
 </ResourceDictionary>
