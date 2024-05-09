@@ -34,18 +34,51 @@ namespace GymBro.ViewModels
         }
 
 		[RelayCommand]
+		public async Task DeleteScheduleDay(int scheduleDayId)
+		{
+			await AppShell.Current.DisplayAlert("T", scheduleDayId.ToString(), "OK");
+			ScheduleDay scheduleDay = await _repository.GetScheduleDayById(scheduleDayId);
+			if (scheduleDay == null)
+				return;
+
+			TrainingSchedule trainingSchedule = scheduleDay.TrainingSchedule;
+			if(trainingSchedule.ScheduleDays.Count <= 1)
+			{
+				await _repository.DeleteTrainingSchedule(trainingSchedule);
+			} else
+			{
+				trainingSchedule.ScheduleDays.Remove(scheduleDay);
+				await _repository.UpdateTrainingSchedule(trainingSchedule);
+            }
+
+			UpdateTrainingSchedules(await _repository.GetAllTrainingSchedules());
+		}
+
+		[RelayCommand]
 		public async Task Test()
 		{
 			TrainingSchedule schedule = new TrainingSchedule("Test");
 			schedule.ScheduleDays.Add(new ScheduleDay(DayOfWeek.Friday));
+			schedule.TrainingScheduleExercises.Exercises.Add(new Exercise("TestName", "TestDesc"));
 
 			await _repository.CreateTrainingSchedule(schedule);
 
-            UpdateTrainingSchedules(await _repository.GetAllTrainingSchedules());
-        }
+			ScheduleDay t1 = new ScheduleDay(DayOfWeek.Friday);
+			ScheduleDay t2 = new ScheduleDay(DayOfWeek.Monday);
+
+			TrainingSchedule schedule2 = new TrainingSchedule("DoubleTest");
+			schedule2.ScheduleDays.Add(t1);
+			schedule2.ScheduleDays.Add(t2);
+			schedule2.TrainingScheduleExercises.Exercises.Add(new Exercise("DoubleTestName", "DoubleTestDesc"));
+			schedule2.TrainingScheduleExercises.Exercises.Add(new Exercise("DoubleTestName2", "DoubleTestDesc2"));
 
 
-		public async void InitializeViewModel()
+            await _repository.CreateTrainingSchedule(schedule2);
+
+			UpdateTrainingSchedules(await _repository.GetAllTrainingSchedules());
+		}
+
+        public async void InitializeViewModel()
 		{
             UpdateTrainingSchedules(await _repository.GetAllTrainingSchedules());
 

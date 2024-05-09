@@ -15,13 +15,13 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
         //Create
         public async Task CreateTrainingSchedule(TrainingSchedule trainingSchedule)
         {
-            _context.TrainingSchedules.Add(trainingSchedule);
+            await _context.TrainingSchedules.AddAsync(trainingSchedule);
             await _context.SaveChangesAsync();
         }
 
         public async Task CreateTraining(Training training)
         {
-            _context.Trainings.Add(training);
+            await _context.Trainings.AddAsync(training);
             await _context.SaveChangesAsync();
         }
 
@@ -63,6 +63,23 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
                 .Include(training => training.TrainingScheduleExercises)
                     .ThenInclude(scheduleExercises => scheduleExercises.Exercises)
                 .ToListAsync();
+        }
+
+        public async Task<ScheduleDay> GetScheduleDayById(int id)
+        {
+            return await _context.ScheduleDays
+                .Where(day => day.Id == id)
+                .Include(day => day.TrainingSchedule)
+                .SingleAsync();
+
+        }
+
+
+        //Delete
+        public async Task DeleteTrainingSchedule(TrainingSchedule trainingSchedule)
+        {
+            _context.Remove(trainingSchedule);
+            await _context.SaveChangesAsync();
         }
     }
 }

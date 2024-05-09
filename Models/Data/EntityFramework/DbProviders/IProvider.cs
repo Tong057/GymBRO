@@ -16,6 +16,11 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
 
 		//Get
 		Task<List<TrainingSchedule>> GetAllTrainingSchedules();
-	}
+		Task<ScheduleDay> GetScheduleDayById(int id);
+
+		//Delete
+		Task DeleteTrainingSchedule(TrainingSchedule trainingSchedule);
+
+    }
 }
 
