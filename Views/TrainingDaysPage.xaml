@@ -11,7 +11,7 @@
         <converters:DayOfWeekConverter x:Key="DayOfWeekConverter"/>
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="Auto, Auto, *">
+    <Grid RowDefinitions="Auto, Auto, *" IgnoreSafeArea="True">
         <navbar:CustomNavigationBar RightButtonCommand="{Binding OpenCreateTrainingScheduleCommand}" RightButtonIconSource="{StaticResource AddIcon}" Grid.Row="0" />
 
         <Button Text="Add Test Day" Command="{Binding TestCommand}" Grid.Row="1" Margin="5" HeightRequest="60"/>

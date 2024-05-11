@@ -26,13 +26,13 @@ namespace GymBro.Models
                     break;
 
                 case null:
-                    if (Application.Current.PlatformAppTheme == AppTheme.Dark)
+                    if (Application.Current.PlatformAppTheme == AppTheme.Light)
                     {
-                        goto case "Dark";
+                        goto case "Light";
                     }
                     else
                     {
-                        goto case "Light";
+                        goto case "Dark";
                     }
             }
         }

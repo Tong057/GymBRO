@@ -2,21 +2,13 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GymBro.Controls.NavigationBar.CustomNavigationBar">
-    <ContentView.Resources>
-        <OnPlatform x:Key="ColumnWidth" x:TypeArguments="x:Double">
-            <On Platform="iOS" Value="60" />
-        </OnPlatform>
-        <OnPlatform x:Key="DefaultColumnWidth" x:TypeArguments="x:Double">
-            <On Platform="Default" Value="40" />
-        </OnPlatform>
-    </ContentView.Resources>
 
     <ContentView.Content>
-        <Grid VerticalOptions="Start" HeightRequest="{OnPlatform iOS=60, Default=55}" >
+        <Grid VerticalOptions="Start" HeightRequest="{OnPlatform iOS=60, Default=55}" IgnoreSafeArea="True">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{StaticResource ColumnWidth}"/>
+                <ColumnDefinition Width="{OnPlatform 40, iOS=60}"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="{StaticResource DefaultColumnWidth}"/>
+                <ColumnDefinition Width="{OnPlatform 40, iOS=60}"/>
             </Grid.ColumnDefinitions>
 
             <BoxView x:Name="BackgroundBox" 
@@ -26,7 +18,7 @@
                 <BoxView.CornerRadius>
                     <OnPlatform x:TypeArguments="CornerRadius">
                         <On Platform="iOS" Value="0,0,50,50"/>
-                        <On Platform="Default" Value="0,0,15,15"/>
+                        <On Platform="Android" Value="0,0,15,15"/>
                     </OnPlatform>
                 </BoxView.CornerRadius>
             </BoxView>
