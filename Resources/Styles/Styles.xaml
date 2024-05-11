@@ -85,6 +85,7 @@
     <Style TargetType="Page" ApplyToDerivedTypes="True">
         <Setter Property="Padding" Value="0, 0, 0, 0"/>
         <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}" />
+        <Setter Property="Shell.NavBarIsVisible" Value="False" />
     </Style>
     
     <!--End Navigation Styles-->

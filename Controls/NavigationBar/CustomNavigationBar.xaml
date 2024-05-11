@@ -1,15 +1,35 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GymBro.Controls.NavigationBar.CustomNavigationBar">
+    <ContentView.Resources>
+        <OnPlatform x:Key="ColumnWidth" x:TypeArguments="x:Double">
+            <On Platform="iOS" Value="60" />
+        </OnPlatform>
+        <OnPlatform x:Key="DefaultColumnWidth" x:TypeArguments="x:Double">
+            <On Platform="Default" Value="40" />
+        </OnPlatform>
+    </ContentView.Resources>
+
     <ContentView.Content>
-        <Grid ColumnDefinitions="40, *, 40" VerticalOptions="Start" HeightRequest="55">
-            
+        <Grid VerticalOptions="Start" HeightRequest="{OnPlatform iOS=60, Default=55}" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource ColumnWidth}"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="{StaticResource DefaultColumnWidth}"/>
+            </Grid.ColumnDefinitions>
+
             <BoxView x:Name="BackgroundBox" 
-                     Color="#28C85A" 
-                     CornerRadius="0,0,15,15" 
+                     Color="#28C85A"
                      VerticalOptions="FillAndExpand" 
-                     Grid.ColumnSpan="3"/>
+                     Grid.ColumnSpan="3">
+                <BoxView.CornerRadius>
+                    <OnPlatform x:TypeArguments="CornerRadius">
+                        <On Platform="iOS" Value="0,0,50,50"/>
+                        <On Platform="Default" Value="0,0,15,15"/>
+                    </OnPlatform>
+                </BoxView.CornerRadius>
+            </BoxView>
 
 
             <ImageButton x:Name="MenuButton" 
@@ -37,7 +57,8 @@
                    HorizontalOptions="Center" 
                    VerticalOptions="CenterAndExpand" 
                    TextColor="White"
-                   Grid.Column="1"/>
+                   Grid.Column="1"
+                   IsVisible="{OnPlatform True, iOS=False}"/>
 
             <ImageButton x:Name="RightButton"
                          WidthRequest="32" 
