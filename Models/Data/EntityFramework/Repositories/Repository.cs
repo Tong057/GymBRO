@@ -34,6 +34,24 @@ namespace GymBro.Models.Data.EntityFramework.Repositories
         {
             await _provider.UpdateTraining(training);
         }
+
+        //Get
+        public async Task<List<TrainingSchedule>> GetAllTrainingSchedules()
+        {
+            return await _provider.GetAllTrainingSchedules();
+        }
+
+        public async Task<ScheduleDay> GetScheduleDayById(int id)
+        {
+            return await _provider.GetScheduleDayById(id);
+        }
+
+
+        //Delete
+        public async Task DeleteTrainingSchedule(TrainingSchedule trainingSchedule)
+        {
+            await _provider.DeleteTrainingSchedule(trainingSchedule);
+        }
     }
 }
 

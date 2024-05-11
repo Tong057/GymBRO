@@ -1,5 +1,7 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GymBro.Models;
 using GymBro.Models.Data.EntityFramework.Models;
 using GymBro.Models.Data.EntityFramework.Repositories;
 using GymBro.Views;
@@ -9,9 +11,11 @@ namespace GymBro.ViewModels
 {
 	public partial class TrainingDaysViewModel : ObservableObject
 	{
+		[ObservableProperty]
+		private ObservableCollection<TrainingScheduleSingleDayModel> _trainingSchedules = new ObservableCollection<TrainingScheduleSingleDayModel>();
 
 		[ObservableProperty]
-		private ObservableHashSet<DayOfWeek> _checked = new ObservableHashSet<DayOfWeek>();
+		private bool _isTrainingSchedulesEmpty = false;
 
 
 		private Repository _repository;
@@ -19,67 +23,8 @@ namespace GymBro.ViewModels
 		public TrainingDaysViewModel(Repository repository)
 		{
 			_repository = repository;
-        }
 
-		[RelayCommand]
-		private void Test()
-		{
-			string info = "";
-			foreach(DayOfWeek val in Checked)
-			{
-				info += val.ToString() + "; ";
-			}
-
-            AppShell.Current.DisplayAlert("Слюнявчик", info, "Ok");
-        }
-
-
-		[RelayCommand]
-		public async void CreateScheduleDay()
-		{
-			//Create Schedule
-			TrainingSchedule trainingSchedule = new TrainingSchedule("Test Schedule");
-			await _repository.CreateTrainingSchedule(trainingSchedule);
-
-            ScheduleDay scheduleDay = new ScheduleDay(DayOfWeek.Monday);
-			trainingSchedule.ScheduleDays.Add(scheduleDay);
-
-			TrainingScheduleExercises trainingScheduleExercises = new TrainingScheduleExercises();
-			trainingSchedule.TrainingScheduleExercises = trainingScheduleExercises;
-
-			trainingScheduleExercises.Exercises.Add(new Exercise("Pull-Up", "Do PullUps"));
-            trainingScheduleExercises.Exercises.Add(new Exercise("Drops", "Do Drops"));
-            trainingScheduleExercises.Exercises.Add(new Exercise("Pelmeski", "Eat Pelmeni"));
-            await _repository.UpdateTrainingSchedule(trainingSchedule);
-
-
-
-
-			//Create Training
-			Training training = new Training(trainingSchedule);
-			training.StartTime = DateTime.Now;
-
-			ExerciseStatus exerciseStatus = new ExerciseStatus(trainingSchedule.TrainingScheduleExercises.Exercises.ElementAt(0));
-			exerciseStatus.ExerciseWeights.Add(new ExerciseWeight(10));
-
-            training.ExerciseStatuses.Add(exerciseStatus);
-			await _repository.CreateTraining(training);
-
-
-			AppShell.Current.DisplayAlert("Alert",
-				$"{training.StartTime} | Amount: {training.ExerciseStatuses.ElementAt(0).Exercise.Name}", "OK");
-		}
-
-		[RelayCommand]
-		public void SetAllChecked()
-		{
-			Checked.Add(DayOfWeek.Monday);
-            Checked.Add(DayOfWeek.Tuesday);
-            Checked.Add(DayOfWeek.Wednesday);
-            Checked.Add(DayOfWeek.Thursday);
-            Checked.Add(DayOfWeek.Friday);
-            Checked.Add(DayOfWeek.Saturday);
-            Checked.Add(DayOfWeek.Sunday);
+			InitializeViewModel();
         }
 
 		[RelayCommand]
@@ -87,6 +32,71 @@ namespace GymBro.ViewModels
 		{
             await Shell.Current.GoToAsync(nameof(CreateTrainingSchedulePage));
         }
+
+		[RelayCommand]
+		public async Task DeleteScheduleDay(int scheduleDayId)
+		{
+			await AppShell.Current.DisplayAlert("T", scheduleDayId.ToString(), "OK");
+			ScheduleDay scheduleDay = await _repository.GetScheduleDayById(scheduleDayId);
+			if (scheduleDay == null)
+				return;
+
+			TrainingSchedule trainingSchedule = scheduleDay.TrainingSchedule;
+			if(trainingSchedule.ScheduleDays.Count <= 1)
+			{
+				await _repository.DeleteTrainingSchedule(trainingSchedule);
+			} else
+			{
+				trainingSchedule.ScheduleDays.Remove(scheduleDay);
+				await _repository.UpdateTrainingSchedule(trainingSchedule);
+            }
+
+			UpdateTrainingSchedules(await _repository.GetAllTrainingSchedules());
+		}
+
+		[RelayCommand]
+		public async Task Test()
+		{
+			TrainingSchedule schedule = new TrainingSchedule("Test");
+			schedule.ScheduleDays.Add(new ScheduleDay(DayOfWeek.Friday));
+			schedule.TrainingScheduleExercises.Exercises.Add(new Exercise("TestName", "TestDesc"));
+
+			await _repository.CreateTrainingSchedule(schedule);
+
+			ScheduleDay t1 = new ScheduleDay(DayOfWeek.Friday);
+			ScheduleDay t2 = new ScheduleDay(DayOfWeek.Monday);
+
+			TrainingSchedule schedule2 = new TrainingSchedule("DoubleTest");
+			schedule2.ScheduleDays.Add(t1);
+			schedule2.ScheduleDays.Add(t2);
+			schedule2.TrainingScheduleExercises.Exercises.Add(new Exercise("DoubleTestName", "DoubleTestDesc"));
+			schedule2.TrainingScheduleExercises.Exercises.Add(new Exercise("DoubleTestName2", "DoubleTestDesc2"));
+
+
+            await _repository.CreateTrainingSchedule(schedule2);
+
+			UpdateTrainingSchedules(await _repository.GetAllTrainingSchedules());
+		}
+
+        public async void InitializeViewModel()
+		{
+            UpdateTrainingSchedules(await _repository.GetAllTrainingSchedules());
+
+			IsTrainingSchedulesEmpty = !TrainingSchedules.Any();
+            TrainingSchedules.CollectionChanged += (s, e) => IsTrainingSchedulesEmpty = !TrainingSchedules.Any();
+        }
+
+		public void UpdateTrainingSchedules(IEnumerable<TrainingSchedule> trainingSchedules)
+		{
+            TrainingSchedules.Clear();
+			foreach(TrainingSchedule schedule in trainingSchedules)
+			{
+                foreach (TrainingScheduleSingleDayModel singleDay in schedule.ToSingleDayModels())
+				{ 
+					TrainingSchedules.Add(singleDay);
+                }
+            }
+		}
     }
 }
 

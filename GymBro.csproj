@@ -68,6 +68,7 @@
 	  <MauiImage Remove="Resources\Images\Icons\**" />
 	  <MauiXaml Remove="Resources\Images\Icons\**" />
 	  <None Remove="Resources\Images\Icons\**" />
+	  <None Remove="Models\Converters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\FontAwesome-Brands.otf" />
@@ -130,6 +131,7 @@
 	  <Folder Include="Models\Data\EntityFramework\DbProviders\" />
 	  <Folder Include="Models\Data\EntityFramework\Repositories\" />
 	  <Folder Include="Models\Data\EntityFramework\Models\" />
+	  <Folder Include="Models\Converters\" />
 	</ItemGroup>
 
 	<ItemGroup>

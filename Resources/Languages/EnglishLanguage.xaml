@@ -17,6 +17,11 @@
     <x:String x:Key="ErrorMessage">Error! Try to reload.</x:String>
     <x:String x:Key="Reload">Reload</x:String>
 
+    <x:String x:Key="NothingHereMessage">Nothing here...</x:String>
+    <x:String x:Key="CreateYourFirstGymDayMessage">Create your first Gym-Day</x:String>
+
+    <x:String x:Key="Exercises">Exercises</x:String>
+
     <!--Week day names-->
     <x:Array Type="{x:Type x:String}" x:Key="WeekNames">
         <x:String>Mon</x:String>
@@ -26,6 +31,16 @@
         <x:String>Fri</x:String>
         <x:String>Sat</x:String>
         <x:String>Sun</x:String>
+    </x:Array>
+
+    <x:Array Type="{x:Type x:String}" x:Key="FullWeekNames">
+        <x:String>Monday</x:String>
+        <x:String>Tuesday</x:String>
+        <x:String>Wednesday</x:String>
+        <x:String>Thursday</x:String>
+        <x:String>Friday</x:String>
+        <x:String>Saturday</x:String>
+        <x:String>Sunday</x:String>
     </x:Array>
 
 </ResourceDictionary>

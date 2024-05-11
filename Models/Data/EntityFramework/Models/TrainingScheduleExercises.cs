@@ -9,11 +9,6 @@ namespace GymBro.Models.Data.EntityFramework.Models
 		public int TrainingScheduleId { get; set; }
 		public TrainingSchedule TrainingSchedule { get; set; }
 
-        public TrainingScheduleExercises(ICollection<Exercise> exercises)
-        {
-			Exercises = exercises;
-        }
-
         public TrainingScheduleExercises()
 		{
 		}

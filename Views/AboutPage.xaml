@@ -10,7 +10,8 @@
                  Navigating="OnNavigating"
                  Navigated="OnNavigated"
                  VerticalOptions="FillAndExpand"
-                 HorizontalOptions="FillAndExpand"/>
+                 HorizontalOptions="FillAndExpand"
+                 />
 
         <ImageButton HorizontalOptions="Start" 
                      VerticalOptions="Start"
