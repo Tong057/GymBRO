@@ -6,9 +6,9 @@
     <ContentView.Content>
         <Grid VerticalOptions="Start" HeightRequest="{OnPlatform iOS=60, Default=55}" IgnoreSafeArea="True">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{OnPlatform 40, iOS=60}"/>
+                <ColumnDefinition Width="{OnPlatform 40, iOS=70}"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="{OnPlatform 40, iOS=60}"/>
+                <ColumnDefinition Width="{OnPlatform 40, iOS=70}"/>
             </Grid.ColumnDefinitions>
 
             <BoxView x:Name="BackgroundBox" 
