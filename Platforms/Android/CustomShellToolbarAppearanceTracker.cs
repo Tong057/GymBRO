@@ -17,7 +17,6 @@ namespace GymBro
             {
                 var backgroundDrawable = new GradientDrawable();
                 backgroundDrawable.SetShape(ShapeType.Rectangle);
-                backgroundDrawable.SetColor(123);
                 backgroundDrawable.SetCornerRadii(new float[] { 0, 0, 0, 0, 50, 50, 50, 50 });
                 backgroundDrawable.SetColor(appearance.BackgroundColor.ToPlatform());
                 toolbar.SetBackground(backgroundDrawable);
