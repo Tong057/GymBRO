@@ -2,21 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:GymBro.Controls.WeekDayPicker"
-             x:Class="GymBro.Views.CreateTrainingSchedulePage"
-             Title="Create Training Schedule">
+             xmlns:navbar="clr-namespace:GymBro.Controls.NavigationBar"
+             x:Class="GymBro.Views.CreateTrainingSchedulePage">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="{StaticResource AcceptIcon}" Command="{Binding SaveTrainingScheduleCommand}"/>
-    </ContentPage.ToolbarItems>
-
-    <Grid Padding="10" RowDefinitions="50, *">
+    <Grid Padding="0" RowDefinitions="Auto, Auto, *">
+        <navbar:CustomNavigationBar Title="Create Training Schedule" RightButtonCommand="{Binding SaveTrainingScheduleCommand}" IsBackButton="True" RightButtonIconSource="{StaticResource AcceptIcon}" />
+        
         <controls:WeekDayPicker WeekNames="{DynamicResource WeekNames}" 
                                 SelectedColor="{DynamicResource PrimaryColor}" 
                                 Checked="{Binding Checked}"
-                                Grid.Row="0"
-                                VerticalOptions="Start"/>
+                                Grid.Row="1"
+                                VerticalOptions="Start"
+                                Margin="0, 10"/>
 
-        <ScrollView Padding="0, 10" Grid.Row="1">
+        <ScrollView Padding="0, 0" Grid.Row="2">
             <CollectionView x:Name="ExercisesCollection" ItemsSource="{Binding Exercises, Mode=TwoWay}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -50,7 +49,7 @@
                      VerticalOptions="End"
                      HeightRequest="60"
                      WidthRequest="60"
-                     Grid.Row="1"
+                     Grid.Row="2"
                      Margin="{OnPlatform WinUI=20, Default=10}"
                      Command="{Binding OpenAddDialogCommand}"/>
 

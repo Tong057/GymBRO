@@ -36,7 +36,6 @@ namespace GymBro.ViewModels
 		[RelayCommand]
 		public async Task DeleteScheduleDay(int scheduleDayId)
 		{
-			await AppShell.Current.DisplayAlert("T", scheduleDayId.ToString(), "OK");
 			ScheduleDay scheduleDay = await _repository.GetScheduleDayById(scheduleDayId);
 			if (scheduleDay == null)
 				return;

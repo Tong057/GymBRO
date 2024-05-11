@@ -2,23 +2,30 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GymBro.Resources.Languages.PolishLanguage">
-    <!-- Settings Header-->
+    <!--Start: Settings -->
+    <x:String x:Key="Settings">Ustawienia</x:String>
     <x:String x:Key="Account">Konto</x:String>
     <x:String x:Key="Theme">Motyw</x:String>
     <x:String x:Key="Language">Język</x:String>
-    <!--Theme labels-->
+
     <x:String x:Key="Dark">Ciemny</x:String>
     <x:String x:Key="Light">Jasny</x:String>
-    <!--Languages labels-->
+
     <x:String x:Key="English">Angielski</x:String>
     <x:String x:Key="Russian">Rosyjski</x:String>
     <x:String x:Key="Polish">Polski</x:String>
+    <!--End: Settings -->
 
+    <!--Start: About-->
+    <x:String x:Key="About">O aplikacji</x:String>
     <x:String x:Key="ErrorMessage">Błąd! Spróbuj ponownie załadować stronę.</x:String>
     <x:String x:Key="Reload">Przeładuj</x:String>
+    <!--End: About-->
 
-    <x:String x:Key="NothingHereMessage">Nothing here...</x:String>
-    <x:String x:Key="CreateYourFirstGymDayMessage">Create your first Gym-Day</x:String>
+    <!--Start: Home-->
+    <x:String x:Key="Home">Strona główna</x:String>
+    <x:String x:Key="NothingHereMessage">Nic tu...</x:String>
+    <x:String x:Key="CreateYourFirstGymDayMessage">Stwórz swój pierwszy dzień w siłowni</x:String>
 
     <x:String x:Key="Exercises">Ćwiczenia</x:String>
 

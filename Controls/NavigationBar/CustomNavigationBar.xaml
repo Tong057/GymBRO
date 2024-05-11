@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymBro.Controls.NavigationBar.CustomNavigationBar">
+    <ContentView.Content>
+        <Grid ColumnDefinitions="40, *, 40" VerticalOptions="Start" HeightRequest="55">
+            
+            <BoxView x:Name="BackgroundBox" 
+                     Color="#28C85A" 
+                     CornerRadius="0,0,15,15" 
+                     VerticalOptions="FillAndExpand" 
+                     Grid.ColumnSpan="3"/>
+
+
+            <ImageButton x:Name="MenuButton" 
+                         Source="{StaticResource MenuIcon}" 
+                         WidthRequest="24" 
+                         Clicked="MenuButton_Clicked" 
+                         HorizontalOptions="End" 
+                         VerticalOptions="Center" 
+                         Grid.Column="0" 
+                         IsVisible="True"/>
+
+            <ImageButton x:Name="BackButton" 
+                         Source="{StaticResource MenuBackIcon}"
+                         WidthRequest="24" 
+                         Clicked="BackButton_Clicked" 
+                         HorizontalOptions="End" 
+                         VerticalOptions="Center" 
+                         Grid.Column="0" 
+                         IsVisible="False"/>
+
+            <Label x:Name="TitleLabel" 
+                   Text="G Y M B R O" 
+                   FontSize="20" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="CenterAndExpand" 
+                   TextColor="White"
+                   Grid.Column="1"/>
+
+            <ImageButton x:Name="RightButton"
+                         WidthRequest="32" 
+                         Clicked="RightButton_Clicked"
+                         HorizontalOptions="Start" 
+                         VerticalOptions="Center" 
+                         IsVisible="False" 
+                         Grid.Column="2"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

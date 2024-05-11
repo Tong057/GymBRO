@@ -2,21 +2,28 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GymBro.Resources.Languages.EnglishLanguage">
-    <!-- Settings Header-->
+    <!--Start: Settings -->
+    <x:String x:Key="Settings">Settings</x:String>
     <x:String x:Key="Account">Account</x:String>
     <x:String x:Key="Theme">Theme</x:String>
     <x:String x:Key="Language">Language</x:String>
-    <!--Theme labels-->
+    
     <x:String x:Key="Dark">Dark</x:String>
     <x:String x:Key="Light">Light</x:String>
-    <!--Languages labels-->
+    
     <x:String x:Key="English">English</x:String>
     <x:String x:Key="Russian">Russian</x:String>
     <x:String x:Key="Polish">Polish</x:String>
+    <!--End: Settings-->
 
+    <!--Start: About-->
+    <x:String x:Key="About">About</x:String>
     <x:String x:Key="ErrorMessage">Error! Try to reload.</x:String>
     <x:String x:Key="Reload">Reload</x:String>
-
+    <!--End: About-->
+    
+    <!--Start: Home-->
+    <x:String x:Key="Home">Home</x:String>
     <x:String x:Key="NothingHereMessage">Nothing here...</x:String>
     <x:String x:Key="CreateYourFirstGymDayMessage">Create your first Gym-Day</x:String>
 

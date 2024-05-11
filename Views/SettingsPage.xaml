@@ -1,9 +1,9 @@
 <ContentPage 
 	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:navbar="clr-namespace:GymBro.Controls.NavigationBar"
 	xmlns:sv="clr-namespace:AiForms.Settings;assembly=SettingsView"
 	x:Class="GymBro.Views.SettingsPage"
-    Style="{StaticResource ContentPageStyle}"
     Title="Settings">
 
     <ContentPage.Resources>
@@ -23,24 +23,29 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <sv:SettingsView HasUnevenRows="True" HeaderPadding="10">
-        <sv:Section Title="{DynamicResource Account}">
-            <sv:CommandCell IconSource="account.svg" 
-                            IconSize="60,60" 
-                            IconRadius="30" 
-                            Title="Name Surname" 
-                            Description="usermail@gmail.com" />
-        </sv:Section>
+    <Grid RowDefinitions="Auto, *">
+        <navbar:CustomNavigationBar Title="{DynamicResource Settings}" />
 
-        <sv:Section Title="{DynamicResource Theme}" sv:RadioCell.SelectedValue="{Binding SelectedTheme}">
-            <sv:RadioCell Title="{DynamicResource Dark}" Value="Dark" />
-            <sv:RadioCell Title="{DynamicResource Light}" Value="Light" />
-        </sv:Section>
+        <sv:SettingsView HasUnevenRows="True" HeaderPadding="10" Grid.Row="1">
+            <sv:Section Title="{DynamicResource Account}">
+                <sv:CommandCell IconSource="account.svg" 
+                        IconSize="60,60" 
+                        IconRadius="30" 
+                        Title="Name Surname" 
+                        Description="usermail@gmail.com" />
+            </sv:Section>
 
-        <sv:Section Title="{DynamicResource Language}" sv:RadioCell.SelectedValue="{Binding SelectedLanguage}">
-            <sv:RadioCell Title="{DynamicResource English}" Value="English" />
-            <sv:RadioCell Title="{DynamicResource Russian}" Value="Russian" />
-            <sv:RadioCell Title="{DynamicResource Polish}" Value="Polish" />
-        </sv:Section>
-    </sv:SettingsView>
+            <sv:Section Title="{DynamicResource Theme}" sv:RadioCell.SelectedValue="{Binding SelectedTheme}">
+                <sv:RadioCell Title="{DynamicResource Dark}" Value="Dark" />
+                <sv:RadioCell Title="{DynamicResource Light}" Value="Light" />
+            </sv:Section>
+
+            <sv:Section Title="{DynamicResource Language}" sv:RadioCell.SelectedValue="{Binding SelectedLanguage}">
+                <sv:RadioCell Title="{DynamicResource English}" Value="English" />
+                <sv:RadioCell Title="{DynamicResource Russian}" Value="Russian" />
+                <sv:RadioCell Title="{DynamicResource Polish}" Value="Polish" />
+            </sv:Section>
+        </sv:SettingsView>
+    </Grid>
+    
 </ContentPage>

@@ -97,6 +97,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\NavigationBar\CustomNavigationBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Languages\EnglishLanguage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

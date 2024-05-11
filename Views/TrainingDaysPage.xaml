@@ -3,25 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:icons="clr-namespace:GymBro.Utilities"
              xmlns:converters="clr-namespace:GymBro.Models.Converters"
+             xmlns:navbar="clr-namespace:GymBro.Controls.NavigationBar"
              x:Class="GymBro.Views.TrainingDaysPage"
-             Style="{StaticResource ContentPageStyle}"
              Title="Training Days">
 
     <ContentPage.Resources>
         <converters:DayOfWeekConverter x:Key="DayOfWeekConverter"/>
     </ContentPage.Resources>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="{StaticResource AddIcon}" Command="{Binding OpenCreateTrainingScheduleCommand}"/>
-    </ContentPage.ToolbarItems>
+    <Grid RowDefinitions="Auto, Auto, *">
+        <navbar:CustomNavigationBar RightButtonCommand="{Binding OpenCreateTrainingScheduleCommand}" RightButtonIconSource="{StaticResource AddIcon}" Grid.Row="0" />
 
-    <Grid
-        RowDefinitions="Auto, *">
-
-        <Button Text="Add Test Day" Command="{Binding TestCommand}" Grid.Row="0" Margin="5"/>
+        <Button Text="Add Test Day" Command="{Binding TestCommand}" Grid.Row="1" Margin="5" HeightRequest="60"/>
 
         <VerticalStackLayout
-            Grid.Row="1"
+            Grid.Row="2"
             HorizontalOptions="Center"
             VerticalOptions="Center"
             IsVisible="{Binding IsTrainingSchedulesEmpty}">
@@ -29,7 +25,7 @@
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Center"
                 FontFamily="FontAwesomeSolid"
-                Text="{Static icons:FontAwesomeIcons.SadSmile}"
+                Text="{x:Static icons:FontAwesomeIcons.SadSmile}"
                 FontSize="36"/>
             <Label
                 HorizontalTextAlignment="Center"
@@ -47,7 +43,7 @@
         </VerticalStackLayout>
 
         <ScrollView
-            Grid.Row="1"
+            Grid.Row="2"
             Orientation="Vertical">
             <CollectionView
                 x:Name="TrainingScheduleCollection"

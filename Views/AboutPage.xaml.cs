@@ -37,7 +37,7 @@ namespace GymBro.Views
             LoadingIndicator.IsVisible = false;
             LoadingIndicator.IsRunning = false;
 
-            if (e.Result == WebNavigationResult.Failure)
+            if (e.Result != WebNavigationResult.Success)
             {
                 ErrorLayout.IsVisible = true;
             }

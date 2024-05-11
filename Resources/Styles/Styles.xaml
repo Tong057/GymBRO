@@ -87,9 +87,6 @@
         <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}" />
     </Style>
     
-    <Style x:Key="ContentPageStyle" TargetType="ContentPage">
-        <Setter Property="Padding" Value="0, 60, 0, 0" />
-    </Style>
     <!--End Navigation Styles-->
 
     <!--Icon Styles-->
@@ -124,9 +121,15 @@
     <FontImageSource x:Key="MenuIcon" 
                      FontFamily="FontAwesomeSolid" 
                      Glyph="{x:Static icons:FontAwesomeIcons.HamburgerMenu}" 
-                     Color="{DynamicResource PrimaryTextColor}" 
+                     Color="White" 
                      Size="32" />
-    
+
+    <FontImageSource x:Key="MenuBackIcon" 
+                     FontFamily="FontAwesomeSolid" 
+                     Glyph="{x:Static icons:FontAwesomeIcons.ArrowBack}" 
+                     Color="White" 
+                     Size="32" />
+
     <FontImageSource x:Key="AddIcon" 
                      FontFamily="FontAwesomeSolid" 
                      Glyph="{x:Static icons:FontAwesomeIcons.Plus}" 

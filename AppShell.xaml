@@ -7,6 +7,7 @@
     xmlns:icons="clr-namespace:GymBro.Utilities"
     xmlns:local="clr-namespace:GymBro.Views"
     Shell.FlyoutBehavior="Flyout"
+    Shell.NavBarIsVisible="False"
     Shell.ItemTemplate="{StaticResource ShellItemTemplate}"
     FlyoutBackgroundColor="{DynamicResource BackgroundColor}"
     Title="GymBro">
@@ -18,7 +19,7 @@
         <mct:StatusBarBehavior StatusBarColor="Black" />
     </Shell.Behaviors>
 
-    <FlyoutItem Title="Home" FlyoutIcon="{StaticResource HomeIcon}">
+    <FlyoutItem Title="{DynamicResource Home}" FlyoutIcon="{StaticResource HomeIcon}">
         <Tab Title="T R A I N I N G S" Icon="{StaticResource HomeTabIcon}">
             <ShellContent ContentTemplate="{DataTemplate local:TrainingDaysPage}" />
         </Tab>
@@ -27,11 +28,11 @@
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Settings" FlyoutIcon="{StaticResource SettingsIcon}">
+    <FlyoutItem Title="{DynamicResource Settings}" FlyoutIcon="{StaticResource SettingsIcon}">
         <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="About" FlyoutIcon="{StaticResource AboutIcon}">
+    <FlyoutItem Title="{DynamicResource About}" FlyoutIcon="{StaticResource AboutIcon}">
         <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
     </FlyoutItem>
 </Shell>

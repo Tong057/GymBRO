@@ -2,23 +2,30 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GymBro.Resources.Languages.RussianLanguage">
-    <!-- Settings Header-->
+    <!--Start: Settings -->
+    <x:String x:Key="Settings">Настройки</x:String>
     <x:String x:Key="Account">Аккаунт</x:String>
     <x:String x:Key="Theme">Тема</x:String>
     <x:String x:Key="Language">Язык</x:String>
-    <!--Theme labels-->
+    
     <x:String x:Key="Dark">Тёмная</x:String>
     <x:String x:Key="Light">Светлая</x:String>
-    <!--Languages labels-->
+    
     <x:String x:Key="English">Английский</x:String>
     <x:String x:Key="Russian">Русский</x:String>
     <x:String x:Key="Polish">Польский</x:String>
+    <!--End: Settings -->
 
+    <!--Start: About-->
+    <x:String x:Key="About">О приложении</x:String>
     <x:String x:Key="ErrorMessage">Ошибка! Попробуйте перезагрузить.</x:String>
     <x:String x:Key="Reload">Перезагрузить</x:String>
+    <!--End: About-->
 
-    <x:String x:Key="NothingHereMessage">Nothing here...</x:String>
-    <x:String x:Key="CreateYourFirstGymDayMessage">Create your first Gym-Day</x:String>
+    <!--Start: Home-->
+    <x:String x:Key="Home">Главная</x:String>
+    <x:String x:Key="NothingHereMessage">Пусто...</x:String>
+    <x:String x:Key="CreateYourFirstGymDayMessage">Создай свой первый тренировочный день</x:String>
 
     <x:String x:Key="Exercises">Упражнения</x:String>
 
