@@ -93,6 +93,11 @@ namespace GymBro.ViewModels
                 }
             }
 		}
+
+        public async Task UpdateTrainingPlans()
+        {
+			UpdateTrainingPlans(await _repository.GetAllTrainingPlans());
+        }
     }
 }
 

@@ -12,4 +12,11 @@ public partial class TrainingDaysPage : ContentPage
         BindingContext = trainingDaysVM;
         _trainingDaysVM = trainingDaysVM;
     }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        await _trainingDaysVM.UpdateTrainingPlans();
+    }
 }
