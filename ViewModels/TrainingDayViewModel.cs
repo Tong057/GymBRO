@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using GymBro.Controls.Popups;
 using GymBro.Models.Data.EntityFramework.Repositories;
 using GymBro.Models.Entities;
 
@@ -29,10 +32,16 @@ namespace GymBro.ViewModels
 
 			foreach(Exercise exercise in _trainingPlan.TrainingPlanExercises.Exercises)
 			{
-				Exercises.Add(exercise, new ExerciseStatus(exercise));
+				Exercises.Add(exercise, null);
 			}
 		}
 
+		[RelayCommand]
+		public async Task ShowCompleteExercisePopup(Exercise exercise)
+		{
+			var popup = new CompletedDataExercisePopup(this, exercise);
+            await Shell.Current.CurrentPage.ShowPopupAsync(popup);
+        }
     }
 }
 

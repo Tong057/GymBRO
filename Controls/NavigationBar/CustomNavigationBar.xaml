@@ -53,7 +53,7 @@
                    IsVisible="{OnPlatform True, iOS=False}"/>
 
             <ImageButton x:Name="RightButton"
-                         WidthRequest="32" 
+                         WidthRequest="26" 
                          Clicked="RightButton_Clicked"
                          HorizontalOptions="Start" 
                          VerticalOptions="Center" 

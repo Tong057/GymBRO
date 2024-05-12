@@ -48,7 +48,15 @@
                                     FontFamily="FontAwesomeSolid"
                                     FontSize="30"
                                     Text="{x:Static icons:FontAwesomeIcons.Accept}"
-                                    IsVisible="{Binding Value, Converter={StaticResource IsNullConverter}}"/>
+                                    IsVisible="{Binding Value, Converter={StaticResource IsNullConverter}}">
+
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            NumberOfTapsRequired="1"
+                                            Command="{Binding Path=BindingContext.ShowCompleteExercisePopupCommand, Source={x:Reference TrainingExerciseCollection}}"
+                                            CommandParameter="{Binding Key}"/>
+                                    </Label.GestureRecognizers>
+                                    </Label>
 
                                 <Label
                                     Grid.Column="1"
