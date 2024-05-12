@@ -1,4 +1,4 @@
-<ContentPage 
+﻿<ContentPage 
 	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:navbar="clr-namespace:GymBro.Controls.NavigationBar"
@@ -23,7 +23,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="Auto, *">
+    <Grid RowDefinitions="Auto, *" IgnoreSafeArea="True">
         <navbar:CustomNavigationBar Title="{DynamicResource Settings}" />
 
         <sv:SettingsView HasUnevenRows="True" HeaderPadding="10" Grid.Row="1">
