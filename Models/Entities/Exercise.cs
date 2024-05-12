@@ -1,10 +1,10 @@
 ﻿using System;
-namespace GymBro.Models.Data.EntityFramework.Models
+namespace GymBro.Models.Entities
 {
-	public class Exercise
-	{
-		public int Id { get; set; }
-		public string Name { get; set; }
+    public class Exercise
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
 
         public int TrainingScheduleExerciseId { get; set; }
@@ -17,8 +17,8 @@ namespace GymBro.Models.Data.EntityFramework.Models
         }
 
         public Exercise()
-		{
-		}
-	}
+        {
+        }
+    }
 }
 

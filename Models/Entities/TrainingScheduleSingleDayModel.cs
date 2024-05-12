@@ -1,10 +1,9 @@
 ﻿using System;
-using GymBro.Models.Data.EntityFramework.Models;
 
-namespace GymBro.Models
+namespace GymBro.Models.Entities
 {
-	public class TrainingScheduleSingleDayModel
-	{
+    public class TrainingScheduleSingleDayModel
+    {
         public int Id { get; set; }
         public string Title { get; set; }
 
@@ -18,6 +17,6 @@ namespace GymBro.Models
             ScheduleDay = scheduleDay;
             TrainingScheduleExercises = trainingScheduleExercises;
         }
-	}
+    }
 }
 

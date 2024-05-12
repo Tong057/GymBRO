@@ -1,4 +1,4 @@
-﻿using GymBro.Models;
+﻿using GymBro.Utilities;
 
 namespace GymBro
 {

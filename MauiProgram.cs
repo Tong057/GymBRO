@@ -21,8 +21,6 @@ namespace GymBro
                 {
                     if (DeviceInfo.Platform != DevicePlatform.WinUI)
                         handlers.AddSettingsViewHandler();
-
-                    handlers.AddHandler<Shell, CustomShellHandler>();
                 })
                 .ConfigureFonts(fonts =>
                 {

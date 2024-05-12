@@ -1,12 +1,12 @@
 ﻿using System;
-namespace GymBro.Models.Data.EntityFramework.Models
+namespace GymBro.Models.Entities
 {
-	public class ExerciseStatus
-	{
-		public int Id { get; set; }
+    public class ExerciseStatus
+    {
+        public int Id { get; set; }
 
-		public int TrainingId { get; set; }
-		public Training Training { get; set; }
+        public int TrainingId { get; set; }
+        public Training Training { get; set; }
 
         public int ExerciseId { get; set; }
         public Exercise Exercise { get; set; }
@@ -18,8 +18,8 @@ namespace GymBro.Models.Data.EntityFramework.Models
         public ExerciseStatus(Exercise exercise, Note note)
         {
             ExerciseId = exercise.Id;
-			Exercise = exercise;
-			Note = note;
+            Exercise = exercise;
+            Note = note;
         }
 
         public ExerciseStatus(Exercise exercise)
@@ -29,8 +29,8 @@ namespace GymBro.Models.Data.EntityFramework.Models
         }
 
         public ExerciseStatus()
-		{
-		}
-	}
+        {
+        }
+    }
 }
 

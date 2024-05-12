@@ -1,10 +1,10 @@
 ﻿using System;
 using GymBro.Models.Data.EntityFramework.DbProviders;
-using GymBro.Models.Data.EntityFramework.Models;
+using GymBro.Models.Entities;
 
 namespace GymBro.Models.Data.EntityFramework.Repositories
 {
-	public class Repository
+    public class Repository
 	{
         private IProvider _provider;
 

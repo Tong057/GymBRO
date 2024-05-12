@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Globalization;
 
-namespace GymBro.Models.Converters
+namespace GymBro.Utilities.Converters
 {
-	public class CollectionSizeConverter : IValueConverter
-    { 
+    public class CollectionSizeConverter : IValueConverter
+    {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            if(value is ICollection collection)
+            if (value is ICollection collection)
             {
                 return collection.Count;
             }

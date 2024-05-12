@@ -1,15 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using GymBro.Models;
-using GymBro.Models.Data.EntityFramework.Models;
 using GymBro.Models.Data.EntityFramework.Repositories;
+using GymBro.Models.Entities;
 using GymBro.Views;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace GymBro.ViewModels
 {
-	public partial class TrainingDaysViewModel : ObservableObject
+    public partial class TrainingDaysViewModel : ObservableObject
 	{
 		[ObservableProperty]
 		private ObservableCollection<TrainingScheduleSingleDayModel> _trainingSchedules = new ObservableCollection<TrainingScheduleSingleDayModel>();

@@ -1,8 +1,8 @@
-﻿using GymBro.Models.Data.EntityFramework.Models;
+﻿using GymBro.Models.Entities;
 
 namespace GymBro.Models.Data.EntityFramework.DbProviders
 {
-	public interface IProvider
+    public interface IProvider
 	{
 
 		//Create

@@ -2,7 +2,7 @@
 using GymBro.Resources.Themes;
 using System.Globalization;
 
-namespace GymBro.Models
+namespace GymBro.Utilities
 {
     public static class ApplicationSettings
     {

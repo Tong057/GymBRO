@@ -1,10 +1,10 @@
 ﻿using System;
-using GymBro.Models.Data.EntityFramework.Models;
+using GymBro.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace GymBro.Models.Data.EntityFramework
 {
-	public class ApplicationContext : DbContext
+    public class ApplicationContext : DbContext
 	{
         public ApplicationContext() => Database.EnsureCreated();
 

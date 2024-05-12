@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:icons="clr-namespace:GymBro.Utilities"
-             xmlns:converters="clr-namespace:GymBro.Models.Converters"
+             xmlns:converters="clr-namespace:GymBro.Utilities.Converters"
              xmlns:navbar="clr-namespace:GymBro.Controls.NavigationBar"
              x:Class="GymBro.Views.TrainingDaysPage"
              Title="Training Days">

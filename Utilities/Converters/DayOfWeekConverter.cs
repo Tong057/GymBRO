@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Globalization;
 
-namespace GymBro.Models.Converters
+namespace GymBro.Utilities.Converters
 {
-	public class DayOfWeekConverter : IValueConverter
-	{
+    public class DayOfWeekConverter : IValueConverter
+    {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            if(value is DayOfWeek dayOfWeek) {
+            if (value is DayOfWeek dayOfWeek)
+            {
                 if (Application.Current.Resources.TryGetValue("FullWeekNames", out object weekNamesObj))
                 {
                     if (weekNamesObj is string[] weekNames)

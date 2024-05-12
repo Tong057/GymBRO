@@ -130,11 +130,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Models\Interfaces\" />
 	  <Folder Include="Models\Data\EntityFramework\DbProviders\" />
 	  <Folder Include="Models\Data\EntityFramework\Repositories\" />
-	  <Folder Include="Models\Data\EntityFramework\Models\" />
-	  <Folder Include="Models\Converters\" />
+	  <Folder Include="Utilities\Converters\" />
 	</ItemGroup>
 
 	<ItemGroup>

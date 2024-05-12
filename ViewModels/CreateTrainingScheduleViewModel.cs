@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using GymBro.Models.Data.EntityFramework.Models;
+using GymBro.Models.Entities;
 using System.Collections.ObjectModel;
 
 namespace GymBro.ViewModels

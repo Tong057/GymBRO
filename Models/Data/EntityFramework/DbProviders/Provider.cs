@@ -1,4 +1,4 @@
-﻿using GymBro.Models.Data.EntityFramework.Models;
+﻿using GymBro.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace GymBro.Models.Data.EntityFramework.DbProviders
