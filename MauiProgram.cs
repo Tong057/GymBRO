@@ -28,6 +28,8 @@ namespace GymBro
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("FontAwesome-Brands.otf", "FontAwesomeBrands");
                     fonts.AddFont("FontAwesome-Solid.otf", "FontAwesomeSolid");
+                    fonts.AddFont("BebasNeue-Regular.ttf", "BebasRegular");
+                    fonts.AddFont("BebasNeue-Bold.ttf", "BebasBold");
                 });
 
 #if DEBUG

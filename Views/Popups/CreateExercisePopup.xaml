@@ -11,10 +11,13 @@
         </Border.StrokeShape>
 
         <Grid RowDefinitions="*, Auto, Auto, *" Padding="10" BackgroundColor="{DynamicResource BackgroundColor}">
-            <Label Text="CREATE EXERCISE" 
+            <Label Text="Create exercise"
+                   FontFamily="BebasBold"
+                   CharacterSpacing="2"
                    HorizontalOptions="Center" 
+                   VerticalOptions="End"
                    HorizontalTextAlignment="Center" 
-                   FontSize="22" 
+                   FontSize="28" 
                    Grid.Row="0"/>
 
             <Entry Placeholder="Exercise name"
@@ -30,8 +33,17 @@
                    HorizontalOptions="Fill" 
                    HorizontalTextAlignment="Center" 
                    AutoSize="TextChanges"
-                    MaxLength="120"
+                   MaxLength="120"
                    FontSize="18"/>
+
+            <Button Text="Create"
+                    FontFamily="BebasBold"
+                    FontSize="18"
+                    Grid.Row="3"
+                    BackgroundColor="Transparent"
+                    CharacterSpacing="2"
+                    HorizontalOptions="End"
+                    Margin="5, 0"/>
         </Grid>
         <!--<VerticalStackLayout Padding="5"  >
             <Label Text="Are you sure you want to update?"/>

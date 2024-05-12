@@ -69,6 +69,8 @@
 	  <MauiXaml Remove="Resources\Images\Icons\**" />
 	  <None Remove="Resources\Images\Icons\**" />
 	  <None Remove="Models\Converters\" />
+	  <None Remove="Resources\Fonts\BebasNeue-Bold.ttf" />
+	  <None Remove="Resources\Fonts\BebasNeue-Regular.ttf" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\FontAwesome-Brands.otf" />
