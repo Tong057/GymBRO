@@ -57,7 +57,7 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
             return await _context.TrainingPlans
                 .Include(training => training.WeekDayTrainingPlan)
                 .Include(training => training.TrainingPlanExercises)
-                .ThenInclude(planExercises => planExercises.Exercises)
+                    .ThenInclude(planExercises => planExercises.Exercises)
                 .ToListAsync();
         }
 
@@ -66,6 +66,15 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
             return await _context.WeekDayTrainingPlans
                 .Where(day => day.Id == id)
                 .Include(day => day.TrainingPlan)
+                .SingleAsync();
+        }
+
+        public async Task<TrainingPlan> GetTrainingPlanById(int id)
+        {
+            return await _context.TrainingPlans
+                .Where(plan => plan.Id == id)
+                .Include(plan => plan.TrainingPlanExercises)
+                .Include(plan => plan.WeekDayTrainingPlan)
                 .SingleAsync();
         }
 

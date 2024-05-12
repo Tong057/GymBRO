@@ -45,6 +45,11 @@ namespace GymBro.Models.Data.EntityFramework.Repositories
             return await _provider.GetWeekDayTrainingPlanById(id);
         }
 
+        public async Task<TrainingPlan> GetTrainingPlanById(int id)
+        {
+            return await _provider.GetTrainingPlanById(id);
+        }
+
         //Delete
         public async Task DeleteTrainingPlan(TrainingPlan trainingPlan)
         {

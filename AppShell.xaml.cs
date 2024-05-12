@@ -13,6 +13,7 @@ namespace GymBro
         private void RegisterRoutes()
         {
             Routing.RegisterRoute("CreateTrainingPlanPage", typeof(CreateTrainingPlanPage));
+            Routing.RegisterRoute("TrainingDayPage", typeof(TrainingDayPage));
         }
     }
 }
