@@ -1,5 +1,4 @@
-﻿using System;
-namespace GymBro.Models.Entities
+﻿namespace GymBro.Models.Entities
 {
     public class TrainingPlanExercises
     {

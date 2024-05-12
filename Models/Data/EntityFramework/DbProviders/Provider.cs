@@ -73,8 +73,9 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
         {
             return await _context.TrainingPlans
                 .Where(plan => plan.Id == id)
-                .Include(plan => plan.TrainingPlanExercises)
                 .Include(plan => plan.WeekDayTrainingPlan)
+                .Include(plan => plan.TrainingPlanExercises)
+                    .ThenInclude(planExercises => planExercises.Exercises)
                 .SingleAsync();
         }
 
