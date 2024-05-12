@@ -11,7 +11,7 @@
                                     RightButtonCommand="{Binding SaveTrainingPlanCommand}" 
                                     IsBackButton="True" 
                                     RightButtonIconSource="{StaticResource AcceptIcon}" />
-        
+
         <controls:WeekDayPicker WeekNames="{DynamicResource WeekNames}" 
                                 SelectedColor="{DynamicResource PrimaryColor}" 
                                 Checked="{Binding Checked}"
@@ -55,7 +55,7 @@
                      WidthRequest="60"
                      Grid.Row="2"
                      Margin="{OnPlatform WinUI=20, Default=10}"
-                     Command="{Binding OpenAddDialogCommand}"/>
+                     Command="{Binding OpenAddExerciseDialogCommand}"/>
 
     </Grid>
 </ContentPage>

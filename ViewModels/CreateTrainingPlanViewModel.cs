@@ -1,6 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using GymBro.Models.Data.EntityFramework.Repositories;
 using GymBro.Models.Entities;
-using System.Collections.ObjectModel;
+using GymBro.Views;
 
 namespace GymBro.ViewModels
 {
@@ -18,5 +21,11 @@ namespace GymBro.ViewModels
 
         [ObservableProperty]
         public ObservableCollection<Exercise> _exercises;
+
+        [RelayCommand]
+        public async Task OpedAddExerciseDialog()
+        {
+            
+        }
     }
 }

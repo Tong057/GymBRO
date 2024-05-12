@@ -50,4 +50,7 @@
         <x:String>Воскресенье</x:String>
     </x:Array>
 
+    <!--Start: Create training plan-->
+    <x:String x:Key="TrainingPlanTitlePlaceholder">Training Plan Title</x:String>
+
 </ResourceDictionary>
