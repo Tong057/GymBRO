@@ -17,10 +17,10 @@
                                 Checked="{Binding Checked}"
                                 Grid.Row="1"
                                 VerticalOptions="Start"
-                                Margin="0, 10"/>
+                                Margin="5, 10"/>
 
-        <ScrollView Padding="0, 0" Grid.Row="2">
-            <CollectionView x:Name="ExercisesCollection" ItemsSource="{Binding Exercises, Mode=TwoWay}">
+        <ScrollView Grid.Row="2">
+            <CollectionView x:Name="ExercisesCollection" ItemsSource="{Binding Exercises, Mode=TwoWay}" Margin="10, 0">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <SwipeView>

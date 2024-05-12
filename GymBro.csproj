@@ -100,7 +100,7 @@
 	  <MauiXaml Update="Controls\NavigationBar\CustomNavigationBar.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Controls\Popups\CreateExercisePopup.xaml">
+	  <MauiXaml Update="Views\Popups\CreateExercisePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Languages\EnglishLanguage.xaml">

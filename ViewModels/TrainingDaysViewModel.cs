@@ -4,7 +4,6 @@ using CommunityToolkit.Mvvm.Input;
 using GymBro.Models.Data.EntityFramework.Repositories;
 using GymBro.Models.Entities;
 using GymBro.Views;
-using static Android.Resource;
 
 namespace GymBro.ViewModels
 {

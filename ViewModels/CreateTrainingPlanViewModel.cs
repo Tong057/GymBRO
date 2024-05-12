@@ -1,6 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GymBro.Controls.Popups;
 using GymBro.Models.Data.EntityFramework.Repositories;
 using GymBro.Models.Entities;
 using GymBro.Views;
@@ -9,6 +12,7 @@ namespace GymBro.ViewModels
 {
     public partial class CreateTrainingPlanViewModel : ObservableObject
     {
+
         public CreateTrainingPlanViewModel() 
         {
             _exercises = [
@@ -23,9 +27,10 @@ namespace GymBro.ViewModels
         public ObservableCollection<Exercise> _exercises;
 
         [RelayCommand]
-        public async Task OpedAddExerciseDialog()
+        public async Task OpenAddExerciseDialog()
         {
-            
+            var popup = new CreateExercisePopup(this);
+            await Shell.Current.CurrentPage.ShowPopupAsync(popup);
         }
     }
 }
