@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:navbar="clr-namespace:GymBro.Controls.NavigationBar"
+             x:Class="GymBro.Views.TrainingDayPage"
+             Shell.TabBarIsVisible="False">
+    <Grid
+        RowDefinitions="Auto, *"
+        IgnoreSafeArea="True">
+
+        <navbar:CustomNavigationBar Title="{DynamicResource TrainingDayPageTitle}" IsBackButton="True" Grid.Row="0" />
+
+        <ScrollView
+            Grid.Row="1"
+            Orientation="Vertical">
+            <CollectionView
+                x:Name="TrainingPlansCollection"
+                ItemsSource="{Binding TrainingPlans}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="10, 5" Padding="20" CornerRadius="15" BackgroundColor="{DynamicResource PrimaryColor}">
+                            <Grid
+                                RowSpacing="10"
+                                ColumnSpacing="10"
+                                ColumnDefinitions="*, *"
+                                RowDefinitions="*, *">
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    VerticalOptions="Center"
+                                    Text="{Binding Title}" 
+                                    TextColor="White"
+                                    FontSize="18"/>
+
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    VerticalOptions="Center"
+                                    Text="{Binding WeekDayTrainingPlan.Day, Converter={StaticResource DayOfWeekConverter}}" 
+                                    TextColor="White"
+                                    FontSize="18"/>
+
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"
+                                    Text="{Binding TrainingPlanExercises.Exercises.Count}" 
+                                    TextColor="White"
+                                    FontSize="18"/>
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
+</ContentPage>

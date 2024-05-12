@@ -62,6 +62,12 @@
                             </SwipeView.LeftItems>
 
                             <Frame Margin="10, 5" Padding="20" CornerRadius="15" BackgroundColor="{DynamicResource PrimaryColor}">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        NumberOfTapsRequired="1"
+                                        Command="{Binding Path=BindingContext.GoToTrainingDayPageCommand, Source={x:Reference TrainingPlansCollection}}"
+                                        CommandParameter="{Binding Id}"/>
+                                </Frame.GestureRecognizers>
                                 <Grid
                                     RowSpacing="10"
                                     ColumnSpacing="10"

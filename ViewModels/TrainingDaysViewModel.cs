@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using GymBro.Models.Data.EntityFramework.Repositories;
 using GymBro.Models.Entities;
 using GymBro.Views;
+using static Android.Resource;
 
 namespace GymBro.ViewModels
 {
@@ -31,6 +32,12 @@ namespace GymBro.ViewModels
         }
 
 		[RelayCommand]
+		public async Task GoToTrainingDayPage(int trainingPlanId)
+        {
+			await Shell.Current.GoToAsync($"{nameof(TrainingDayPage)}?Id={trainingPlanId}");
+		}
+
+        [RelayCommand]
 		public async Task DeleteWeekDayTrainingPlan(int weekDayTrainingPlanId)
 		{
 			WeekDayTrainingPlan weekDayTrainingPlan = await _repository.GetWeekDayTrainingPlanById(weekDayTrainingPlanId);

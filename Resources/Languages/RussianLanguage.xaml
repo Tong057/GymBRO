@@ -29,6 +29,10 @@
 
     <x:String x:Key="Exercises">Упражнения</x:String>
 
+    <!--Start: Training Day Page-->
+    <x:String x:Key="TrainingDayPageTitle">Тренировка</x:String>
+    <!--End: Training Day Page-->
+
     <!--Week day names-->
     <x:Array Type="{x:Type x:String}" x:Key="WeekNames">
         <x:String>Пон</x:String>
