@@ -5,12 +5,12 @@
              x:Class="GymBro.Controls.Popups.CreateExercisePopup"
              Color="Transparent">
 
-    <Border WidthRequest="350" HeightRequest="200">
+    <Border WidthRequest="350">
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="25"/>
         </Border.StrokeShape>
 
-        <Grid RowDefinitions="*, Auto, Auto, *" Padding="10" BackgroundColor="{DynamicResource BackgroundColor}">
+        <Grid RowDefinitions="Auto, Auto, *, Auto" Padding="10" BackgroundColor="{DynamicResource BackgroundColor}">
             <Label Text="Create exercise"
                    FontFamily="BebasBold"
                    CharacterSpacing="2"
@@ -18,7 +18,8 @@
                    VerticalOptions="End"
                    HorizontalTextAlignment="Center" 
                    FontSize="28" 
-                   Grid.Row="0"/>
+                   Grid.Row="0"
+                   Margin="0, 10"/>
 
             <Entry Placeholder="Exercise name"
                    Grid.Row="1" 
@@ -36,7 +37,7 @@
                    MaxLength="120"
                    FontSize="18"/>
 
-            <Button Text="Create"
+            <Button Text="Save"
                     FontFamily="BebasBold"
                     FontSize="18"
                     Grid.Row="3"
