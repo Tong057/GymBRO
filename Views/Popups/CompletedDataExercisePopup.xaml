@@ -11,7 +11,7 @@
         </Border.StrokeShape>
 
         <Grid
-            RowDefinitions="Auto, Auto, *, Auto"
+            RowDefinitions="Auto, Auto, Auto"
             ColumnDefinitions="*, *"
             Padding="10"
             BackgroundColor="{DynamicResource BackgroundColor}">
@@ -35,16 +35,20 @@
                    FontSize="20"
                    MaxLength="5"
                    PlaceholderColor="{DynamicResource SecondaryTextColor}"
-                   TextColor="{DynamicResource PrimaryTextColor}"/>
+                   TextColor="{DynamicResource PrimaryTextColor}"
+                   Keyboard="Numeric"/>
 
             <Entry Placeholder="Weights"
                    Grid.Row="1"
                    Grid.Column="1"
                    Margin="40, 0" 
                    HorizontalOptions="Fill" 
-                   HorizontalTextAlignment="Center" 
+                   HorizontalTextAlignment="Center"
                    FontSize="20"
-                   MaxLength="5"/>
+                   MaxLength="5"
+                   PlaceholderColor="{DynamicResource SecondaryTextColor}"
+                   TextColor="{DynamicResource PrimaryTextColor}"
+                   Keyboard="Numeric"/>
 
             <Button Text="Save"
                     FontFamily="BebasBold"
@@ -56,9 +60,5 @@
                     HorizontalOptions="End"
                     Margin="5, 0"/>
         </Grid>
-        <!--<VerticalStackLayout Padding="5"  >
-            <Label Text="Are you sure you want to update?"/>
-            <Button VerticalOptions="End" Text="Confirm"/>
-        </VerticalStackLayout>-->
     </Border>
 </toolkit:Popup>
