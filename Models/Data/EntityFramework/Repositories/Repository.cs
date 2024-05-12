@@ -1,5 +1,4 @@
-﻿using System;
-using GymBro.Models.Data.EntityFramework.DbProviders;
+﻿using GymBro.Models.Data.EntityFramework.DbProviders;
 using GymBro.Models.Entities;
 
 namespace GymBro.Models.Data.EntityFramework.Repositories
@@ -14,43 +13,42 @@ namespace GymBro.Models.Data.EntityFramework.Repositories
 		}
 
         //Create
-        public async Task CreateTrainingSchedule(TrainingSchedule trainingSchedule)
+        public async Task CreateTrainingPlan(TrainingPlan trainingPlan)
         {
-            await _provider.CreateTrainingSchedule(trainingSchedule);
+            await _provider.CreateTrainingPlan(trainingPlan);
         }
 
-        public async Task CreateTraining(Training training)
+        public async Task CreateTrainingDay(TrainingDay trainingDay)
         {
-            await _provider.CreateTraining(training);
+            await _provider.CreateTrainingDay(trainingDay);
         }
 
         //Update
-        public async Task? UpdateTrainingSchedule(TrainingSchedule trainingSchedule)
+        public async Task? UpdateTrainingPlan(TrainingPlan trainingPlan)
         {
-            await _provider.UpdateTrainingSchedule(trainingSchedule);
+            await _provider.UpdateTrainingPlan(trainingPlan);
         }
 
-        public async Task? UpdateTraining(Training training)
+        public async Task? UpdateTraining(TrainingDay trainingDay)
         {
-            await _provider.UpdateTraining(training);
+            await _provider.UpdateTrainingDay(trainingDay);
         }
 
         //Get
-        public async Task<List<TrainingSchedule>> GetAllTrainingSchedules()
+        public async Task<List<TrainingPlan>> GetAllTrainingPlans()
         {
-            return await _provider.GetAllTrainingSchedules();
+            return await _provider.GetAllTrainingPlans();
         }
 
-        public async Task<ScheduleDay> GetScheduleDayById(int id)
+        public async Task<WeekDayTrainingPlan> GetWeekDayTrainingPlanById(int id)
         {
-            return await _provider.GetScheduleDayById(id);
+            return await _provider.GetWeekDayTrainingPlanById(id);
         }
-
 
         //Delete
-        public async Task DeleteTrainingSchedule(TrainingSchedule trainingSchedule)
+        public async Task DeleteTrainingPlan(TrainingPlan trainingPlan)
         {
-            await _provider.DeleteTrainingSchedule(trainingSchedule);
+            await _provider.DeleteTrainingPlan(trainingPlan);
         }
     }
 }

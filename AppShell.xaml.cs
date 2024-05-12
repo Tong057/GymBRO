@@ -7,8 +7,12 @@ namespace GymBro
         public AppShell()
         {
             InitializeComponent();
+            RegisterRoutes();
+        }
 
-            Routing.RegisterRoute("CreateTrainingSchedulePage", typeof(CreateTrainingSchedulePage));
+        private void RegisterRoutes()
+        {
+            Routing.RegisterRoute("CreateTrainingPlanPage", typeof(CreateTrainingPlanPage));
         }
     }
 }

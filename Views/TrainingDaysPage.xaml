@@ -12,7 +12,7 @@
     </ContentPage.Resources>
 
     <Grid RowDefinitions="Auto, Auto, *" IgnoreSafeArea="True">
-        <navbar:CustomNavigationBar RightButtonCommand="{Binding OpenCreateTrainingScheduleCommand}" RightButtonIconSource="{StaticResource AddIcon}" Grid.Row="0" />
+        <navbar:CustomNavigationBar RightButtonCommand="{Binding GoToCreateTrainingPlanCommand}" RightButtonIconSource="{StaticResource AddIcon}" Grid.Row="0" />
 
         <Button Text="Add Test Day" Command="{Binding TestCommand}" Grid.Row="1" Margin="5" HeightRequest="60"/>
 
@@ -20,7 +20,7 @@
             Grid.Row="2"
             HorizontalOptions="Center"
             VerticalOptions="Center"
-            IsVisible="{Binding IsTrainingSchedulesEmpty}">
+            IsVisible="{Binding IsTrainingPlansEmpty}">
             <Label
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Center"
@@ -46,8 +46,8 @@
             Grid.Row="2"
             Orientation="Vertical">
             <CollectionView
-                x:Name="TrainingScheduleCollection"
-                ItemsSource="{Binding TrainingSchedules}">
+                x:Name="TrainingPlansCollection"
+                ItemsSource="{Binding TrainingPlans}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <SwipeView>
@@ -56,8 +56,8 @@
                                     <SwipeItem
                                         Text="Delete"
                                         BackgroundColor="Transparent"
-                                        Command="{Binding Path=BindingContext.DeleteScheduleDayCommand, Source={x:Reference TrainingScheduleCollection}}"
-                                        CommandParameter="{Binding ScheduleDay.Id}"/>
+                                        Command="{Binding Path=BindingContext.DeleteWeekDayTrainingPlanCommand, Source={x:Reference TrainingPlansCollection}}"
+                                        CommandParameter="{Binding WeekDayTrainingPlan.Id}"/>
                                 </SwipeItems>
                             </SwipeView.LeftItems>
 
@@ -80,7 +80,7 @@
                                         Grid.Row="1"
                                         Grid.Column="0"
                                         VerticalOptions="Center"
-                                        Text="{Binding ScheduleDay.Day, Converter={StaticResource DayOfWeekConverter}}" 
+                                        Text="{Binding WeekDayTrainingPlan.Day, Converter={StaticResource DayOfWeekConverter}}" 
                                         TextColor="White"
                                         FontSize="18"/>
 
@@ -89,7 +89,7 @@
                                         Grid.Column="1"
                                         HorizontalOptions="End"
                                         VerticalOptions="Center"
-                                        Text="{Binding TrainingScheduleExercises.Exercises.Count}" 
+                                        Text="{Binding TrainingPlanExercises.Exercises.Count}" 
                                         TextColor="White"
                                         FontSize="18"/>
 

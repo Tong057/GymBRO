@@ -13,72 +13,66 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
 		}
 
         //Create
-        public async Task CreateTrainingSchedule(TrainingSchedule trainingSchedule)
+        public async Task CreateTrainingPlan(TrainingPlan trainingPlan)
         {
-            await _context.TrainingSchedules.AddAsync(trainingSchedule);
+            await _context.TrainingPlans.AddAsync(trainingPlan);
             await _context.SaveChangesAsync();
         }
 
-        public async Task CreateTraining(Training training)
+        public async Task CreateTrainingDay(TrainingDay trainingDay)
         {
-            await _context.Trainings.AddAsync(training);
+            await _context.TrainingDays.AddAsync(trainingDay);
             await _context.SaveChangesAsync();
         }
-
-        
-
 
         //Update
-        public async Task? UpdateTrainingSchedule(TrainingSchedule trainingSchedule)
+        public async Task? UpdateTrainingPlan(TrainingPlan trainingPlan)
         {
-            TrainingSchedule findedTrainingSchedule = _context.TrainingSchedules.SingleOrDefault(findTrainingSchedule => findTrainingSchedule.Id == trainingSchedule.Id);
-            if (findedTrainingSchedule == null)
+            TrainingPlan findedTrainingPlan = _context.TrainingPlans.SingleOrDefault(findTrainingPlan => findTrainingPlan.Id == trainingPlan.Id);
+            if (findedTrainingPlan == null)
                 return;
 
-            findedTrainingSchedule.ScheduleDays = trainingSchedule.ScheduleDays;
-            findedTrainingSchedule.Title = trainingSchedule.Title;
+            findedTrainingPlan.WeekDayTrainingPlan = trainingPlan.WeekDayTrainingPlan;
+            findedTrainingPlan.Title = trainingPlan.Title;
 
             await _context.SaveChangesAsync();
         }
 
-        public async Task? UpdateTraining(Training training)
+        public async Task? UpdateTrainingDay(TrainingDay trainingDay)
         {
-            Training findedTraining = _context.Trainings.SingleOrDefault(findTraining => findTraining.Id == training.Id);
+            TrainingDay findedTraining = _context.TrainingDays.SingleOrDefault(findTrainingDay => findTrainingDay.Id == trainingDay.Id);
             if (findedTraining == null)
                 return;
 
-            findedTraining.StartTime = training.StartTime;
-            findedTraining.EndTime = training.EndTime;
-            findedTraining.ExerciseStatuses = training.ExerciseStatuses;
+            findedTraining.StartTime = trainingDay.StartTime;
+            findedTraining.EndTime = trainingDay.EndTime;
+            findedTraining.ExerciseStatuses = trainingDay.ExerciseStatuses;
 
             await _context.SaveChangesAsync();
         }
 
-
         //Get
-        public async Task<List<TrainingSchedule>> GetAllTrainingSchedules()
+        public async Task<List<TrainingPlan>> GetAllTrainingPlans()
         {
-            return await _context.TrainingSchedules
-                .Include(training => training.ScheduleDays)
-                .Include(training => training.TrainingScheduleExercises)
-                    .ThenInclude(scheduleExercises => scheduleExercises.Exercises)
+            return await _context.TrainingPlans
+                .Include(training => training.WeekDayTrainingPlan)
+                .Include(training => training.TrainingPlanExercises)
+                .ThenInclude(planExercises => planExercises.Exercises)
                 .ToListAsync();
         }
 
-        public async Task<ScheduleDay> GetScheduleDayById(int id)
+        public async Task<WeekDayTrainingPlan> GetWeekDayTrainingPlanById(int id)
         {
-            return await _context.ScheduleDays
+            return await _context.WeekDayTrainingPlans
                 .Where(day => day.Id == id)
-                .Include(day => day.TrainingSchedule)
+                .Include(day => day.TrainingPlan)
                 .SingleAsync();
-
         }
 
-
         //Delete
-        public async Task DeleteTrainingSchedule(TrainingSchedule trainingSchedule)
+        public async Task DeleteTrainingPlan(TrainingPlan trainingPlan)
         {
-            _context.Remove(trainingSchedule);
+            _context.Remove(trainingPlan);
             await _context.SaveChangesAsync();
         }
     }

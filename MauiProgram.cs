@@ -41,8 +41,8 @@ namespace GymBro
             builder.Services.AddTransient<TrainingDaysViewModel>();
             builder.Services.AddTransient<TrainingDaysPage>();
 
-            builder.Services.AddTransient<CreateTrainingScheduleViewModel>();
-            builder.Services.AddTransient<CreateTrainingSchedulePage>();
+            builder.Services.AddTransient<CreateTrainingPlanViewModel>();
+            builder.Services.AddTransient<CreateTrainingPlanPage>();
 
             //EntityFramework
             builder.Services.AddTransient<ApplicationContext>();

@@ -118,7 +118,7 @@
 	  <MauiXaml Update="Views\AboutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CreateTrainingSchedulePage.xaml">
+	  <MauiXaml Update="Views\CreateTrainingPlanPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\SettingsPage.xaml">
@@ -144,6 +144,12 @@
 	  </Compile>
 	  <Compile Update="Resources\Languages\RussianLanguage.xaml.cs">
 	    <DependentUpon>RussianLanguage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\CreateTrainingPlanPage.xaml.cs">
+	    <DependentUpon>CreateTrainingPlanPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TrainingDaysPage.xaml.cs">
+	    <DependentUpon>TrainingDaysPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

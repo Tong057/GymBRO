@@ -6,20 +6,20 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
 	{
 
 		//Create
-		Task CreateTrainingSchedule(TrainingSchedule trainingSchedule);
-		Task CreateTraining(Training training);
+		Task CreateTrainingPlan(TrainingPlan trainingPlan);
+		Task CreateTrainingDay(TrainingDay trainingDay);
 
 
 		//Update
-		Task UpdateTrainingSchedule(TrainingSchedule trainingSchedule);
-		Task UpdateTraining(Training training);
+		Task UpdateTrainingPlan(TrainingPlan trainingPlan);
+		Task UpdateTrainingDay(TrainingDay trainingDay);
 
 		//Get
-		Task<List<TrainingSchedule>> GetAllTrainingSchedules();
-		Task<ScheduleDay> GetScheduleDayById(int id);
+		Task<List<TrainingPlan>> GetAllTrainingPlans();
+		Task<WeekDayTrainingPlan> GetWeekDayTrainingPlanById(int id);
 
 		//Delete
-		Task DeleteTrainingSchedule(TrainingSchedule trainingSchedule);
+		Task DeleteTrainingPlan(TrainingPlan trainingPlan);
 
     }
 }

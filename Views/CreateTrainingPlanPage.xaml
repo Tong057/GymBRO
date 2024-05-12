@@ -3,10 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:GymBro.Controls.WeekDayPicker"
              xmlns:navbar="clr-namespace:GymBro.Controls.NavigationBar"
-             x:Class="GymBro.Views.CreateTrainingSchedulePage">
+             x:Class="GymBro.Views.CreateTrainingPlanPage"
+             Shell.TabBarIsVisible="False">
 
     <Grid Padding="0" RowDefinitions="Auto, Auto, *" IgnoreSafeArea="True">
-        <navbar:CustomNavigationBar Title="Create Training Schedule" RightButtonCommand="{Binding SaveTrainingScheduleCommand}" IsBackButton="True" RightButtonIconSource="{StaticResource AcceptIcon}" />
+        <navbar:CustomNavigationBar Title="Create Training Plan" 
+                                    RightButtonCommand="{Binding SaveTrainingPlanCommand}" 
+                                    IsBackButton="True" 
+                                    RightButtonIconSource="{StaticResource AcceptIcon}" />
         
         <controls:WeekDayPicker WeekNames="{DynamicResource WeekNames}" 
                                 SelectedColor="{DynamicResource PrimaryColor}" 

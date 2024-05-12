@@ -4,9 +4,9 @@ using System.Collections.ObjectModel;
 
 namespace GymBro.ViewModels
 {
-    public partial class CreateTrainingScheduleViewModel : ObservableObject
+    public partial class CreateTrainingPlanViewModel : ObservableObject
     {
-        public CreateTrainingScheduleViewModel() 
+        public CreateTrainingPlanViewModel() 
         {
             _exercises = [
                 new Exercise { Name = "Pull up", Description = "Blablabla" },

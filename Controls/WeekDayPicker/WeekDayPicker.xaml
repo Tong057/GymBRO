@@ -9,7 +9,8 @@
         JustifyContent="SpaceBetween"
         AlignItems="Center"
         HorizontalOptions="FillAndExpand"
-        VerticalOptions="Center">
+        VerticalOptions="Center"
+        MaximumWidthRequest="550">
 
         <local:DayBox x:Name="DayBoxMonday"/>
         <local:DayBox x:Name="DayBoxTuesday" />

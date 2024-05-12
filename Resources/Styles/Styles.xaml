@@ -140,7 +140,7 @@
     <FontImageSource x:Key="AddCircleIcon" 
                      FontFamily="FontAwesomeSolid" 
                      Glyph="{x:Static icons:FontAwesomeIcons.PlusCircle}" 
-                     Color="{DynamicResource PrimaryColor}" 
+                     Color="{DynamicResource SecondaryFocusColor}"
                      Size="32" />
 
     <FontImageSource x:Key="AcceptIcon" 

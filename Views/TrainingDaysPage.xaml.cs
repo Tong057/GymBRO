@@ -4,12 +4,12 @@ namespace GymBro.Views;
 
 public partial class TrainingDaysPage : ContentPage
 {
-    private TrainingDaysViewModel _trainingDaysViewModel;
-    public TrainingDaysPage(TrainingDaysViewModel trainingDaysViewModel)
+    private TrainingDaysViewModel _trainingDaysVM;
+    public TrainingDaysPage(TrainingDaysViewModel trainingDaysVM)
     {
         InitializeComponent();
 
-        _trainingDaysViewModel = trainingDaysViewModel;
-        BindingContext = trainingDaysViewModel;
+        BindingContext = trainingDaysVM;
+        _trainingDaysVM = trainingDaysVM;
     }
 }

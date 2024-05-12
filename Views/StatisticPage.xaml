@@ -5,7 +5,7 @@
              x:Class="GymBro.Views.StatisticPage"
              Title="Statistic">
     <VerticalStackLayout IgnoreSafeArea="True">
-        <controls:CustomNavigationBar RightButtonCommand="{Binding OpenCreateTrainingScheduleCommand}"/>
+        <controls:CustomNavigationBar RightButtonCommand="{Binding OpenCreateTrainingPlanCommand}"/>
         
         <Label 
             Text="Welcome to .NET MAUI!"

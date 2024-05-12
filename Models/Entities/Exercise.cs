@@ -1,5 +1,4 @@
-﻿using System;
-namespace GymBro.Models.Entities
+﻿namespace GymBro.Models.Entities
 {
     public class Exercise
     {
@@ -7,8 +6,8 @@ namespace GymBro.Models.Entities
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public int TrainingScheduleExerciseId { get; set; }
-        public TrainingScheduleExercises TrainingScheduleExercise { get; set; }
+        public int TrainingPlanExerciseId { get; set; }
+        public TrainingPlanExercises TrainingPlanExercise { get; set; }
 
         public Exercise(string name, string description)
         {
