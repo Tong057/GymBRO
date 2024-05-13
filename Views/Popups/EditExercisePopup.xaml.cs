@@ -3,9 +3,9 @@ using GymBro.ViewModels;
 
 namespace GymBro.Views.Popups;
 
-public partial class CreateExercisePopup : Popup
+public partial class EditExercisePopup : Popup
 {
-	public CreateExercisePopup(CreateTrainingPlanViewModel createTrainingPlanVM)
+	public EditExercisePopup(CreateTrainingPlanViewModel createTrainingPlanVM)
 	{
 		InitializeComponent();
 

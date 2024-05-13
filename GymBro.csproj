@@ -68,6 +68,7 @@
 	  <MauiImage Remove="Resources\Images\Icons\**" />
 	  <MauiXaml Remove="Resources\Images\Icons\**" />
 	  <None Remove="Resources\Images\Icons\**" />
+	  <AndroidResource Remove="Platforms\Android\Resources\values\styles.xml" />
 	  <None Remove="Models\Converters\" />
 	  <None Remove="Resources\Fonts\BebasNeue-Bold.ttf" />
 	  <None Remove="Resources\Fonts\BebasNeue-Regular.ttf" />
@@ -96,10 +97,20 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.21" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="The49.Maui.BottomSheet" Version="8.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="Controls\NavigationBar\CustomNavigationBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\BottomSheets\SavedExercisesBottomSheet.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Popups\EditExercisePopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Popups\ContentViews\ExerciseContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Popups\CreateExercisePopup.xaml">
@@ -126,6 +137,9 @@
 	  <MauiXaml Update="Views\CreateTrainingPlanPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Popups\SaveTrainingPlanPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -137,7 +151,6 @@
 	<ItemGroup>
 	  <Folder Include="Models\Data\EntityFramework\DbProviders\" />
 	  <Folder Include="Models\Data\EntityFramework\Repositories\" />
-	  <Folder Include="Utilities\Converters\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -150,8 +163,17 @@
 	  <Compile Update="Resources\Languages\RussianLanguage.xaml.cs">
 	    <DependentUpon>RussianLanguage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\BottomSheets\SavedExercisesBottomSheet.xaml.cs">
+	    <DependentUpon>SavedExercisesBottomSheet.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\CreateTrainingPlanPage.xaml.cs">
 	    <DependentUpon>CreateTrainingPlanPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Popups\EditExercisePopup.xaml.cs">
+	    <DependentUpon>EditExercisePopup.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Popups\ContentViews\ExerciseContentView.xaml.cs">
+	    <DependentUpon>ExerciseContentView.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\TrainingDaysPage.xaml.cs">
 	    <DependentUpon>TrainingDaysPage.xaml</DependentUpon>

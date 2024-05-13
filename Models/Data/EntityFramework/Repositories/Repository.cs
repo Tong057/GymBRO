@@ -40,6 +40,11 @@ namespace GymBro.Models.Data.EntityFramework.Repositories
             return await _provider.GetAllTrainingPlans();
         }
 
+        public async Task<List<Exercise>> GetAllExercises()
+        {
+            return await _provider.GetAllExercises();
+        }
+
         public async Task<WeekDayTrainingPlan> GetWeekDayTrainingPlanById(int id)
         {
             return await _provider.GetWeekDayTrainingPlanById(id);

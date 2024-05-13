@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="GymBro.Views.Popups.ContentViews.ExerciseContentView">
+
+    <Border WidthRequest="350">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="25"/>
+        </Border.StrokeShape>
+
+        <Grid RowDefinitions="Auto, Auto, *, Auto" Padding="10" BackgroundColor="{DynamicResource BackgroundColor}">
+            <Label x:Name="TitleLabel"
+                   FontFamily="BebasBold"
+                   CharacterSpacing="2"
+                   HorizontalOptions="Center" 
+                   VerticalOptions="End"
+                   HorizontalTextAlignment="Center" 
+                   FontSize="28" 
+                   Grid.Row="0"
+                   Margin="0, 10"/>
+
+            <Entry Placeholder="Exercise name"
+                   Text="{Binding Exercise.Name}"
+                   TextColor="{DynamicResource PrimaryTextColor}"
+                   PlaceholderColor="{DynamicResource SecondaryTextColor}"
+                   Grid.Row="1" 
+                   Margin="40, 0" 
+                   HorizontalOptions="Fill" 
+                   HorizontalTextAlignment="Center" 
+                   FontSize="20"/>
+
+            <Editor Placeholder="Description (optional)"
+                    Text="{Binding Exercise.Description}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
+                    PlaceholderColor="{DynamicResource SecondaryTextColor}"
+                    Grid.Row="2" 
+                    Margin="40, 0" 
+                    HorizontalOptions="Fill" 
+                    HorizontalTextAlignment="Center" 
+                    AutoSize="TextChanges"
+                    MaxLength="120"
+                    FontSize="18"/>
+
+            <Button x:Name="SaveButton"
+                    Text="Save"
+                    FontFamily="BebasBold"
+                    FontSize="18"
+                    Grid.Row="3"
+                    BackgroundColor="Transparent"
+                    CharacterSpacing="2"
+                    HorizontalOptions="End"
+                    Margin="5, 0"
+                    Clicked="Button_Clicked"/>
+
+            <Button x:Name="SelectButton"
+                    Text="Select"
+                    FontFamily="BebasBold"
+                    FontSize="18"
+                    Grid.Row="3"
+                    BackgroundColor="Transparent"
+                    CharacterSpacing="1"
+                    HorizontalOptions="Start"
+                    Margin="5, 0"
+                    Clicked="Button_Clicked"/>
+        </Grid>
+    </Border>
+</ContentView>

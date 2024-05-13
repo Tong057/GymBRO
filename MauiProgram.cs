@@ -1,11 +1,13 @@
 ﻿using AiForms.Settings;
 using CommunityToolkit.Maui;
+using GymBro.Views.Popups;
 using GymBro.Models.Data.EntityFramework;
 using GymBro.Models.Data.EntityFramework.DbProviders;
 using GymBro.Models.Data.EntityFramework.Repositories;
 using GymBro.ViewModels;
 using GymBro.Views;
 using Microsoft.Extensions.Logging;
+using The49.Maui.BottomSheet;
 
 namespace GymBro
 {
@@ -17,6 +19,7 @@ namespace GymBro
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .UseBottomSheet()
                 .ConfigureMauiHandlers(handlers =>
                 {
                     if (DeviceInfo.Platform != DevicePlatform.WinUI)
@@ -46,8 +49,11 @@ namespace GymBro
             builder.Services.AddTransient<CreateTrainingPlanViewModel>();
             builder.Services.AddTransient<CreateTrainingPlanPage>();
 
+            builder.Services.AddTransient<CreateExercisePopup>();
+
             builder.Services.AddTransient<TrainingDayPage>();
             builder.Services.AddTransient<TrainingDayViewModel>();
+
 
             //EntityFramework
             builder.Services.AddTransient<ApplicationContext>();
