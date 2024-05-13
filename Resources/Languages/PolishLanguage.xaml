@@ -31,6 +31,9 @@
 
     <!--Start: Training Day Page-->
     <x:String x:Key="TrainingDayPageTitle">Trening</x:String>
+    <x:String x:Key="CompletedDataExercisePopupTitle">Wprowadź dane ćwiczeń</x:String>
+    <x:String x:Key="Weights">Waga</x:String>
+    <x:String x:Key="Repeats">Powtórzeń</x:String>
     <!--End: Training Day Page-->
 
     <!--Week day names-->
