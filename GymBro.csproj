@@ -72,6 +72,8 @@
 	  <None Remove="Models\Converters\" />
 	  <None Remove="Resources\Fonts\BebasNeue-Bold.ttf" />
 	  <None Remove="Resources\Fonts\BebasNeue-Regular.ttf" />
+	  <None Remove="Models\Events\" />
+	  <None Remove="ViewModels\Popups\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\FontAwesome-Brands.otf" />
@@ -149,11 +151,17 @@
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\Popups\CreateExercisePopup %28copy%29.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\Popups\CreateExercisePopup %28copy%29.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Models\Data\EntityFramework\DbProviders\" />
 	  <Folder Include="Models\Data\EntityFramework\Repositories\" />
+	  <Folder Include="Utilities\Converters\" />
+	  <Folder Include="Models\Events\" />
+	  <Folder Include="ViewModels\Popups\" />
 	</ItemGroup>
 
 	<ItemGroup>

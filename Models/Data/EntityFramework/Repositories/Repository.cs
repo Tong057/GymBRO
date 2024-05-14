@@ -29,7 +29,7 @@ namespace GymBro.Models.Data.EntityFramework.Repositories
             await _provider.UpdateTrainingPlan(trainingPlan);
         }
 
-        public async Task? UpdateTraining(TrainingDay trainingDay)
+        public async Task? UpdateTrainingDay(TrainingDay trainingDay)
         {
             await _provider.UpdateTrainingDay(trainingDay);
         }
@@ -55,10 +55,25 @@ namespace GymBro.Models.Data.EntityFramework.Repositories
             return await _provider.GetTrainingPlanById(id);
         }
 
+        public async Task<ExerciseStatus>? GetLastExerciseStatus(Exercise exercise)
+        {
+            return await _provider.GetLastExerciseStatus(exercise);
+        }
+
+        public async Task<TrainingDay>? GetNotEndedTrainingDayForTrainingPlan(TrainingPlan trainingPlan)
+        {
+            return await _provider.GetNotEndedTrainingDayForTrainingPlan(trainingPlan);
+        }
+
         //Delete
         public async Task DeleteTrainingPlan(TrainingPlan trainingPlan)
         {
             await _provider.DeleteTrainingPlan(trainingPlan);
+        }
+
+        public async Task DeleteTrainingDay(TrainingDay trainingDay)
+        {
+            await _provider.DeleteTrainingDay(trainingDay);
         }
     }
 }

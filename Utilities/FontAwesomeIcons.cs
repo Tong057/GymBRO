@@ -14,6 +14,7 @@
         public const string Check = "\uf00c";
         public const string Accept = "\uf058";
         public const string Decline = "\uf057";
+        public const string Minus = "\uf056";
         public const string SadSmile = "\uf57a";
         public const string ThumbsUp = "\uf164";
         public const string Trash = "\uf2ed";

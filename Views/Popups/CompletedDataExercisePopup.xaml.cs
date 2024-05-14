@@ -1,19 +1,21 @@
+using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
 using GymBro.Models.Entities;
-using GymBro.ViewModels;
+using GymBro.Models.Events;
+using GymBro.ViewModels.Popups;
 
 namespace GymBro.Controls.Popups;
 
 public partial class CompletedDataExercisePopup : Popup
 {
-	private readonly TrainingDayViewModel _trainingDayViewModel;
-	private readonly Exercise _exercise;
-	public CompletedDataExercisePopup(TrainingDayViewModel trainingDayViewModel, Exercise exercise)
+    CompletedDataExercisePopupViewModel _completedDataExercisePopupViewModel;
+
+    public CompletedDataExercisePopup(CompletedDataExercisePopupViewModel completedDataExercisePopupViewModel)
 	{
 		InitializeComponent();
-
-		BindingContext = trainingDayViewModel;
-        _trainingDayViewModel = trainingDayViewModel;
-		_exercise = exercise;
-	}
+		BindingContext = completedDataExercisePopupViewModel;
+		completedDataExercisePopupViewModel.Popup = this;
+        _completedDataExercisePopupViewModel = completedDataExercisePopupViewModel;
+    }
 }

@@ -193,6 +193,12 @@
                      Color="#1c1c1c" 
                      Size="30" />
 
+    <FontImageSource x:Key="MinusIcon" 
+                     FontFamily="FontAwesomeSolid" 
+                     Glyph="{x:Static icons:FontAwesomeIcons.Minus}" 
+                     Color="#f53d49" 
+                     Size="30" />
+
     <!--End Icon Styles-->
 
 </ResourceDictionary>

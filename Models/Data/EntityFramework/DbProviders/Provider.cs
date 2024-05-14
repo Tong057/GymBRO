@@ -84,10 +84,35 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
                 .SingleAsync();
         }
 
+        public async Task<ExerciseStatus>? GetLastExerciseStatus(Exercise exercise)
+        {
+            return await _context.ExerciseStatuses
+                .Include(exerciseStatus => exerciseStatus.Note)
+                .Include(exerciseStatus => exerciseStatus.ExerciseWeights)
+                .OrderByDescending(exerciseStatus => exerciseStatus.TrainingDay.EndTime)
+                .FirstOrDefaultAsync(exerciseStatus => exerciseStatus.ExerciseId == exercise.Id);
+        }
+
+        public async Task<TrainingDay>? GetNotEndedTrainingDayForTrainingPlan(TrainingPlan trainingPlan)
+        {
+            return await _context.TrainingDays
+                .Include(trainingDay => trainingDay.ExerciseStatuses)
+                .Where(trainingDay => trainingDay.TrainingPlanId == trainingPlan.Id)
+                .Where(trainingDay => trainingDay.EndTime == null)
+                .OrderByDescending(trainingDay => trainingDay.EndTime)
+                .SingleOrDefaultAsync();
+        }
+
         //Delete
         public async Task DeleteTrainingPlan(TrainingPlan trainingPlan)
         {
-            _context.Remove(trainingPlan);
+            _context.TrainingPlans.Remove(trainingPlan);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteTrainingDay(TrainingDay trainingDay)
+        {
+            _context.TrainingDays.Remove(trainingDay);
             await _context.SaveChangesAsync();
         }
     }
