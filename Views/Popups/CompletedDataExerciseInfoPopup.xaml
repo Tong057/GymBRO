@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:converters="clr-namespace:GymBro.Utilities.Converters"
+             x:Class="GymBro.Controls.Popups.CompletedDataExerciseInfoPopup"
+             Color="Transparent">
+
+    <toolkit:Popup.Resources>
+        <converters:IsNullConverter x:Key="IsNullConverter"/>
+    </toolkit:Popup.Resources>
+
+    <Border WidthRequest="350">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="25"/>
+        </Border.StrokeShape>
+
+        <Grid RowDefinitions="Auto, Auto, *, Auto" Padding="10" BackgroundColor="{DynamicResource BackgroundColor}">
+            <Label Text="Exercise Inforamtion"
+                    FontFamily="BebasBold"
+                    CharacterSpacing="2"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="End"
+                    HorizontalTextAlignment="Center" 
+                    FontSize="28" 
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0, 10, 0, 30"/>
+
+            <VerticalStackLayout Grid.Row="1"
+                                 Margin="0, 0, 0, 30">
+                <Label Text="Note from last Training"
+                    FontFamily="BebasBold"
+                    CharacterSpacing="2"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="End"
+                    HorizontalTextAlignment="Center" 
+                    FontSize="18" 
+                    Margin="20, 0, 0, 0"
+                    TextColor="{DynamicResource PrimaryTextColor}"/>
+
+                 <Editor Placeholder="Create it here to see it in next training"
+                    Text="{Binding LastExerciseStatus.Note.Content}"
+                    Margin="10, 0, 10, 0" 
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center" 
+                    AutoSize="TextChanges"
+                    MaxLength="120"
+                    FontSize="16"
+                    PlaceholderColor="{DynamicResource SecondaryTextColor}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
+                    IsEnabled="False"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="2"
+                                 Margin="0, 0, 0, 30">
+                <Label Text="Exercise description"
+                    FontFamily="BebasBold"
+                    CharacterSpacing="2"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="End"
+                    HorizontalTextAlignment="Center" 
+                    FontSize="18" 
+                    Margin="20, 0, 0, 0"
+                    TextColor="{DynamicResource PrimaryTextColor}"/>
+
+                 <Editor Placeholder="Set description in exercise to see it here"
+                    Text="{Binding Exercise.Description}"
+                    Margin="10, 0, 10, 0" 
+                    HorizontalOptions="Fill" 
+                    HorizontalTextAlignment="Center" 
+                    AutoSize="TextChanges"
+                    MaxLength="120"
+                    FontSize="16"
+                    PlaceholderColor="{DynamicResource SecondaryTextColor}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
+                    IsEnabled="False"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="3"
+                                 Margin="0, 0, 0, 30">
+                <Label Text="Previous weights"
+                    FontFamily="BebasBold"
+                    CharacterSpacing="2"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="End"
+                    HorizontalTextAlignment="Center" 
+                    FontSize="18" 
+                    Margin="20, 0, 0, 0"
+                    TextColor="{DynamicResource PrimaryTextColor}"/>
+
+                <CollectionView
+                    Margin="10, 0, 10, 0"
+                    ItemsSource="{Binding LastExerciseStatus.ExerciseWeights}"
+                    MaximumHeightRequest="150">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                                <Entry Text="{Binding Weight, Mode=TwoWay}"
+                                        Placeholder="{DynamicResource Weights}"
+                                        HorizontalOptions="Fill" 
+                                        HorizontalTextAlignment="Center"
+                                        FontSize="16"
+                                        MaxLength="5"
+                                        PlaceholderColor="{DynamicResource SecondaryTextColor}"
+                                        TextColor="{DynamicResource PrimaryTextColor}"
+                                        Keyboard="Numeric"
+                                        IsEnabled="False"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label
+                    IsVisible="{Binding LastExerciseStatus, Converter={StaticResource IsNullConverter}}"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    Text="There is no weights"
+                    FontSize="16"/>
+
+
+            </VerticalStackLayout>
+            
+        </Grid>
+    </Border>
+</toolkit:Popup>

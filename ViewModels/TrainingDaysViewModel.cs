@@ -72,7 +72,7 @@ namespace GymBro.ViewModels
             plan2.WeekDayTrainingPlan.Add(t1);
             plan2.WeekDayTrainingPlan.Add(t2);
             plan2.TrainingPlanExercises.Exercises.Add(new Exercise("DoubleTestName", "DoubleTestDesc"));
-            plan2.TrainingPlanExercises.Exercises.Add(new Exercise("DoubleTestName2", "DoubleTestDesc2"));
+            plan2.TrainingPlanExercises.Exercises.Add(new Exercise("DoubleTestName2", null));
 
 
             await _repository.CreateTrainingPlan(plan2);

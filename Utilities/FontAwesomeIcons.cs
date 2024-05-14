@@ -15,5 +15,6 @@
         public const string SadSmile = "\uf57a";
         public const string Accept = "\uf058";
         public const string Decline = "\uf057";
+        public const string Minus = "\uf056";
     }
 }

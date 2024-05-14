@@ -16,7 +16,12 @@
         RowDefinitions="Auto, *"
         IgnoreSafeArea="True">
 
-        <navbar:CustomNavigationBar Title="{DynamicResource TrainingDayPageTitle}" IsBackButton="True" Grid.Row="0" />
+        <navbar:CustomNavigationBar
+            Title="{DynamicResource TrainingDayPageTitle}"
+            IsBackButton="True"
+            Grid.Row="0"
+            RightButtonIconSource="{StaticResource AcceptIcon}"
+            RightButtonCommand="{Binding EndTrainingCommand}"/>
 
         <ScrollView
             Grid.Row="1"
@@ -31,22 +36,42 @@
                             Margin="10, 5"
                             Padding="20"
                             CornerRadius="15"
-                            BackgroundColor="{DynamicResource PrimaryColor}"
-                            BindableLayout.ItemsSource="{Binding .}">
+                            BackgroundColor="{DynamicResource PrimaryColor}">
 
                             <Grid
-                                ColumnDefinitions="*, 30">
+                                ColumnSpacing="5"
+                                ColumnDefinitions="*, 40, 40">
 
                                 <Label
                                     Grid.Column="0"
                                     VerticalOptions="Center"
+                                    TextColor="White"
                                     Text="{Binding Key.Name}"/>
 
                                 <Label
                                     Grid.Column="1"
                                     VerticalOptions="Center"
+                                    HorizontalOptions="End"
                                     FontFamily="FontAwesomeSolid"
-                                    FontSize="30"
+                                    FontSize="36"
+                                    TextColor="White"
+                                    Text="{x:Static icons:FontAwesomeIcons.Info}">
+
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            NumberOfTapsRequired="1"
+                                            Command="{Binding Path=BindingContext.ShowExerciseTrainingInformationPopupCommand, Source={x:Reference TrainingExerciseCollection}}"
+                                            CommandParameter="{Binding Key}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+
+                                <Label
+                                    Grid.Column="2"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="End"
+                                    FontFamily="FontAwesomeSolid"
+                                    FontSize="36"
+                                    TextColor="White"
                                     Text="{x:Static icons:FontAwesomeIcons.Accept}"
                                     IsVisible="{Binding Value, Converter={StaticResource IsNullConverter}}">
 
@@ -56,15 +81,25 @@
                                             Command="{Binding Path=BindingContext.ShowCompleteExercisePopupCommand, Source={x:Reference TrainingExerciseCollection}}"
                                             CommandParameter="{Binding Key}"/>
                                     </Label.GestureRecognizers>
-                                    </Label>
+                                </Label>
 
                                 <Label
-                                    Grid.Column="1"
+                                    Grid.Column="2"
                                     VerticalOptions="Center"
+                                    HorizontalOptions="End"
                                     FontFamily="FontAwesomeSolid"
-                                    FontSize="30"
+                                    FontSize="36"
                                     Text="{x:Static icons:FontAwesomeIcons.Decline}"
-                                    IsVisible="{Binding Value, Converter={StaticResource IsNotNullConverter}}"/>
+                                    IsVisible="{Binding Value, Converter={StaticResource IsNotNullConverter}}"
+                                    TextColor="White">
+
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            NumberOfTapsRequired="1"
+                                            Command="{Binding Path=BindingContext.ClearExerciseStatusDataCommand, Source={x:Reference TrainingExerciseCollection}}"
+                                            CommandParameter="{Binding Key}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
                             </Grid>
                         </Frame>
                     </DataTemplate>
