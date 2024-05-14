@@ -9,16 +9,17 @@ using GymBro.Views.BottomSheets;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Diagnostics;
 using CommunityToolkit.Maui.Alerts;
+using System.Net;
 
 namespace GymBro.ViewModels
 {
-    public partial class CreateTrainingPlanViewModel : ObservableObject
+    public partial class TrainingPlanViewModel : ObservableObject
     {
         private Repository _repository;
         private readonly SavedExercisesBottomSheet _bottomSheet;
 
 
-        public CreateTrainingPlanViewModel(Repository repository)
+        public TrainingPlanViewModel(Repository repository)
         {
             _repository = repository;
             _bottomSheet = new SavedExercisesBottomSheet(this);
@@ -36,6 +37,22 @@ namespace GymBro.ViewModels
                 SavedExercises.Add(ex);
             }
         }
+
+        public async Task LoadPlanAsync(int id)
+        {
+            WeekDayTrainingPlan = await _repository.GetWeekDayTrainingPlanById(id);
+
+            foreach (var ex in WeekDayTrainingPlan.TrainingPlan.TrainingPlanExercises.Exercises)
+            {
+                Exercises.Add(ex);
+            }
+
+            DaysOfWeekCollection.Add(WeekDayTrainingPlan.Day);
+            TrainingPlanTitle = WeekDayTrainingPlan.TrainingPlan.Title;
+        }
+
+        [ObservableProperty]
+        private WeekDayTrainingPlan _weekDayTrainingPlan;
 
         [ObservableProperty]
         private string _trainingPlanTitle;
@@ -123,12 +140,25 @@ namespace GymBro.ViewModels
             {
                 await Shell.Current.CurrentPage.ShowPopupAsync(new SaveTrainingPlanPopup(this));
             }
-
         }
 
         [RelayCommand]
         public async Task SaveTrainingPlan()
         {
+            if (WeekDayTrainingPlan != null)
+            {
+                var trainingPlan = WeekDayTrainingPlan.TrainingPlan;
+                if (trainingPlan.WeekDayTrainingPlan.Count <= 1)
+                {
+                    await _repository.DeleteTrainingPlan(trainingPlan);
+                }
+                else
+                {
+                    trainingPlan.WeekDayTrainingPlan.Remove(WeekDayTrainingPlan);
+                    await _repository.UpdateTrainingPlan(trainingPlan);
+                }
+            }
+
             TrainingPlan plan = new TrainingPlan(TrainingPlanTitle);
 
             foreach (var day in DaysOfWeekCollection)
@@ -144,6 +174,12 @@ namespace GymBro.ViewModels
             await _repository.CreateTrainingPlan(plan);
             await Shell.Current.Navigation.PopAsync();
         }
+
+        //[RelayCommand]
+        //public async Task UpdateTrainingPlan()
+        //{
+
+        //}
 
         #region Drag and drop section
 

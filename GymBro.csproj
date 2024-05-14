@@ -109,6 +109,12 @@
 	  <MauiXaml Update="Views\BottomSheets\SavedExercisesBottomSheet.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\TrainingPlan\TrainingPlanContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TrainingPlan\EditTrainingPlanPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Popups\EditExercisePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -136,7 +142,7 @@
 	  <MauiXaml Update="Views\AboutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CreateTrainingPlanPage.xaml">
+	  <MauiXaml Update="Views\TrainingPlan\CreateTrainingPlanPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Popups\SaveTrainingPlanPopup.xaml">
@@ -177,7 +183,10 @@
 	  <Compile Update="Views\BottomSheets\SavedExercisesBottomSheet.xaml.cs">
 	    <DependentUpon>SavedExercisesBottomSheet.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\CreateTrainingPlanPage.xaml.cs">
+	  <Compile Update="Views\TrainingPlan\EditTrainingPlanPage.xaml.cs">
+	    <DependentUpon>EditTrainingPlanPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TrainingPlan\CreateTrainingPlanPage.xaml.cs">
 	    <DependentUpon>CreateTrainingPlanPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\Popups\EditExercisePopup.xaml.cs">

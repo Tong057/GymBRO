@@ -59,6 +59,7 @@
 
     <x:String x:Key="TrainingPlan">Тренировочный план</x:String>
     <x:String x:Key="CreateTrainingPlan">Создать План</x:String>
+    <x:String x:Key="EditTrainingPlan">Редактировать План</x:String>
     <x:String x:Key="PlanExercisesMessage">Планируйте ваши упражнения</x:String>
 
     <x:String x:Key="SavedExercises">Сохраненные упражнения</x:String>

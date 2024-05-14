@@ -61,6 +61,7 @@
     <!--Start: Create / Edit training plan-->
     <x:String x:Key="TrainingPlan">Training plan</x:String>
     <x:String x:Key="CreateTrainingPlan">Create Plan</x:String>
+    <x:String x:Key="EditTrainingPlan">Edit Plan</x:String>
     <x:String x:Key="PlanExercisesMessage">Plan your exercises</x:String>
 
     <x:String x:Key="SavedExercises">Saved exercises</x:String>

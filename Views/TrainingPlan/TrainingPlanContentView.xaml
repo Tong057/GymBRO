@@ -1,24 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:GymBro.Controls.WeekDayPicker"
+             xmlns:daypicker="clr-namespace:GymBro.Controls.WeekDayPicker"
              xmlns:navbar="clr-namespace:GymBro.Controls.NavigationBar"
              xmlns:converter="clr-namespace:GymBro.Utilities.Converters"
              xmlns:icons="clr-namespace:GymBro.Utilities"
-             x:Class="GymBro.Views.CreateTrainingPlanPage"
-             Shell.TabBarIsVisible="False">
+             x:Class="GymBro.Views.ContentViews.TrainingPlanContentView">
 
-    <ContentPage.Resources>
+    <ContentView.Resources>
         <converter:BoolToColorConverter x:Key="BoolToColorConverter"/>
-    </ContentPage.Resources>
+    </ContentView.Resources>
 
     <Grid Padding="0" RowDefinitions="Auto, Auto, *" IgnoreSafeArea="True">
-        <navbar:CustomNavigationBar Title="{DynamicResource CreateTrainingPlan}" 
-                                    RightButtonCommand="{Binding OpenSaveTrainingPlanPopupCommand}" 
+        <navbar:CustomNavigationBar x:Name="NavBar" 
+                                    Title="{DynamicResource CreateTrainingPlan}"
                                     IsBackButton="True" 
+                                    RightButtonCommand="{Binding OpenSaveTrainingPlanPopupCommand}"
                                     RightButtonIconSource="{StaticResource AcceptIcon}" />
 
-        <controls:WeekDayPicker WeekNames="{DynamicResource WeekNames}" 
+        <daypicker:WeekDayPicker WeekNames="{DynamicResource WeekNames}" 
                                 SelectedColor="{DynamicResource PrimaryColor}" 
                                 Grid.Row="1"
                                 VerticalOptions="Start"
@@ -35,8 +35,8 @@
                            FontFamily="FontAwesomeSolid" 
                            Text="{x:Static icons:FontAwesomeIcons.ThumbsUp}" 
                            FontSize="36"/>
-            
-                <Label HorizontalTextAlignment="Center" 
+
+            <Label HorizontalTextAlignment="Center" 
                            VerticalTextAlignment="Center" 
                            Text="{DynamicResource PlanExercisesMessage}" 
                            FontSize="20"/>
@@ -98,4 +98,4 @@
                      Command="{Binding OpenAddExerciseDialogCommand}"/>
 
     </Grid>
-</ContentPage>
+</ContentView>

@@ -69,9 +69,14 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
         public async Task<WeekDayTrainingPlan> GetWeekDayTrainingPlanById(int id)
         {
             return await _context.WeekDayTrainingPlans
-                .Where(day => day.Id == id)
-                .Include(day => day.TrainingPlan)
+                .Where(dayPlan => dayPlan.Id == id)
+                .Include(dayPlan => dayPlan.TrainingPlan)
+                    .ThenInclude(trainingPlan => trainingPlan.WeekDayTrainingPlan)
+                .Include(dayPlan => dayPlan.TrainingPlan)
+                    .ThenInclude(trainingPlan => trainingPlan.TrainingPlanExercises)
+                        .ThenInclude(planExercises => planExercises.Exercises)
                 .SingleAsync();
+
         }
 
         public async Task<TrainingPlan> GetTrainingPlanById(int id)

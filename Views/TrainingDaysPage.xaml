@@ -52,8 +52,8 @@
                             <SwipeView.LeftItems>
                                 <SwipeItems Mode="Reveal">
                                     <SwipeItemView BackgroundColor="Transparent"
-                                                   Command="{Binding Source={x:Reference TrainingPlansCollection}, Path=BindingContext.EditTrainingPlanCommand}"
-                                                   CommandParameter="{Binding .}" >
+                                                   Command="{Binding Source={x:Reference TrainingPlansCollection}, Path=BindingContext.GoToEditWeekDayTrainingPlanCommand}"
+                                                   CommandParameter="{Binding WeekDayTrainingPlan.Id}" >
                                         <ImageButton Source="{StaticResource EditIcon}" WidthRequest="40" HeightRequest="40" Margin="10, 0"/>
                                     </SwipeItemView>
                                     

@@ -5,11 +5,11 @@ namespace GymBro.Views.Popups;
 
 public partial class EditExercisePopup : Popup
 {
-	public EditExercisePopup(CreateTrainingPlanViewModel createTrainingPlanVM)
+	public EditExercisePopup(TrainingPlanViewModel trainingPlanVM)
 	{
 		InitializeComponent();
 
-		BindingContext = createTrainingPlanVM;
+		BindingContext = trainingPlanVM;
 	}
 
     private async void Close_Clicked(object sender, EventArgs e)

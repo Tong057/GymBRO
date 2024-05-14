@@ -60,6 +60,7 @@
     <!--Start: Create training plan-->
     <x:String x:Key="TrainingPlan">Plan treningowy</x:String>
     <x:String x:Key="CreateTrainingPlan">Stwórz Plan</x:String>
+    <x:String x:Key="EditTrainingPlan">Zmień Plan</x:String>
     <x:String x:Key="PlanExercisesMessage">Zaplanuj swoje ćwiczenia</x:String>
 
     <x:String x:Key="SavedExercises">Zapisane ćwiczenia</x:String>

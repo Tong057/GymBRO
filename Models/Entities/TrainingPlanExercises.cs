@@ -4,7 +4,6 @@
     {
         public int Id { get; set; }
         public List<Exercise> Exercises { get; set; } = new List<Exercise>();
-
         public int TrainingPlanId { get; set; }
         public TrainingPlan TrainingPlan { get; set; }
 

@@ -46,10 +46,12 @@ namespace GymBro
             builder.Services.AddTransient<TrainingDaysViewModel>();
             builder.Services.AddTransient<TrainingDaysPage>();
 
-            builder.Services.AddTransient<CreateTrainingPlanViewModel>();
+            builder.Services.AddTransient<TrainingPlanViewModel>();
             builder.Services.AddTransient<CreateTrainingPlanPage>();
+            builder.Services.AddTransient<EditTrainingPlanPage>();
 
             builder.Services.AddTransient<CreateExercisePopup>();
+            builder.Services.AddTransient<EditExercisePopup>();
 
             builder.Services.AddTransient<TrainingDayPage>();
             builder.Services.AddTransient<TrainingDayViewModel>();
@@ -58,7 +60,7 @@ namespace GymBro
             //EntityFramework
             builder.Services.AddTransient<ApplicationContext>();
             builder.Services.AddTransient<IProvider, Provider>();
-            builder.Services.AddTransient<Repository>();
+            builder.Services.AddSingleton<Repository>();
 
             return builder.Build();
 

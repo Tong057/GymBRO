@@ -5,7 +5,7 @@ namespace GymBro.Views.BottomSheets;
 
 public partial class SavedExercisesBottomSheet : BottomSheet
 {
-	public SavedExercisesBottomSheet(CreateTrainingPlanViewModel createTrainingPlanVM)
+	public SavedExercisesBottomSheet(TrainingPlanViewModel createTrainingPlanVM)
 	{
 		InitializeComponent();
 

@@ -26,8 +26,6 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
 		//Delete
 		Task DeleteTrainingPlan(TrainingPlan trainingPlan);
 		Task DeleteTrainingDay(TrainingDay trainingDay);
-
-
     }
 }
 
