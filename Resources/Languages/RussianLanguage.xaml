@@ -57,7 +57,19 @@
         <x:String>Воскресенье</x:String>
     </x:Array>
 
-    <!--Start: Create training plan-->
-    <x:String x:Key="TrainingPlanTitlePlaceholder">Training Plan Title</x:String>
+    <x:String x:Key="TrainingPlan">Тренировочный план</x:String>
+    <x:String x:Key="CreateTrainingPlan">Создать План</x:String>
+    <x:String x:Key="PlanExercisesMessage">Планируйте ваши упражнения</x:String>
+
+    <x:String x:Key="SavedExercises">Сохраненные упражнения</x:String>
+    <x:String x:Key="CreateExercise">Создать упражнение</x:String>
+    <x:String x:Key="EditExercise">Редактировать упражнение</x:String>
+
+    <x:String x:Key="Save">Сохранить</x:String>
+    <x:String x:Key="Select">Выбрать</x:String>
+
+    <x:String x:Key="ExerciseNamePlaceholder">Название</x:String>
+    <x:String x:Key="ExerciseDescriptionPlaceholder">Описание (необязательно)</x:String>
+    <x:String x:Key="TitlePlaceholder">Заголовок</x:String>
 
 </ResourceDictionary>

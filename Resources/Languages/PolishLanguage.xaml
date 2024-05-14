@@ -58,6 +58,19 @@
     </x:Array>
 
     <!--Start: Create training plan-->
-    <x:String x:Key="TrainingPlanTitlePlaceholder">Training Plan Title</x:String>
+    <x:String x:Key="TrainingPlan">Plan treningowy</x:String>
+    <x:String x:Key="CreateTrainingPlan">Stwórz Plan</x:String>
+    <x:String x:Key="PlanExercisesMessage">Zaplanuj swoje ćwiczenia</x:String>
+
+    <x:String x:Key="SavedExercises">Zapisane ćwiczenia</x:String>
+    <x:String x:Key="CreateExercise">Stwórz ćwiczenie</x:String>
+    <x:String x:Key="EditExercise">Edytuj ćwiczenie</x:String>
+
+    <x:String x:Key="Save">Zapisz</x:String>
+    <x:String x:Key="Select">Wybierz</x:String>
+
+    <x:String x:Key="ExerciseNamePlaceholder">Nazwa</x:String>
+    <x:String x:Key="ExerciseDescriptionPlaceholder">Opis (opcjonalnie)</x:String>
+    <x:String x:Key="TitlePlaceholder">Tytuł</x:String>
 
 </ResourceDictionary>

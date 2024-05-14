@@ -11,7 +11,7 @@
         </Border.StrokeShape>
 
         <Grid RowDefinitions="Auto, Auto, Auto" Padding="10" BackgroundColor="{DynamicResource BackgroundColor}">
-            <Label Text="Training plan"
+            <Label Text="{DynamicResource TrainingPlan}"
                    FontFamily="BebasBold"
                    CharacterSpacing="2"
                    HorizontalOptions="Center" 
@@ -21,7 +21,7 @@
                    Grid.Row="0"
                    Margin="0, 10"/>
 
-            <Entry Placeholder="Title"
+            <Entry Placeholder="{DynamicResource TitlePlaceholder}"
                    Text="{Binding TrainingPlanTitle}"
                    TextColor="{DynamicResource PrimaryTextColor}"
                    PlaceholderColor="{DynamicResource SecondaryTextColor}"
@@ -31,7 +31,7 @@
                    HorizontalTextAlignment="Center" 
                    FontSize="20"/>
 
-            <Button Text="Save"
+            <Button Text="{DynamicResource Save}"
                     FontFamily="BebasBold"
                     FontSize="18"
                     Grid.Row="2"

@@ -12,8 +12,11 @@
         public const string Plus = "\u002b";
         public const string PlusCircle = "\uf055";
         public const string Check = "\uf00c";
-        public const string SadSmile = "\uf57a";
         public const string Accept = "\uf058";
         public const string Decline = "\uf057";
+        public const string SadSmile = "\uf57a";
+        public const string ThumbsUp = "\uf164";
+        public const string Trash = "\uf2ed";
+        public const string Editing = "\uf044";
     }
 }

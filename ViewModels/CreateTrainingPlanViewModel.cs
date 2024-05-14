@@ -8,6 +8,7 @@ using GymBro.Models.Entities;
 using GymBro.Views.BottomSheets;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Diagnostics;
+using CommunityToolkit.Maui.Alerts;
 
 namespace GymBro.ViewModels
 {
@@ -15,7 +16,7 @@ namespace GymBro.ViewModels
     {
         private Repository _repository;
         private readonly SavedExercisesBottomSheet _bottomSheet;
-        private SaveTrainingPlanPopup _savePlanPopup;
+
 
         public CreateTrainingPlanViewModel(Repository repository)
         {
@@ -23,6 +24,7 @@ namespace GymBro.ViewModels
             _bottomSheet = new SavedExercisesBottomSheet(this);
 
             LoadSavedExercises();
+            Exercises.CollectionChanged += (s, e) => IsExercisesEmpty = !Exercises.Any();
         }
 
         private async void LoadSavedExercises()
@@ -53,13 +55,15 @@ namespace GymBro.ViewModels
         [ObservableProperty]
         private ObservableHashSet<DayOfWeek> _daysOfWeekCollection = new ObservableHashSet<DayOfWeek>();
 
+        [ObservableProperty]
+        private bool _isExercisesEmpty = true;
+
         [RelayCommand]
         private async Task OpenAddExerciseDialog()
         {
             Exercise = new Exercise();
 
-            var createExercisePopup = new CreateExercisePopup(this);
-            await Shell.Current.CurrentPage.ShowPopupAsync(createExercisePopup);
+            await Shell.Current.CurrentPage.ShowPopupAsync(new CreateExercisePopup(this));
         }
 
         [RelayCommand]
@@ -68,8 +72,7 @@ namespace GymBro.ViewModels
             Exercise = exercise.Clone();
             TargetEditExercise = exercise;
 
-            var editExercisePopup = new EditExercisePopup(this);
-            await Shell.Current.CurrentPage.ShowPopupAsync(editExercisePopup);
+            await Shell.Current.CurrentPage.ShowPopupAsync(new EditExercisePopup(this));
         }
 
         [RelayCommand]
@@ -108,8 +111,19 @@ namespace GymBro.ViewModels
         [RelayCommand]
         public async Task OpenSaveTrainingPlanPopup()
         {
-            _savePlanPopup = new SaveTrainingPlanPopup(this);
-            await Shell.Current.CurrentPage.ShowPopupAsync(_savePlanPopup);
+            if (!DaysOfWeekCollection.Any())
+            {
+                await Toast.Make("Please select at least one day of the week").Show();
+            }
+            else if (!Exercises.Any())
+            {
+                await Toast.Make("Please add at least one exercise.").Show();
+            }
+            else
+            {
+                await Shell.Current.CurrentPage.ShowPopupAsync(new SaveTrainingPlanPopup(this));
+            }
+
         }
 
         [RelayCommand]
@@ -128,7 +142,7 @@ namespace GymBro.ViewModels
             }
 
             await _repository.CreateTrainingPlan(plan);
-            await Shell.Current.Navigation.PopAsync(true);
+            await Shell.Current.Navigation.PopAsync();
         }
 
         #region Drag and drop section

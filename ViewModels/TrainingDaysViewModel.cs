@@ -56,30 +56,6 @@ namespace GymBro.ViewModels
             UpdateTrainingPlans(await _repository.GetAllTrainingPlans());
 		}
 
-		[RelayCommand]
-		public async Task Test()
-		{
-			TrainingPlan plan = new TrainingPlan("Test");
-            plan.WeekDayTrainingPlan.Add(new WeekDayTrainingPlan(DayOfWeek.Friday));
-            plan.TrainingPlanExercises.Exercises.Add(new Exercise("TestName", "TestDesc"));
-
-			await _repository.CreateTrainingPlan(plan);
-
-			WeekDayTrainingPlan t1 = new WeekDayTrainingPlan(DayOfWeek.Friday);
-			WeekDayTrainingPlan t2 = new WeekDayTrainingPlan(DayOfWeek.Monday);
-
-			TrainingPlan plan2 = new TrainingPlan("DoubleTest");
-            plan2.WeekDayTrainingPlan.Add(t1);
-            plan2.WeekDayTrainingPlan.Add(t2);
-            plan2.TrainingPlanExercises.Exercises.Add(new Exercise("DoubleTestName", "DoubleTestDesc"));
-            plan2.TrainingPlanExercises.Exercises.Add(new Exercise("DoubleTestName2", "DoubleTestDesc2"));
-
-
-            await _repository.CreateTrainingPlan(plan2);
-
-            UpdateTrainingPlans(await _repository.GetAllTrainingPlans());
-		}
-
         public async void InitializeViewModel()
 		{
             UpdateTrainingPlans(await _repository.GetAllTrainingPlans());

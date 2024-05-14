@@ -58,8 +58,24 @@
         <x:String>Sunday</x:String>
     </x:Array>
     
-    <!--Start: Create training plan-->
-    <x:String x:Key="TrainingPlanTitlePlaceholder">Training Plan Title</x:String>
+    <!--Start: Create / Edit training plan-->
+    <x:String x:Key="TrainingPlan">Training plan</x:String>
+    <x:String x:Key="CreateTrainingPlan">Create Plan</x:String>
+    <x:String x:Key="PlanExercisesMessage">Plan your exercises</x:String>
+
+    <x:String x:Key="SavedExercises">Saved exercises</x:String>
+    <x:String x:Key="CreateExercise">Create exercise</x:String>
+    <x:String x:Key="EditExercise">Edit exercise</x:String>
+
+    <x:String x:Key="Save">Save</x:String>
+    <x:String x:Key="Select">Select</x:String>
+
+    <x:String x:Key="ExerciseNamePlaceholder">Name</x:String>
+    <x:String x:Key="ExerciseDescriptionPlaceholder">Description (optional)</x:String>
+    <x:String x:Key="TitlePlaceholder">Title</x:String>
     
+    <!--End: Create / Edit training plan-->
+
+
 
 </ResourceDictionary>

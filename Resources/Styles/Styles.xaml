@@ -89,6 +89,24 @@
     </Style>
     
     <!--End Navigation Styles-->
+    
+    <!--Start: Empty templates-->
+    <ContentView x:Key="ExercisesEmptyViewTemplate">
+        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Label HorizontalTextAlignment="Center" 
+                           VerticalTextAlignment="Center" 
+                           FontFamily="FontAwesomeSolid" 
+                           Text="{x:Static icons:FontAwesomeIcons.ThumbsUp}" 
+                           FontSize="36"/>
+            <Label HorizontalTextAlignment="Center" 
+                           VerticalTextAlignment="Center" 
+                           Text="{DynamicResource PlanExercisesMessage}" 
+                           FontSize="20"/>
+        </VerticalStackLayout>
+    </ContentView>
+
+
+    <!--End: Empty templates-->
 
     <!--Icon Styles-->
     <FontImageSource x:Key="HomeTabIcon" 
@@ -142,6 +160,20 @@
                      Glyph="{x:Static icons:FontAwesomeIcons.PlusCircle}" 
                      Color="{DynamicResource PrimaryColor}"
                      Size="32" />
+
+    <FontImageSource x:Key="EditIcon" 
+                     FontFamily="FontAwesomeSolid" 
+                     Glyph="{x:Static icons:FontAwesomeIcons.Editing}" 
+                     Color="{DynamicResource PrimaryTextColor}" 
+                     Size="24" />
+
+    <FontImageSource x:Key="TrashDeleteIcon" 
+                     FontFamily="FontAwesomeSolid" 
+                     Glyph="{x:Static icons:FontAwesomeIcons.Trash}" 
+                     Color="Red" 
+                     Size="24" />
+
+
 
     <FontImageSource x:Key="AcceptIcon" 
                      FontFamily="FontAwesomeSolid" 

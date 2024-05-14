@@ -20,13 +20,13 @@ public partial class ExerciseContentView : ContentView
 
         if (IsForAdd && !IsForEdit)
         {
-            TitleLabel.Text = "Create exercise";
+            TitleLabel.Text = (string)Application.Current.Resources["CreateExercise"];
             SaveButton.SetBinding(Button.CommandProperty, "AddExerciseCommand");
             SelectButton.SetBinding(Button.CommandProperty, "OpenSavedExercisesBottomSheetCommand");
         }
         else if (!IsForAdd && IsForEdit)
         {
-            TitleLabel.Text = "Edit exercise";
+            TitleLabel.Text = (string)Application.Current.Resources["EditExercise"];
             SaveButton.SetBinding(Button.CommandProperty, "EditExerciseCommand");
             SelectButton.IsVisible = false;
         }

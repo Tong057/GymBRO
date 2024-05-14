@@ -10,7 +10,7 @@
     </the49:BottomSheet.Detents>
 
     <Grid RowDefinitions="Auto, *" Padding="10">
-        <Label Text="Saved Exercises"
+        <Label Text="{DynamicResource SavedExercises}"
                FontFamily="BebasBold"
                CharacterSpacing="2"
                Grid.Row="0"

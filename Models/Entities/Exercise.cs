@@ -14,14 +14,7 @@ namespace GymBro.Models.Entities
         }
         public string Description { get; set; }
 
-        public int TrainingPlanExerciseId { get; set; }
-
-        [ObservableProperty]
-        private bool _isBeingDragged;
-        [ObservableProperty]
-        private bool _isBeingDraggedOver;
-
-        public TrainingPlanExercises TrainingPlanExercise { get; set; }
+        public List<TrainingPlanExercises> TrainingPlanExercises { get; set; }
 
         public Exercise(string name, string description)
         {
@@ -32,6 +25,12 @@ namespace GymBro.Models.Entities
         public Exercise()
         {
         }
+
+        [ObservableProperty]
+        private bool _isBeingDragged;
+
+        [ObservableProperty]
+        private bool _isBeingDraggedOver;
 
         public Exercise Clone()
         {

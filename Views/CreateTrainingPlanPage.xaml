@@ -4,15 +4,16 @@
              xmlns:controls="clr-namespace:GymBro.Controls.WeekDayPicker"
              xmlns:navbar="clr-namespace:GymBro.Controls.NavigationBar"
              xmlns:converter="clr-namespace:GymBro.Utilities.Converters"
+             xmlns:icons="clr-namespace:GymBro.Utilities"
              x:Class="GymBro.Views.CreateTrainingPlanPage"
              Shell.TabBarIsVisible="False">
 
     <ContentPage.Resources>
-        <converter:BoolToColorConverter x:Key="BoolToColor"/>
+        <converter:BoolToColorConverter x:Key="BoolToColorConverter"/>
     </ContentPage.Resources>
 
     <Grid Padding="0" RowDefinitions="Auto, Auto, *" IgnoreSafeArea="True">
-        <navbar:CustomNavigationBar Title="Create Training Plan" 
+        <navbar:CustomNavigationBar Title="{DynamicResource CreateTrainingPlan}" 
                                     RightButtonCommand="{Binding OpenSaveTrainingPlanPopupCommand}" 
                                     IsBackButton="True" 
                                     RightButtonIconSource="{StaticResource AcceptIcon}" />
@@ -23,6 +24,23 @@
                                 VerticalOptions="Start"
                                 Margin="5, 10"
                                 Checked="{Binding DaysOfWeekCollection}"/>
+
+        <VerticalStackLayout Grid.Row="1"
+                             Grid.RowSpan="2"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             IsVisible="{Binding IsExercisesEmpty}">
+            <Label HorizontalTextAlignment="Center" 
+                           VerticalTextAlignment="Center" 
+                           FontFamily="FontAwesomeSolid" 
+                           Text="{x:Static icons:FontAwesomeIcons.ThumbsUp}" 
+                           FontSize="36"/>
+            
+                <Label HorizontalTextAlignment="Center" 
+                           VerticalTextAlignment="Center" 
+                           Text="{DynamicResource PlanExercisesMessage}" 
+                           FontSize="20"/>
+        </VerticalStackLayout>
 
         <ScrollView Grid.Row="2">
             <CollectionView x:Name="ExercisesCollection" ItemsSource="{Binding Exercises, Mode=TwoWay}" Margin="10, 0">
@@ -38,7 +56,7 @@
                                 </SwipeItems>
                             </SwipeView.LeftItems>
 
-                            <Frame Margin="0, 5" Padding="20" CornerRadius="15" BackgroundColor="{Binding IsBeingDragged, Converter={StaticResource BoolToColor}}">
+                            <Frame Margin="0, 5" Padding="20" CornerRadius="15" BackgroundColor="{Binding IsBeingDragged, Converter={StaticResource BoolToColorConverter}}">
                                 <Label Text="{Binding Name}" 
                                        TextColor="White"
                                        FontSize="18"
@@ -46,7 +64,7 @@
                                        VerticalOptions="Center" 
                                        HorizontalTextAlignment="Center" 
                                        VerticalTextAlignment="Center" />
-                                
+
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Path=BindingContext.OpenEditExerciseDialogCommand, Source={x:Reference ExercisesCollection}}" CommandParameter="{Binding .}" />
 
@@ -76,7 +94,7 @@
                      HeightRequest="60"
                      WidthRequest="60"
                      Grid.Row="2"
-                     Margin="{OnPlatform WinUI=20, Default=10}"
+                     Margin="10, 20"
                      Command="{Binding OpenAddExerciseDialogCommand}"/>
 
     </Grid>
