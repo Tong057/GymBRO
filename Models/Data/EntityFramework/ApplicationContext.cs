@@ -18,8 +18,6 @@ namespace GymBro.Models.Data.EntityFramework
             base.OnModelCreating(modelBuilder);
         }
 
-
-
         //DB Sets below
         public DbSet<WeekDayTrainingPlan> WeekDayTrainingPlans { get; set; }
         public DbSet<TrainingPlan> TrainingPlans { get; set; }

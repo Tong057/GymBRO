@@ -1,6 +1,5 @@
 ﻿using AiForms.Settings;
 using CommunityToolkit.Maui;
-using GymBro.Views.Popups;
 using GymBro.Models.Data.EntityFramework;
 using GymBro.Models.Data.EntityFramework.DbProviders;
 using GymBro.Models.Data.EntityFramework.Repositories;
@@ -8,6 +7,7 @@ using GymBro.ViewModels;
 using GymBro.Views;
 using Microsoft.Extensions.Logging;
 using The49.Maui.BottomSheet;
+using GymBro.Views.Popups.Exercise;
 
 namespace GymBro
 {

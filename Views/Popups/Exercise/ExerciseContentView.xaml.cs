@@ -1,12 +1,13 @@
 using System.Runtime.CompilerServices;
 
-namespace GymBro.Views.Popups.ContentViews;
+namespace GymBro.Views.Popups.Exercise;
 
 public partial class ExerciseContentView : ContentView
 {
 	public ExerciseContentView()
 	{
 		InitializeComponent();
+        ExerciseNameEntry.Focus();
 	}
 
     public event EventHandler CloseRequested;
@@ -35,5 +36,10 @@ public partial class ExerciseContentView : ContentView
     private async void Button_Clicked(object sender, EventArgs e)
     {
         CloseRequested?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void ExerciseNameEntry_Loaded(object sender, EventArgs e)
+    {
+        ExerciseNameEntry.Focus();
     }
 }

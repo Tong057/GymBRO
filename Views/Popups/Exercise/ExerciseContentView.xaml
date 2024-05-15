@@ -2,7 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="GymBro.Views.Popups.ContentViews.ExerciseContentView">
+             x:Class="GymBro.Views.Popups.Exercise.ExerciseContentView">
 
     <Border WidthRequest="350">
         <Border.StrokeShape>
@@ -20,7 +20,8 @@
                    Grid.Row="0"
                    Margin="0, 10"/>
 
-            <Entry Placeholder="{DynamicResource ExerciseNamePlaceholder}"
+            <Entry x:Name="ExerciseNameEntry"
+                   Placeholder="{DynamicResource ExerciseNamePlaceholder}"
                    Text="{Binding Exercise.Name}"
                    TextColor="{DynamicResource PrimaryTextColor}"
                    PlaceholderColor="{DynamicResource SecondaryTextColor}"
@@ -28,7 +29,16 @@
                    Margin="40, 0" 
                    HorizontalOptions="Fill" 
                    HorizontalTextAlignment="Center" 
-                   FontSize="20"/>
+                   FontSize="20"
+                   Loaded="ExerciseNameEntry_Loaded">
+                <Entry.Keyboard>
+                    <Keyboard x:FactoryMethod="Create">
+                        <x:Arguments>
+                            <KeyboardFlags>CapitalizeSentence</KeyboardFlags>
+                        </x:Arguments>
+                    </Keyboard>
+                </Entry.Keyboard>
+            </Entry>
 
             <Editor Placeholder="{DynamicResource ExerciseDescriptionPlaceholder}"
                     Text="{Binding Exercise.Description}"
@@ -40,7 +50,15 @@
                     HorizontalTextAlignment="Center" 
                     AutoSize="TextChanges"
                     MaxLength="120"
-                    FontSize="18"/>
+                    FontSize="18">
+                <Editor.Keyboard>
+                    <Keyboard x:FactoryMethod="Create">
+                        <x:Arguments>
+                            <KeyboardFlags>CapitalizeSentence</KeyboardFlags>
+                        </x:Arguments>
+                    </Keyboard>
+                </Editor.Keyboard>
+            </Editor>
 
             <Button x:Name="SaveButton"
                     Text="{DynamicResource Save}"

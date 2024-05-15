@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Diagnostics;
 using CommunityToolkit.Maui.Alerts;
 using System.Net;
+using GymBro.Views.Popups.Exercise;
 
 namespace GymBro.ViewModels
 {

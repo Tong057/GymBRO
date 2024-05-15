@@ -115,13 +115,13 @@
 	  <MauiXaml Update="Views\TrainingPlan\EditTrainingPlanPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Popups\EditExercisePopup.xaml">
+	  <MauiXaml Update="Views\Popups\Exercise\EditExercisePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Popups\ContentViews\ExerciseContentView.xaml">
+	  <MauiXaml Update="Views\Popups\Exercise\ExerciseContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Popups\CreateExercisePopup.xaml">
+	  <MauiXaml Update="Views\Popups\Exercise\CreateExercisePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Languages\EnglishLanguage.xaml">
@@ -189,10 +189,10 @@
 	  <Compile Update="Views\TrainingPlan\CreateTrainingPlanPage.xaml.cs">
 	    <DependentUpon>CreateTrainingPlanPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Popups\EditExercisePopup.xaml.cs">
+	  <Compile Update="Views\Popups\Exercise\EditExercisePopup.xaml.cs">
 	    <DependentUpon>EditExercisePopup.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Popups\ContentViews\ExerciseContentView.xaml.cs">
+	  <Compile Update="Views\Popups\Exercise\ExerciseContentView.xaml.cs">
 	    <DependentUpon>ExerciseContentView.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\TrainingDaysPage.xaml.cs">

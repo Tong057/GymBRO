@@ -1,7 +1,7 @@
 using CommunityToolkit.Maui.Views;
 using GymBro.ViewModels;
 
-namespace GymBro.Views.Popups;
+namespace GymBro.Views.Popups.Exercise;
 
 public partial class CreateExercisePopup : Popup
 {
