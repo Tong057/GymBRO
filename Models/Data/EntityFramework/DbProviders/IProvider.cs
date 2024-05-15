@@ -21,7 +21,7 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
         Task<WeekDayTrainingPlan> GetWeekDayTrainingPlanById(int id);
 		Task<TrainingPlan> GetTrainingPlanById(int id);
 		Task<ExerciseStatus>? GetLastExerciseStatus(Exercise exercise);
-		Task<TrainingDay>? GetNotEndedTrainingDayForTrainingPlan(TrainingPlan trainingPlan);
+		Task<TrainingDay>? GetNotEndedTrainingDayForTrainingPlan(WeekDayTrainingPlan weekDayTrainingPlan);
 
 		//Delete
 		Task DeleteTrainingPlan(TrainingPlan trainingPlan);

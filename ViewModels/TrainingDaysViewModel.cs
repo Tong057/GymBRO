@@ -32,9 +32,9 @@ namespace GymBro.ViewModels
         }
 
         [RelayCommand]
-        public async Task GoToTrainingDayPage(int trainingPlanId)
+        public async Task GoToTrainingDayPage(int weekDayTrainingPlanId)
         {
-            await Shell.Current.GoToAsync($"{nameof(TrainingDayPage)}?Id={trainingPlanId}");
+            await Shell.Current.GoToAsync($"{nameof(TrainingDayPage)}?Id={weekDayTrainingPlanId}");
         }
 
         [RelayCommand]

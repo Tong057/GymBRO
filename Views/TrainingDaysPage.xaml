@@ -70,7 +70,7 @@
                                     <TapGestureRecognizer
                                         NumberOfTapsRequired="1"
                                         Command="{Binding Path=BindingContext.GoToTrainingDayPageCommand, Source={x:Reference TrainingPlansCollection}}"
-                                        CommandParameter="{Binding Id}"/>
+                                        CommandParameter="{Binding WeekDayTrainingPlan.Id}"/>
                                 </Frame.GestureRecognizers>
                                 <Grid
                                     RowSpacing="10"

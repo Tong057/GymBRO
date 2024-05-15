@@ -70,9 +70,7 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
             return await _context.WeekDayTrainingPlans
                 .Where(dayPlan => dayPlan.Id == id)
                 .Include(dayPlan => dayPlan.TrainingPlan)
-                    .ThenInclude(trainingPlan => trainingPlan.WeekDayTrainingPlan)
-                .Include(dayPlan => dayPlan.TrainingPlan)
-                    .ThenInclude(trainingPlan => trainingPlan.Exercises)
+                .Include(dayPlan => dayPlan.TrainingPlan.Exercises)
                 .SingleAsync();
 
         }
@@ -91,15 +89,17 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
             return await _context.ExerciseStatuses
                 .Include(exerciseStatus => exerciseStatus.Note)
                 .Include(exerciseStatus => exerciseStatus.ExerciseWeights)
+                .Where(exerciseStatus => exerciseStatus.TrainingDay.EndTime != null)
                 .OrderByDescending(exerciseStatus => exerciseStatus.TrainingDay.EndTime)
                 .FirstOrDefaultAsync(exerciseStatus => exerciseStatus.ExerciseId == exercise.Id);
         }
 
-        public async Task<TrainingDay>? GetNotEndedTrainingDayForTrainingPlan(TrainingPlan trainingPlan)
+        public async Task<TrainingDay>? GetNotEndedTrainingDayForTrainingPlan(WeekDayTrainingPlan weekDayTrainingPlan)
         {
             return await _context.TrainingDays
                 .Include(trainingDay => trainingDay.ExerciseStatuses)
-                .Where(trainingDay => trainingDay.TrainingPlanId == trainingPlan.Id)
+                .Where(trainingDay => trainingDay.TrainingPlanId == weekDayTrainingPlan.TrainingPlan.Id)
+                .Where(trainingDay => trainingDay.Day == weekDayTrainingPlan.Day)
                 .Where(trainingDay => trainingDay.EndTime == null)
                 .OrderByDescending(trainingDay => trainingDay.EndTime)
                 .SingleOrDefaultAsync();

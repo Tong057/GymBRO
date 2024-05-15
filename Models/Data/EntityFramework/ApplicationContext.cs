@@ -16,6 +16,12 @@ namespace GymBro.Models.Data.EntityFramework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<TrainingDay>()
+                .HasMany(td => td.ExerciseStatuses)
+                .WithOne(es => es.TrainingDay)
+                .HasForeignKey(es => es.TrainingDayId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
 
         //DB Sets below

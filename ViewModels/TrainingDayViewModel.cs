@@ -14,6 +14,7 @@ namespace GymBro.ViewModels
 {
 	public partial class TrainingDayViewModel : ObservableObject
     {
+		private WeekDayTrainingPlan _weekDayTrainingPlan;
 		private TrainingPlan _trainingPlan;
 		private TrainingDay _trainingDay;
 
@@ -31,10 +32,11 @@ namespace GymBro.ViewModels
 
         }
 
-		public async Task InitializeViewModelAsync(int trainingPlanId)
+		public async Task InitializeViewModelAsync(int weekDayTrainingPlan)
 		{
-			_trainingPlan = await _repository.GetTrainingPlanById(trainingPlanId);
-			TrainingDay savedTrainingDay = await _repository.GetNotEndedTrainingDayForTrainingPlan(_trainingPlan);
+            _weekDayTrainingPlan = await _repository.GetWeekDayTrainingPlanById(weekDayTrainingPlan);
+			_trainingPlan = await _repository.GetTrainingPlanById(_weekDayTrainingPlan.TrainingPlanId);
+			TrainingDay savedTrainingDay = await _repository.GetNotEndedTrainingDayForTrainingPlan(_weekDayTrainingPlan);
 
 			if(savedTrainingDay == null)
 			{
@@ -119,7 +121,7 @@ namespace GymBro.ViewModels
 		{
 			if(_trainingDay == null)
 			{
-                _trainingDay = new TrainingDay(_trainingPlan);
+                _trainingDay = new TrainingDay(_trainingPlan, _weekDayTrainingPlan.Day);
 				_trainingDay.StartTime = _startDateTime;
 				await _repository.CreateTrainingDay(_trainingDay);
             }
