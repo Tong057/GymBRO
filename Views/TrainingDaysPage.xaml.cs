@@ -17,6 +17,6 @@ public partial class TrainingDaysPage : ContentPage
     {
         base.OnAppearing();
 
-        await _trainingDaysVM.UpdateTrainingPlans();
+        await _trainingDaysVM.LoadTrainingPlans();
     }
 }

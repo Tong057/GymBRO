@@ -5,9 +5,10 @@ namespace GymBro.Models.Entities
     public partial class TrainingPlanExercise
     {
         public int Id { get; set; }
+        public int Position { get; set; }
+
         public Exercise Exercise { get; set; }
         public int ExerciseId { get; set; }
-        public int Position { get; set; }
 
         public TrainingPlanExercise() { }
 

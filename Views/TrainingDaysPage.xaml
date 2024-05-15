@@ -52,14 +52,14 @@
                             <SwipeView.LeftItems>
                                 <SwipeItems Mode="Reveal">
                                     <SwipeItemView BackgroundColor="Transparent"
-                                                   Command="{Binding Source={x:Reference TrainingPlansCollection}, Path=BindingContext.GoToEditWeekDayTrainingPlanCommand}"
-                                                   CommandParameter="{Binding WeekDayTrainingPlan.Id}" >
+                                                   Command="{Binding Source={x:Reference TrainingPlansCollection}, Path=BindingContext.GoToEditTrainingPlanCommand}"
+                                                   CommandParameter="{Binding Id}" >
                                         <ImageButton Source="{StaticResource EditIcon}" WidthRequest="40" HeightRequest="40" Margin="10, 0"/>
                                     </SwipeItemView>
                                     
                                     <SwipeItemView BackgroundColor="Transparent"
-                                                   Command="{Binding Source={x:Reference TrainingPlansCollection}, Path=BindingContext.DeleteWeekDayTrainingPlanCommand}"
-                                                   CommandParameter="{Binding WeekDayTrainingPlan.Id}" >
+                                                   Command="{Binding Source={x:Reference TrainingPlansCollection}, Path=BindingContext.DeleteTrainingPlanCommand}"
+                                                   CommandParameter="{Binding .}" >
                                         <ImageButton Source="{StaticResource TrashDeleteIcon}" WidthRequest="40" HeightRequest="40" Margin="10, 0" />
                                     </SwipeItemView>
                                 </SwipeItems>
@@ -70,7 +70,7 @@
                                     <TapGestureRecognizer
                                         NumberOfTapsRequired="1"
                                         Command="{Binding Path=BindingContext.GoToTrainingDayPageCommand, Source={x:Reference TrainingPlansCollection}}"
-                                        CommandParameter="{Binding WeekDayTrainingPlan.Id}"/>
+                                        CommandParameter="{Binding Id}"/>
                                 </Frame.GestureRecognizers>
                                 <Grid
                                     RowSpacing="10"
@@ -90,7 +90,7 @@
                                         Grid.Row="1"
                                         Grid.Column="0"
                                         VerticalOptions="Center"
-                                        Text="{Binding WeekDayTrainingPlan.Day, Converter={StaticResource DayOfWeekConverter}}" 
+                                        Text="{Binding Day, Converter={StaticResource DayOfWeekConverter}}" 
                                         TextColor="White"
                                         FontSize="18"/>
 
@@ -99,7 +99,7 @@
                                         Grid.Column="1"
                                         HorizontalOptions="End"
                                         VerticalOptions="Center"
-                                        Text="{Binding TrainingPlanExercises.Exercises.Count}" 
+                                        Text="{Binding Exercises.Count}" 
                                         TextColor="White"
                                         FontSize="18"/>
 

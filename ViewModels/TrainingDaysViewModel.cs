@@ -11,7 +11,7 @@ namespace GymBro.ViewModels
     public partial class TrainingDaysViewModel : ObservableObject
     {
         [ObservableProperty]
-        private ObservableCollection<TrainingPlanSingleDayModel> _trainingPlans = new ObservableCollection<TrainingPlanSingleDayModel>();
+        private ObservableCollection<TrainingPlan> _trainingPlans = new ObservableCollection<TrainingPlan>();
 
         [ObservableProperty]
         private bool _isTrainingPlansEmpty = false;
@@ -32,63 +32,46 @@ namespace GymBro.ViewModels
         }
 
         [RelayCommand]
-        public async Task GoToTrainingDayPage(int weekDayTrainingPlanId)
+        public async Task GoToTrainingDayPage(int trainingPlanId)
         {
-            await Shell.Current.GoToAsync($"{nameof(TrainingDayPage)}?Id={weekDayTrainingPlanId}");
+            await Shell.Current.GoToAsync($"{nameof(TrainingDayPage)}?Id={trainingPlanId}");
         }
 
         [RelayCommand]
-        public async Task GoToEditWeekDayTrainingPlan(int weekDayTrainingPlanId)
+        public async Task GoToEditWeekDayTrainingPlan(int trainingPlanId)
         {
-            await Shell.Current.GoToAsync($"{nameof(EditTrainingPlanPage)}?Id={weekDayTrainingPlanId}");
+            await Shell.Current.GoToAsync($"{nameof(EditTrainingPlanPage)}?Id={trainingPlanId}");
         }
 
         [RelayCommand]
-        public async Task DeleteWeekDayTrainingPlan(int weekDayTrainingPlanId)
+        public async Task DeleteTrainingPlan(TrainingPlan trainingPlan)
         {
-            WeekDayTrainingPlan weekDayTrainingPlan = await _repository.GetWeekDayTrainingPlanById(weekDayTrainingPlanId);
-            if (weekDayTrainingPlan == null)
-                return;
-
-            TrainingPlan trainingPlan = weekDayTrainingPlan.TrainingPlan;
-            if (trainingPlan.WeekDayTrainingPlan.Count <= 1)
-            {
-                await _repository.DeleteTrainingPlan(trainingPlan);
-            }
-            else
-            {
-                trainingPlan.WeekDayTrainingPlan.Remove(weekDayTrainingPlan);
-                await _repository.UpdateTrainingPlan(trainingPlan);
-            }
-
-            UpdateTrainingPlans(await _repository.GetAllTrainingPlans());
+            TrainingPlans.Remove(trainingPlan);
+            await _repository.DeleteTrainingPlan(trainingPlan);
         }
 
         public async void InitializeViewModel()
         {
-            UpdateTrainingPlans(await _repository.GetAllTrainingPlans());
+            LoadTrainingPlans(await _repository.GetAllTrainingPlans());
 
             IsTrainingPlansEmpty = !TrainingPlans.Any();
             TrainingPlans.CollectionChanged += (s, e) => IsTrainingPlansEmpty = !TrainingPlans.Any();
         }
 
-        public void UpdateTrainingPlans(IEnumerable<TrainingPlan> trainingPlans)
+        public void LoadTrainingPlans(IEnumerable<TrainingPlan> trainingPlans)
         {
             TrainingPlans.Clear();
 
             foreach (TrainingPlan plan in trainingPlans)
             {
-                foreach (TrainingPlanSingleDayModel singleDay in plan.ToSingleDayModels())
-                {
-                    TrainingPlans.Add(singleDay);
-                }
+                TrainingPlans.Add(plan);
             }
 
         }
 
-        public async Task UpdateTrainingPlans()
+        public async Task LoadTrainingPlans()
         {
-            UpdateTrainingPlans(await _repository.GetAllTrainingPlans());
+            LoadTrainingPlans(await _repository.GetAllTrainingPlans());
         }
     }
 }

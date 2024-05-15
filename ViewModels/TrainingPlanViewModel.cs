@@ -41,19 +41,19 @@ namespace GymBro.ViewModels
 
         public async Task LoadPlanAsync(int id)
         {
-            WeekDayTrainingPlan = await _repository.GetWeekDayTrainingPlanById(id);
+            TrainingPlan = await _repository.GetTrainingPlanById(id);
 
-            foreach (var trainingExercise in WeekDayTrainingPlan.TrainingPlan.Exercises.OrderBy(ex => ex.Position))
+            foreach (var trainingExercise in TrainingPlan.Exercises.OrderBy(ex => ex.Position))
             {
                 Exercises.Add(trainingExercise.Exercise);
             }
 
-            DaysOfWeekCollection.Add(WeekDayTrainingPlan.Day);
-            TrainingPlanTitle = WeekDayTrainingPlan.TrainingPlan.Title;
+            DaysOfWeekCollection.Add(TrainingPlan.Day);
+            TrainingPlanTitle = TrainingPlan.Title;
         }
 
         [ObservableProperty]
-        private WeekDayTrainingPlan _weekDayTrainingPlan;
+        private TrainingPlan _trainingPlan;
 
         [ObservableProperty]
         private string _trainingPlanTitle;
@@ -146,35 +146,37 @@ namespace GymBro.ViewModels
         [RelayCommand]
         public async Task SaveTrainingPlan()
         {
-            if (WeekDayTrainingPlan != null)
-            {
-                var trainingPlan = WeekDayTrainingPlan.TrainingPlan;
-                if (trainingPlan.WeekDayTrainingPlan.Count <= 1)
-                {
-                    await _repository.DeleteTrainingPlan(trainingPlan);
-                }
-                else
-                {
-                    trainingPlan.WeekDayTrainingPlan.Remove(WeekDayTrainingPlan);
-                    await _repository.UpdateTrainingPlan(trainingPlan);
-                }
-            }
+            //if (TrainingPlan != null)
+            //{
+            //    var trainingPlan = WeekDayTrainingPlan.TrainingPlan;
+            //    if (trainingPlan.WeekDayTrainingPlan.Count <= 1)
+            //    {
+            //        await _repository.DeleteTrainingPlan(trainingPlan);
+            //    }
+            //    else
+            //    {
+            //        trainingPlan.WeekDayTrainingPlan.Remove(WeekDayTrainingPlan);
+            //        await _repository.UpdateTrainingPlan(trainingPlan);
+            //    }
+            //}
 
-            TrainingPlan plan = new TrainingPlan(TrainingPlanTitle);
+
 
             foreach (var day in DaysOfWeekCollection)
             {
-                plan.WeekDayTrainingPlan.Add(new WeekDayTrainingPlan(day));
+                TrainingPlan plan = new TrainingPlan(TrainingPlanTitle, day);
+
+                int counter = 0;
+                foreach (var ex in Exercises)
+                {
+                    plan.Exercises.Add(new TrainingPlanExercise(ex, counter));
+                    counter++;
+                }
+
+                await _repository.CreateTrainingPlan(plan);
             }
 
-            int counter = 0;
-            foreach (var ex in Exercises)
-            {
-                plan.Exercises.Add(new TrainingPlanExercise(ex, counter));
-                counter++;
-            }
-
-            await _repository.CreateTrainingPlan(plan);
+            
             await Shell.Current.Navigation.PopAsync();
         }
 

@@ -5,8 +5,8 @@ namespace GymBro.Models.Entities
     {
         public int Id { get; set; }
 
-        public int TrainingDayId { get; set; }
-        public TrainingDay TrainingDay { get; set; }
+        public int? TrainingDayId { get; set; }
+        public TrainingDay? TrainingDay { get; set; }
 
         public int ExerciseId { get; set; }
         public Exercise Exercise { get; set; }

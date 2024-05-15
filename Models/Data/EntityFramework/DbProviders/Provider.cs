@@ -32,7 +32,6 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
             if (findedTrainingPlan == null)
                 return;
 
-            findedTrainingPlan.WeekDayTrainingPlan = trainingPlan.WeekDayTrainingPlan;
             findedTrainingPlan.Title = trainingPlan.Title;
 
             await _context.SaveChangesAsync();
@@ -55,7 +54,6 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
         public async Task<List<TrainingPlan>> GetAllTrainingPlans()
         {
             return await _context.TrainingPlans
-                .Include(training => training.WeekDayTrainingPlan)
                 .Include(training => training.Exercises)
                 .ToListAsync();
         }
@@ -65,22 +63,12 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
             return await _context.Exercises.ToListAsync();
         }
 
-        public async Task<WeekDayTrainingPlan> GetWeekDayTrainingPlanById(int id)
-        {
-            return await _context.WeekDayTrainingPlans
-                .Where(dayPlan => dayPlan.Id == id)
-                .Include(dayPlan => dayPlan.TrainingPlan)
-                .Include(dayPlan => dayPlan.TrainingPlan.Exercises)
-                .SingleAsync();
-
-        }
-
         public async Task<TrainingPlan> GetTrainingPlanById(int id)
         {
             return await _context.TrainingPlans
                 .Where(plan => plan.Id == id)
-                .Include(plan => plan.WeekDayTrainingPlan)
                 .Include(plan => plan.Exercises)
+                    .ThenInclude(exercise => exercise.Exercise)
                 .SingleAsync();
         }
 
@@ -94,12 +82,11 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
                 .FirstOrDefaultAsync(exerciseStatus => exerciseStatus.ExerciseId == exercise.Id);
         }
 
-        public async Task<TrainingDay>? GetNotEndedTrainingDayForTrainingPlan(WeekDayTrainingPlan weekDayTrainingPlan)
+        public async Task<TrainingDay>? GetNotEndedTrainingDayForTrainingPlan(TrainingPlan trainingPlan)
         {
             return await _context.TrainingDays
                 .Include(trainingDay => trainingDay.ExerciseStatuses)
-                .Where(trainingDay => trainingDay.TrainingPlanId == weekDayTrainingPlan.TrainingPlan.Id)
-                .Where(trainingDay => trainingDay.Day == weekDayTrainingPlan.Day)
+                .Where(trainingDay => trainingDay.TrainingPlanId == trainingPlan.Id)
                 .Where(trainingDay => trainingDay.EndTime == null)
                 .OrderByDescending(trainingDay => trainingDay.EndTime)
                 .SingleOrDefaultAsync();

@@ -6,8 +6,8 @@ namespace GymBro.Models.Entities
         public int Id { get; set; }
         public double? Weight { get; set; }
 
-        public int ExerciseStatusId { get; set; }
-        public ExerciseStatus ExerciseStatus { get; set; }
+        public int? ExerciseStatusId { get; set; }
+        public ExerciseStatus? ExerciseStatus { get; set; }
 
         public ExerciseWeight(double? weight)
         {

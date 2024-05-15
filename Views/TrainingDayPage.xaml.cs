@@ -2,7 +2,7 @@
 
 namespace GymBro.Views;
 
-[QueryProperty(nameof(WeekDayTrainingPlanId), "Id")]
+[QueryProperty(nameof(TrainingPlanId), "Id")]
 public partial class TrainingDayPage : ContentPage
 {
 	private readonly TrainingDayViewModel _trainingDayViewModel;
@@ -13,20 +13,20 @@ public partial class TrainingDayPage : ContentPage
 		BindingContext = trainingDayViewModel;
     }
 
-    public string WeekDayTrainingPlanId
+    public string TrainingPlanId
     {
         set
         {
-            if (!string.IsNullOrWhiteSpace(value) && int.TryParse(value, out int weekDayTrainingPlanId))
+            if (!string.IsNullOrWhiteSpace(value) && int.TryParse(value, out int trainingPlanId))
             {
-                InitializeViewModel(weekDayTrainingPlanId);
+                InitializeViewModel(trainingPlanId);
             }
         }
     }
 
-    private async void InitializeViewModel(int weekDayTrainingPlanId)
+    private async void InitializeViewModel(int trainingPlanId)
     {
-        await _trainingDayViewModel.InitializeViewModelAsync(weekDayTrainingPlanId);
+        await _trainingDayViewModel.InitializeViewModelAsync(trainingPlanId);
     }
 
 }

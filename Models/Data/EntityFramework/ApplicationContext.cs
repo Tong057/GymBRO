@@ -21,11 +21,11 @@ namespace GymBro.Models.Data.EntityFramework
                 .HasMany(td => td.ExerciseStatuses)
                 .WithOne(es => es.TrainingDay)
                 .HasForeignKey(es => es.TrainingDayId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
         //DB Sets below
-        public DbSet<WeekDayTrainingPlan> WeekDayTrainingPlans { get; set; }
+        public DbSet<TrainingPlanExercise> TrainingPlanExercises { get; set; }
         public DbSet<TrainingPlan> TrainingPlans { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<TrainingDay> TrainingDays { get; set; }

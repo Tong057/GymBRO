@@ -45,11 +45,6 @@ namespace GymBro.Models.Data.EntityFramework.Repositories
             return await _provider.GetAllExercises();
         }
 
-        public async Task<WeekDayTrainingPlan> GetWeekDayTrainingPlanById(int id)
-        {
-            return await _provider.GetWeekDayTrainingPlanById(id);
-        }
-
         public async Task<TrainingPlan> GetTrainingPlanById(int id)
         {
             return await _provider.GetTrainingPlanById(id);
@@ -60,9 +55,9 @@ namespace GymBro.Models.Data.EntityFramework.Repositories
             return await _provider.GetLastExerciseStatus(exercise);
         }
 
-        public async Task<TrainingDay>? GetNotEndedTrainingDayForTrainingPlan(WeekDayTrainingPlan weekDayTrainingPlan)
+        public async Task<TrainingDay>? GetNotEndedTrainingDayForTrainingPlan(TrainingPlan trainingPlan)
         {
-            return await _provider.GetNotEndedTrainingDayForTrainingPlan(weekDayTrainingPlan);
+            return await _provider.GetNotEndedTrainingDayForTrainingPlan(trainingPlan);
         }
 
         //Delete
