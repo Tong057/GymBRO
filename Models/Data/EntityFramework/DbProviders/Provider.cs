@@ -56,8 +56,7 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
         {
             return await _context.TrainingPlans
                 .Include(training => training.WeekDayTrainingPlan)
-                .Include(training => training.TrainingPlanExercises)
-                    .ThenInclude(planExercises => planExercises.Exercises)
+                .Include(training => training.Exercises)
                 .ToListAsync();
         }
 
@@ -73,8 +72,7 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
                 .Include(dayPlan => dayPlan.TrainingPlan)
                     .ThenInclude(trainingPlan => trainingPlan.WeekDayTrainingPlan)
                 .Include(dayPlan => dayPlan.TrainingPlan)
-                    .ThenInclude(trainingPlan => trainingPlan.TrainingPlanExercises)
-                        .ThenInclude(planExercises => planExercises.Exercises)
+                    .ThenInclude(trainingPlan => trainingPlan.Exercises)
                 .SingleAsync();
 
         }
@@ -84,8 +82,7 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
             return await _context.TrainingPlans
                 .Where(plan => plan.Id == id)
                 .Include(plan => plan.WeekDayTrainingPlan)
-                .Include(plan => plan.TrainingPlanExercises)
-                    .ThenInclude(planExercises => planExercises.Exercises)
+                .Include(plan => plan.Exercises)
                 .SingleAsync();
         }
 

@@ -1,6 +1,8 @@
-﻿namespace GymBro.Models.Entities
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace GymBro.Models.Entities
 {
-    public class TrainingPlanExercise
+    public partial class TrainingPlanExercise
     {
         public int Id { get; set; }
         public Exercise Exercise { get; set; }
@@ -14,5 +16,6 @@
             Exercise = exercise;
             Position = position;
         }
+
     }
 }

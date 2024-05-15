@@ -9,8 +9,6 @@ using GymBro.Models.Data.EntityFramework.Repositories;
 using GymBro.Models.Entities;
 using GymBro.Models.Events;
 using GymBro.ViewModels.Popups;
-using GymBro.Views;
-using Microsoft.VisualBasic;
 
 namespace GymBro.ViewModels
 {
@@ -40,22 +38,22 @@ namespace GymBro.ViewModels
 
 			if(savedTrainingDay == null)
 			{
-                foreach (Exercise exercise in _trainingPlan.TrainingPlanExercises.Exercises)
+                foreach (TrainingPlanExercise trainingPlanExercise in _trainingPlan.Exercises.OrderBy(exercise => exercise.Position))
                 {
-                    Exercises.Add(new KeyValuePair<Exercise, ExerciseStatus>(exercise, null));
+                    Exercises.Add(new KeyValuePair<Exercise, ExerciseStatus>(trainingPlanExercise.Exercise, null));
                 }
             } else
 			{
-                foreach (Exercise exercise in _trainingPlan.TrainingPlanExercises.Exercises)
+                foreach (TrainingPlanExercise trainingPlanExercise in _trainingPlan.Exercises.OrderBy(exercise => exercise.Position))
                 {
 					foreach(ExerciseStatus exerciseStatus in savedTrainingDay.ExerciseStatuses)
 					{
-						if(exercise == exerciseStatus.Exercise)
+						if(trainingPlanExercise.Exercise == exerciseStatus.Exercise)
 						{
-                            Exercises.Add(new KeyValuePair<Exercise, ExerciseStatus>(exercise, exerciseStatus));
+                            Exercises.Add(new KeyValuePair<Exercise, ExerciseStatus>(trainingPlanExercise.Exercise, exerciseStatus));
                         } else
 						{
-                            Exercises.Add(new KeyValuePair<Exercise, ExerciseStatus>(exercise, null));
+                            Exercises.Add(new KeyValuePair<Exercise, ExerciseStatus>(trainingPlanExercise.Exercise, null));
                         }
 					}
                 }

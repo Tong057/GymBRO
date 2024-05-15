@@ -8,9 +8,10 @@ namespace GymBro.Models.Entities
         public string Title { get; set; }
 
         public WeekDayTrainingPlan WeekDayTrainingPlan { get; set; }
-        public TrainingPlanExercises TrainingPlanExercises { get; set; }
+        //public TrainingPlanExercises TrainingPlanExercises { get; set; }
+        public List<TrainingPlanExercise> TrainingPlanExercises { get; set; }
 
-        public TrainingPlanSingleDayModel(int id, string title, WeekDayTrainingPlan weekDayTrainingPlan, TrainingPlanExercises trainingPlanExercises)
+        public TrainingPlanSingleDayModel(int id, string title, WeekDayTrainingPlan weekDayTrainingPlan, List<TrainingPlanExercise> trainingPlanExercises)
         {
             Id = id;
             Title = title;

@@ -42,9 +42,9 @@ namespace GymBro.ViewModels
         {
             WeekDayTrainingPlan = await _repository.GetWeekDayTrainingPlanById(id);
 
-            foreach (var ex in WeekDayTrainingPlan.TrainingPlan.TrainingPlanExercises.Exercises)
+            foreach (var trainingExercise in WeekDayTrainingPlan.TrainingPlan.Exercises.OrderBy(ex => ex.Position))
             {
-                Exercises.Add(ex);
+                Exercises.Add(trainingExercise.Exercise);
             }
 
             DaysOfWeekCollection.Add(WeekDayTrainingPlan.Day);
@@ -166,9 +166,11 @@ namespace GymBro.ViewModels
                 plan.WeekDayTrainingPlan.Add(new WeekDayTrainingPlan(day));
             }
 
+            int counter = 0;
             foreach (var ex in Exercises)
             {
-                plan.TrainingPlanExercises.Exercises.Add(ex);
+                plan.Exercises.Add(new TrainingPlanExercise(ex, counter));
+                counter++;
             }
 
             await _repository.CreateTrainingPlan(plan);
@@ -199,6 +201,7 @@ namespace GymBro.ViewModels
             }
             exercise.IsBeingDraggedOver = exercise != _itemBeingDragged;
         }
+
         [RelayCommand]
         public void ItemDropped(Exercise exercise)
         {
