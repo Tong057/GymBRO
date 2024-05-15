@@ -175,12 +175,6 @@ namespace GymBro.ViewModels
             await Shell.Current.Navigation.PopAsync();
         }
 
-        //[RelayCommand]
-        //public async Task UpdateTrainingPlan()
-        //{
-
-        //}
-
         #region Drag and drop section
 
         private Exercise _itemBeingDragged;

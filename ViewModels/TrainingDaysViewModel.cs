@@ -83,6 +83,7 @@ namespace GymBro.ViewModels
                     TrainingPlans.Add(singleDay);
                 }
             }
+
         }
 
         public async Task UpdateTrainingPlans()

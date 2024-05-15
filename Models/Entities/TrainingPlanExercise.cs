@@ -1,15 +1,15 @@
 ﻿namespace GymBro.Models.Entities
 {
-    public class ExercisePosition
+    public class TrainingPlanExercise
     {
         public int Id { get; set; }
         public Exercise Exercise { get; set; }
         public int ExerciseId { get; set; }
         public int Position { get; set; }
 
-        public ExercisePosition() { }
+        public TrainingPlanExercise() { }
 
-        public ExercisePosition(Exercise exercise, int position) 
+        public TrainingPlanExercise(Exercise exercise, int position) 
         {
             Exercise = exercise;
             Position = position;

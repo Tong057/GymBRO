@@ -12,7 +12,7 @@ namespace GymBro.Models.Entities
             get => _name;
             set => SetProperty(ref _name, value);
         }
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public List<TrainingPlanExercises> TrainingPlanExercises { get; set; }
 

@@ -48,10 +48,10 @@
     </x:Array>
 
     <x:Array Type="{x:Type x:String}" x:Key="FullWeekNames">
-        <x:String>Poniedziłek</x:String>
+        <x:String>Poniedzałek</x:String>
         <x:String>Wtorek</x:String>
         <x:String>Środa</x:String>
-        <x:String>Czwarter</x:String>
+        <x:String>Czwartek</x:String>
         <x:String>Piątek</x:String>
         <x:String>Sobota</x:String>
         <x:String>Niedziela</x:String>
