@@ -14,8 +14,6 @@ namespace GymBro.Models.Entities
         }
         public string? Description { get; set; }
 
-        //public List<TrainingPlanExercises> TrainingPlanExercises { get; set; }
-
         public Exercise(string name)
         {
             Name = name;

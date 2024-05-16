@@ -29,7 +29,15 @@
                    Margin="40, 0" 
                    HorizontalOptions="Fill" 
                    HorizontalTextAlignment="Center" 
-                   FontSize="20"/>
+                   FontSize="20">
+                <Entry.Keyboard>
+                    <Keyboard x:FactoryMethod="Create">
+                        <x:Arguments>
+                            <KeyboardFlags>CapitalizeSentence</KeyboardFlags>
+                        </x:Arguments>
+                    </Keyboard>
+                </Entry.Keyboard>
+            </Entry>
 
             <Button Text="{DynamicResource Save}"
                     FontFamily="BebasBold"

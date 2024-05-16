@@ -9,9 +9,7 @@ using GymBro.Views.BottomSheets;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Diagnostics;
 using CommunityToolkit.Maui.Alerts;
-using System.Net;
 using GymBro.Views.Popups.Exercise;
-using System.Numerics;
 
 namespace GymBro.ViewModels
 {
@@ -19,7 +17,6 @@ namespace GymBro.ViewModels
     {
         private Repository _repository;
         private readonly SavedExercisesBottomSheet _bottomSheet;
-
 
         public TrainingPlanViewModel(Repository repository)
         {
@@ -110,15 +107,18 @@ namespace GymBro.ViewModels
         [RelayCommand]
         private void AddExercise()
         {
-            if (!Exercises.Contains(Exercise))
+            if (!Exercises.Contains(Exercise) && !string.IsNullOrEmpty(Exercise.Name))
                 Exercises.Add(Exercise);
         }
 
         [RelayCommand]
         private void EditExercise()
         {
-            TargetEditExercise.Name = Exercise.Name;
-            TargetEditExercise.Description = Exercise.Description;
+            if (!string.IsNullOrEmpty(Exercise.Name))
+            {
+                TargetEditExercise.Name = Exercise.Name;
+                TargetEditExercise.Description = Exercise.Description;
+            }
         }
 
         [RelayCommand]
@@ -145,53 +145,44 @@ namespace GymBro.ViewModels
         }
 
         [RelayCommand]
-        public async Task UpdateTrainingPlan()
-        {
-            if (TrainingPlan != null)
-            {
-                TrainingPlan.Exercises.Clear();
-
-                for (int i = 0; i < Exercises.Count; ++i)
-                {
-                    TrainingPlan.Exercises.Add(new TrainingPlanExercise(Exercises.ElementAt(i), i));
-                }
-                await _repository.UpdateTrainingPlan(TrainingPlan);
-
-            }
-        }
-
-        [RelayCommand]
         public async Task SaveTrainingPlan()
         {
-            if (TrainingPlan != null)
+            if (string.IsNullOrEmpty(TrainingPlanTitle))
             {
-                TrainingPlan.Title = TrainingPlanTitle;
-                TrainingPlan.Day = DaysOfWeekCollection.First();
-                TrainingPlan.Exercises.Clear();
-
-                for (int i = 0; i < Exercises.Count; ++i)
-                {
-                    TrainingPlan.Exercises.Add(new TrainingPlanExercise(Exercises.ElementAt(i), i));
-                }
-
-                await _repository.UpdateTrainingPlan(TrainingPlan);
-            } 
+                await Toast.Make("Please input a plan title").Show();
+            }
             else
             {
-                foreach (var day in DaysOfWeekCollection)
+                if (TrainingPlan != null)
                 {
-                    TrainingPlan plan = new TrainingPlan(TrainingPlanTitle, day);
+                    TrainingPlan.Title = TrainingPlanTitle;
+                    TrainingPlan.Day = DaysOfWeekCollection.First();
+                    TrainingPlan.Exercises.Clear();
 
                     for (int i = 0; i < Exercises.Count; ++i)
                     {
-                        plan.Exercises.Add(new TrainingPlanExercise(Exercises.ElementAt(i), i));
+                        TrainingPlan.Exercises.Add(new TrainingPlanExercise(Exercises.ElementAt(i), i));
                     }
 
-                    await _repository.CreateTrainingPlan(plan);
+                    await _repository.UpdateTrainingPlan(TrainingPlan);
                 }
-            }
+                else
+                {
+                    foreach (var day in DaysOfWeekCollection)
+                    {
+                        TrainingPlan plan = new TrainingPlan(TrainingPlanTitle, day);
 
-            await Shell.Current.Navigation.PopAsync();
+                        for (int i = 0; i < Exercises.Count; ++i)
+                        {
+                            plan.Exercises.Add(new TrainingPlanExercise(Exercises.ElementAt(i), i));
+                        }
+
+                        await _repository.CreateTrainingPlan(plan);
+                    }
+                }
+
+                await Shell.Current.Navigation.PopAsync();
+            }
         }
 
         #region Drag and drop section

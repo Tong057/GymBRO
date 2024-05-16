@@ -1,5 +1,4 @@
-﻿using System;
-using GymBro.Models.Entities;
+﻿using GymBro.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace GymBro.Models.Data.EntityFramework
