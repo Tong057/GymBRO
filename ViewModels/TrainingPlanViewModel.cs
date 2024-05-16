@@ -11,6 +11,7 @@ using System.Diagnostics;
 using CommunityToolkit.Maui.Alerts;
 using System.Net;
 using GymBro.Views.Popups.Exercise;
+using System.Numerics;
 
 namespace GymBro.ViewModels
 {
@@ -144,39 +145,52 @@ namespace GymBro.ViewModels
         }
 
         [RelayCommand]
+        public async Task UpdateTrainingPlan()
+        {
+            if (TrainingPlan != null)
+            {
+                TrainingPlan.Exercises.Clear();
+
+                for (int i = 0; i < Exercises.Count; ++i)
+                {
+                    TrainingPlan.Exercises.Add(new TrainingPlanExercise(Exercises.ElementAt(i), i));
+                }
+                await _repository.UpdateTrainingPlan(TrainingPlan);
+
+            }
+        }
+
+        [RelayCommand]
         public async Task SaveTrainingPlan()
         {
-            //if (TrainingPlan != null)
-            //{
-            //    var trainingPlan = WeekDayTrainingPlan.TrainingPlan;
-            //    if (trainingPlan.WeekDayTrainingPlan.Count <= 1)
-            //    {
-            //        await _repository.DeleteTrainingPlan(trainingPlan);
-            //    }
-            //    else
-            //    {
-            //        trainingPlan.WeekDayTrainingPlan.Remove(WeekDayTrainingPlan);
-            //        await _repository.UpdateTrainingPlan(trainingPlan);
-            //    }
-            //}
-
-
-
-            foreach (var day in DaysOfWeekCollection)
+            if (TrainingPlan != null)
             {
-                TrainingPlan plan = new TrainingPlan(TrainingPlanTitle, day);
+                TrainingPlan.Title = TrainingPlanTitle;
+                TrainingPlan.Day = DaysOfWeekCollection.First();
+                TrainingPlan.Exercises.Clear();
 
-                int counter = 0;
-                foreach (var ex in Exercises)
+                for (int i = 0; i < Exercises.Count; ++i)
                 {
-                    plan.Exercises.Add(new TrainingPlanExercise(ex, counter));
-                    counter++;
+                    TrainingPlan.Exercises.Add(new TrainingPlanExercise(Exercises.ElementAt(i), i));
                 }
 
-                await _repository.CreateTrainingPlan(plan);
+                await _repository.UpdateTrainingPlan(TrainingPlan);
+            } 
+            else
+            {
+                foreach (var day in DaysOfWeekCollection)
+                {
+                    TrainingPlan plan = new TrainingPlan(TrainingPlanTitle, day);
+
+                    for (int i = 0; i < Exercises.Count; ++i)
+                    {
+                        plan.Exercises.Add(new TrainingPlanExercise(Exercises.ElementAt(i), i));
+                    }
+
+                    await _repository.CreateTrainingPlan(plan);
+                }
             }
 
-            
             await Shell.Current.Navigation.PopAsync();
         }
 

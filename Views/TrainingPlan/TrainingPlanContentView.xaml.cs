@@ -26,6 +26,7 @@ public partial class TrainingPlanContentView : ContentView
         else if (!IsForAdd && IsForEdit)
         {
             NavBar.Title = (string)Application.Current.Resources["EditTrainingPlan"];
+            WeekDayPicker.IsSingleSelectionEnabled = true;
             //NavBar.SetBinding(CustomNavigationBar.RightButtonCommandProperty, "OpenUpdateTrainingPlanPopupCommand");
         }
     }

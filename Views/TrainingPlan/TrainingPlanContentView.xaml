@@ -18,7 +18,8 @@
                                     RightButtonCommand="{Binding OpenSaveTrainingPlanPopupCommand}"
                                     RightButtonIconSource="{StaticResource AcceptIcon}" />
 
-        <daypicker:WeekDayPicker WeekNames="{DynamicResource WeekNames}" 
+        <daypicker:WeekDayPicker x:Name="WeekDayPicker"
+                                WeekNames="{DynamicResource WeekNames}" 
                                 SelectedColor="{DynamicResource PrimaryColor}" 
                                 Grid.Row="1"
                                 VerticalOptions="Start"

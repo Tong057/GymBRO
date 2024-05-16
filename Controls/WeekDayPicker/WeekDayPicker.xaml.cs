@@ -14,10 +14,9 @@ public partial class WeekDayPicker : ContentView
 
     public string[] WeekNames
     {
-        get => (string[]) GetValue(WeekNamesProperty);
+        get => (string[])GetValue(WeekNamesProperty);
         set => SetValue(WeekNamesProperty, value);
     }
-
 
     public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create(nameof(SelectedColor), typeof(Color), typeof(WeekDayPicker), propertyChanged: (bindable, oldValue, newValue) =>
     {
@@ -32,7 +31,6 @@ public partial class WeekDayPicker : ContentView
         set => SetValue(SelectedColorProperty, value);
     }
 
-
     public static readonly BindableProperty UnselectedColorProperty = BindableProperty.Create(nameof(UnselectedColor), typeof(Color), typeof(WeekDayPicker), propertyChanged: (bindable, oldValue, newValue) =>
     {
         var control = (WeekDayPicker)bindable;
@@ -45,7 +43,6 @@ public partial class WeekDayPicker : ContentView
         get => (Color)GetValue(UnselectedColorProperty);
         set => SetValue(UnselectedColorProperty, value);
     }
-
 
     public static readonly BindableProperty CheckedProperty = BindableProperty.Create(nameof(Checked), typeof(ObservableHashSet<DayOfWeek>), typeof(WeekDayPicker), propertyChanged: (bindable, oldValue, newValue) =>
     {
@@ -62,11 +59,19 @@ public partial class WeekDayPicker : ContentView
         set => SetValue(CheckedProperty, value);
     }
 
-    public WeekDayPicker()
-	{
-		InitializeComponent();
+    public static readonly BindableProperty IsSingleSelectionEnabledProperty = BindableProperty.Create(nameof(IsSingleSelectionEnabled), typeof(bool), typeof(WeekDayPicker), false);
 
-        //Setup events
+    public bool IsSingleSelectionEnabled
+    {
+        get => (bool)GetValue(IsSingleSelectionEnabledProperty);
+        set => SetValue(IsSingleSelectionEnabledProperty, value);
+    }
+
+    public WeekDayPicker()
+    {
+        InitializeComponent();
+
+        // Setup events
         PerformActionOnDayBox(dayBox => dayBox.CheckedChanged += DayBoxChanged);
     }
 
@@ -75,42 +80,29 @@ public partial class WeekDayPicker : ContentView
         if (Checked == null)
             return;
 
-        
         DayOfWeek dayOfWeek;
-        if (sender == DayBoxMonday)
-        {
-            dayOfWeek = DayOfWeek.Monday;
-        }
-        else if (sender == DayBoxTuesday)
-        {
-            dayOfWeek = DayOfWeek.Tuesday;
-        }
-        else if (sender == DayBoxWednesday)
-        {
-            dayOfWeek = DayOfWeek.Wednesday;
-        }
-        else if (sender == DayBoxThursday)
-        {
-            dayOfWeek = DayOfWeek.Thursday;
-        }
-        else if (sender == DayBoxFriday)
-        {
-            dayOfWeek = DayOfWeek.Friday;
-        }
-        else if (sender == DayBoxSaturday)
-        {
-            dayOfWeek = DayOfWeek.Saturday;
-        }
-        else
-        {
-            dayOfWeek = DayOfWeek.Sunday;
-        }
-
+        if (sender == DayBoxMonday) dayOfWeek = DayOfWeek.Monday;
+        else if (sender == DayBoxTuesday) dayOfWeek = DayOfWeek.Tuesday;
+        else if (sender == DayBoxWednesday) dayOfWeek = DayOfWeek.Wednesday;
+        else if (sender == DayBoxThursday) dayOfWeek = DayOfWeek.Thursday;
+        else if (sender == DayBoxFriday) dayOfWeek = DayOfWeek.Friday;
+        else if (sender == DayBoxSaturday) dayOfWeek = DayOfWeek.Saturday;
+        else dayOfWeek = DayOfWeek.Sunday;
 
         if (isChecked)
         {
-            Checked.Add(dayOfWeek);
-        } else
+            if (IsSingleSelectionEnabled)
+            {
+                // Deselect all other days
+                Checked.Clear();
+                Checked.Add(dayOfWeek);
+            }
+            else
+            {
+                Checked.Add(dayOfWeek);
+            }
+        }
+        else
         {
             Checked.Remove(dayOfWeek);
         }
@@ -123,11 +115,9 @@ public partial class WeekDayPicker : ContentView
 
         foreach (var element in layout.Children)
         {
-            if (element is DayBox)
+            if (element is DayBox dayBox)
             {
-                DayBox dayBox = element as DayBox;
                 dayBox.DayName = names[index];
-
                 index++;
             }
         }
@@ -150,9 +140,8 @@ public partial class WeekDayPicker : ContentView
 
         foreach (var element in layout.Children)
         {
-            if (element is DayBox)
+            if (element is DayBox dayBox)
             {
-                DayBox dayBox = element as DayBox;
                 action?.Invoke(dayBox);
             }
         }

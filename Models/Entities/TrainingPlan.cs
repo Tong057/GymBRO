@@ -1,12 +1,15 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 namespace GymBro.Models.Entities
 {
-    public class TrainingPlan
+    public partial class TrainingPlan : ObservableObject
     {
-
         public int Id { get; set; }
-        public string Title { get; set; }
-        public DayOfWeek Day { get; set; }
+
+        [ObservableProperty]
+        private string _title;
+
+        [ObservableProperty]
+        private DayOfWeek _day;
 
         public List<TrainingPlanExercise> Exercises { get; set; } = new List<TrainingPlanExercise>();
 
