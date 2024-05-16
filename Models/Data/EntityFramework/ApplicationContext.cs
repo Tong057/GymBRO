@@ -19,8 +19,14 @@ namespace GymBro.Models.Data.EntityFramework
 
             // may be delete
             modelBuilder.Entity<TrainingDay>()
-                .HasMany(td => td.ExerciseStatuses)
-                .WithOne(es => es.TrainingDay)
+                .HasOne(td => td.TrainingPlan)
+                .WithMany(tp => tp.TrainingDays)
+                .HasForeignKey(td => td.TrainingPlanId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ExerciseStatus>()
+                .HasOne(es => es.TrainingDay)
+                .WithMany(td => td.ExerciseStatuses)
                 .HasForeignKey(es => es.TrainingDayId)
                 .OnDelete(DeleteBehavior.Restrict);
         }

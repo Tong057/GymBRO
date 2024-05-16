@@ -11,7 +11,8 @@ namespace GymBro.Models.Entities
         [ObservableProperty]
         private DayOfWeek _day;
 
-        public List<TrainingPlanExercise> Exercises { get; set; } = new List<TrainingPlanExercise>();
+        public ICollection<TrainingDay> TrainingDays { get; set; } = new List<TrainingDay>();
+        public ICollection<TrainingPlanExercise> Exercises { get; set; } = new List<TrainingPlanExercise>();
 
         public TrainingPlan(string title, DayOfWeek day)
         {
