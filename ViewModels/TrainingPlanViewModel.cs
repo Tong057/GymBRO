@@ -107,8 +107,18 @@ namespace GymBro.ViewModels
         [RelayCommand]
         private void AddExercise()
         {
-            if (!Exercises.Contains(Exercise) && !string.IsNullOrEmpty(Exercise.Name))
-                Exercises.Add(Exercise);
+            if (!Exercises.Any(ex => ex.Name == Exercise.Name) && !string.IsNullOrEmpty(Exercise.Name))
+            {
+                if (SavedExercises.Any(ex => ex.Name == Exercise.Name))
+                {
+                    Exercises.Add(SavedExercises.FirstOrDefault(ex => ex.Name == Exercise.Name));
+                }
+                else
+                {
+                    Exercises.Add(Exercise);
+                }
+            }
+
         }
 
         [RelayCommand]

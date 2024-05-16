@@ -5,13 +5,22 @@ namespace GymBro.Models.Entities
     {
         public int Id { get; set; }
 
-        [ObservableProperty]
         private string _title;
+        public string Title
+        {
+            get => _title;
+            set => SetProperty(ref _title, value);
+        }
 
-        [ObservableProperty]
         private DayOfWeek _day;
+        public DayOfWeek Day
+        {
+            get => _day;
+            set => SetProperty(ref _day, value);
+        }
 
         public ICollection<TrainingDay> TrainingDays { get; set; } = new List<TrainingDay>();
+
         public ICollection<TrainingPlanExercise> Exercises { get; set; } = new List<TrainingPlanExercise>();
 
         public TrainingPlan(string title, DayOfWeek day)
