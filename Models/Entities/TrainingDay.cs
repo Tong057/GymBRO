@@ -8,8 +8,8 @@
 
         public ICollection<ExerciseStatus> ExerciseStatuses { get; set; } = new List<ExerciseStatus>();
 
-        public int TrainingPlanId { get; set; }
-        public TrainingPlan TrainingPlan { get; set; }
+        public int? TrainingPlanId { get; set; }
+        public TrainingPlan? TrainingPlan { get; set; }
 
         public TrainingDay(TrainingPlan trainingPlan)
         {

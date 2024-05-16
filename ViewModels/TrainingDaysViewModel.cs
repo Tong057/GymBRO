@@ -62,7 +62,7 @@ namespace GymBro.ViewModels
         {
             TrainingPlans.Clear();
 
-            foreach (TrainingPlan plan in trainingPlans)
+            foreach (TrainingPlan plan in trainingPlans.OrderBy(plan => plan.Day))
             {
                 TrainingPlans.Add(plan);
             }
