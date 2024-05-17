@@ -63,7 +63,7 @@
                                 HorizontalOptions="Fill"
                                 Series="{Binding BarChartSeries}" 
                                 XAxes="{Binding XAxes}" 
-                                HeightRequest="550" 
+                                HeightRequest="520" 
                                 Background="Transparent"/>
 
             <Button Text="{DynamicResource Select}"

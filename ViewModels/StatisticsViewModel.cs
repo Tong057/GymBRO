@@ -35,15 +35,8 @@ namespace GymBro.ViewModels
                 if (!exerciseStatuses.Any())
                     continue;
 
-<<<<<<< HEAD
-            PieChartSeries = new ObservableCollection<ISeries>();
-            PieChartSeries.Add(new PieSeries<double> { Values = new double[] {1}, Name="wadd" });
-
-        }
-=======
                 IEnumerable<StatisticsExerciseStatus> statisticsExercises = exerciseStatuses
                     .Select(ex => new StatisticsExerciseStatus(ex, ex.TrainingDay.StartTime));
->>>>>>> f45eb7d (Added progress bar)
 
                 double max = statisticsExercises.MaxBy(ex => ex.WeightedAverageWeight).WeightedAverageWeight;
                 double min = statisticsExercises.MinBy(ex => ex.WeightedAverageWeight).WeightedAverageWeight;
@@ -159,6 +152,7 @@ namespace GymBro.ViewModels
             }
             finally
             {
+                ShowMessage("Loading is finished");
                 _cancellationTokenSource.Dispose();
                 _cancellationTokenSource = null;
             }
