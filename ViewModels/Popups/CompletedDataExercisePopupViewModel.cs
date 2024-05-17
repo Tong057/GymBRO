@@ -31,6 +31,9 @@ namespace GymBro.ViewModels.Popups
         private string _noteEditorText = "";
 
         [ObservableProperty]
+        private string _setsEntryText = "";
+
+        [ObservableProperty]
         private bool _advancedLayout = false;
 
         public CompletedDataExercisePopupViewModel(Exercise exercise)
@@ -60,12 +63,14 @@ namespace GymBro.ViewModels.Popups
 
                 if (!double.TryParse(WeightEntryText, out double weights))
                     return;
+                if (!int.TryParse(SetsEntryText, out int sets))
+                    return;
                 if (!int.TryParse(RepeatsEntryText, out int repeats))
                     return;
 
-                for (int i = 0; i < repeats; i++)
+                for (int i = 0; i < sets; i++)
                 {
-                    exerciseStatus.ExerciseWeights.Add(new ExerciseWeight(weights));
+                    exerciseStatus.ExerciseWeights.Add(new ExerciseWeight(weights, repeats));
                 }
             } else
             {

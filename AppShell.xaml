@@ -20,10 +20,10 @@
     </Shell.Behaviors>
 
     <FlyoutItem Title="{DynamicResource Home}" FlyoutIcon="{StaticResource HomeIcon}">
-        <Tab Title="T R A I N I N G S" Icon="{StaticResource HomeTabIcon}">
+        <Tab Title="{DynamicResource TrainingsTitle}" Icon="{StaticResource HomeTabIcon}">
             <ShellContent ContentTemplate="{DataTemplate local:TrainingDaysPage}" />
         </Tab>
-        <Tab Title="S T A T I S T I C S" Icon="{StaticResource StatisticsTabIcon}">
+        <Tab Title="{DynamicResource StatisticsTitle}" Icon="{StaticResource StatisticsTabIcon}">
             <ShellContent ContentTemplate="{DataTemplate local:StatisticPage}" />
         </Tab>
     </FlyoutItem>

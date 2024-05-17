@@ -24,84 +24,86 @@
             RightButtonCommand="{Binding EndTrainingCommand}"/>
 
         <ScrollView
+            Margin="0, 5, 0, 0"
             Grid.Row="1"
             Orientation="Vertical">
             <CollectionView
-                Margin="0, 5, 0, 0"
                 x:Name="TrainingExerciseCollection"
                 ItemsSource="{Binding Exercises}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame
-                            Margin="10, 5"
-                            Padding="20"
-                            CornerRadius="15"
-                            BackgroundColor="{DynamicResource PrimaryColor}">
+                        <SwipeView>
+                            <Frame
+                                Margin="10, 5"
+                                Padding="20"
+                                CornerRadius="15"
+                                BackgroundColor="{DynamicResource PrimaryColor}">
 
-                            <Grid
-                                ColumnSpacing="5"
-                                ColumnDefinitions="*, 40, 40">
+                                <Grid
+                                    ColumnSpacing="5"
+                                    ColumnDefinitions="*, 40, 40">
 
-                                <Label
-                                    Grid.Column="0"
-                                    VerticalOptions="Center"
-                                    TextColor="White"
-                                    Text="{Binding Key.Name}"/>
+                                    <Label
+                                        Grid.Column="0"
+                                        VerticalOptions="Center"
+                                        TextColor="White"
+                                        Text="{Binding Key.Name}"/>
 
-                                <Label
-                                    Grid.Column="1"
-                                    VerticalOptions="Center"
-                                    HorizontalOptions="End"
-                                    FontFamily="FontAwesomeSolid"
-                                    FontSize="36"
-                                    TextColor="White"
-                                    Text="{x:Static icons:FontAwesomeIcons.Info}">
+                                    <Label
+                                        Grid.Column="1"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="End"
+                                        FontFamily="FontAwesomeSolid"
+                                        FontSize="36"
+                                        TextColor="White"
+                                        Text="{x:Static icons:FontAwesomeIcons.Info}">
 
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            NumberOfTapsRequired="1"
-                                            Command="{Binding Path=BindingContext.ShowExerciseTrainingInformationPopupCommand, Source={x:Reference TrainingExerciseCollection}}"
-                                            CommandParameter="{Binding Key}"/>
-                                    </Label.GestureRecognizers>
-                                </Label>
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                NumberOfTapsRequired="1"
+                                                Command="{Binding Path=BindingContext.ShowExerciseTrainingInformationPopupCommand, Source={x:Reference TrainingExerciseCollection}}"
+                                                CommandParameter="{Binding Key}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
 
-                                <Label
-                                    Grid.Column="2"
-                                    VerticalOptions="Center"
-                                    HorizontalOptions="End"
-                                    FontFamily="FontAwesomeSolid"
-                                    FontSize="36"
-                                    TextColor="White"
-                                    Text="{x:Static icons:FontAwesomeIcons.Accept}"
-                                    IsVisible="{Binding Value, Converter={StaticResource IsNullConverter}}">
+                                    <Label
+                                        Grid.Column="2"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="End"
+                                        FontFamily="FontAwesomeSolid"
+                                        FontSize="36"
+                                        TextColor="White"
+                                        Text="{x:Static icons:FontAwesomeIcons.Accept}"
+                                        IsVisible="{Binding Value, Converter={StaticResource IsNullConverter}}">
 
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            NumberOfTapsRequired="1"
-                                            Command="{Binding Path=BindingContext.ShowCompleteExercisePopupCommand, Source={x:Reference TrainingExerciseCollection}}"
-                                            CommandParameter="{Binding Key}"/>
-                                    </Label.GestureRecognizers>
-                                </Label>
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                NumberOfTapsRequired="1"
+                                                Command="{Binding Path=BindingContext.ShowCompleteExercisePopupCommand, Source={x:Reference TrainingExerciseCollection}}"
+                                                CommandParameter="{Binding Key}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
 
-                                <Label
-                                    Grid.Column="2"
-                                    VerticalOptions="Center"
-                                    HorizontalOptions="End"
-                                    FontFamily="FontAwesomeSolid"
-                                    FontSize="36"
-                                    Text="{x:Static icons:FontAwesomeIcons.Decline}"
-                                    IsVisible="{Binding Value, Converter={StaticResource IsNotNullConverter}}"
-                                    TextColor="White">
+                                    <Label
+                                        Grid.Column="2"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="End"
+                                        FontFamily="FontAwesomeSolid"
+                                        FontSize="36"
+                                        Text="{x:Static icons:FontAwesomeIcons.Decline}"
+                                        IsVisible="{Binding Value, Converter={StaticResource IsNotNullConverter}}"
+                                        TextColor="White">
 
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            NumberOfTapsRequired="1"
-                                            Command="{Binding Path=BindingContext.ClearExerciseStatusDataCommand, Source={x:Reference TrainingExerciseCollection}}"
-                                            CommandParameter="{Binding Key}"/>
-                                    </Label.GestureRecognizers>
-                                </Label>
-                            </Grid>
-                        </Frame>
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                NumberOfTapsRequired="1"
+                                                Command="{Binding Path=BindingContext.ClearExerciseStatusDataCommand, Source={x:Reference TrainingExerciseCollection}}"
+                                                CommandParameter="{Binding Key}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+                            </Frame>
+                        </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
