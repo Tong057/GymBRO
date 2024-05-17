@@ -51,7 +51,7 @@
     <x:String x:Key="ExerciseDesc">Exercise description</x:String>
     <x:String x:Key="ExerciseDescPlaceholder">Create it in exercise</x:String>
     <x:String x:Key="PrevWeights">Previous repeats - weights</x:String>
-    <x:String x:Key="NoPrevWeights">There no previous weights</x:String>
+    <x:String x:Key="NoPrevWeights">There is no data</x:String>
     <!--End: Training Day Page-->
 
     <!--Week day names-->

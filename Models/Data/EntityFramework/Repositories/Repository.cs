@@ -55,6 +55,11 @@ namespace GymBro.Models.Data.EntityFramework.Repositories
             return await _provider.GetLastExerciseStatus(exercise);
         }
 
+        public async Task<List<ExerciseStatus>> GetExerciseStatusesByExercise(Exercise exercise)
+        {
+            return await _provider.GetExerciseStatusesByExercise(exercise);
+        }
+
         public async Task<TrainingDay>? GetNotEndedTrainingDayForTrainingPlan(TrainingPlan trainingPlan)
         {
             return await _provider.GetNotEndedTrainingDayForTrainingPlan(trainingPlan);

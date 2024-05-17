@@ -1,23 +1,16 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LiveChartsCore.Defaults;
 using System.Collections.ObjectModel;
-using LiveChartsCore.SkiaSharpView.Painting;
-using SkiaSharp;
-using LiveChartsCore.SkiaSharpView.VisualElements;
 using GymBro.Models.Entities;
 using GymBro.Models.Data.EntityFramework.Repositories;
 using CommunityToolkit.Mvvm.Input;
-using The49.Maui.BottomSheet;
 using GymBro.Views.BottomSheets;
-using LiveChartsCore.Kernel;
-using LiveChartsCore.SkiaSharpView.Drawing.Geometries;
+using GymBro.Models.Entities.Statistics;
+using Kotlin.Properties;
+using CommunityToolkit.Maui.Alerts;
+using Android.OS;
+using Android.Widget;
 
 namespace GymBro.ViewModels
 {
@@ -25,62 +18,90 @@ namespace GymBro.ViewModels
     {
         private Repository _repository;
         private readonly SavedExercisesBottomSheet _bottomSheet;
+        // Dodaj pola dla obiektów związanych ze statystykami
+        private readonly StatisticsManager _statisticsManager;
+        private readonly ProgressReporter _progressReporter;
+        private readonly CancellationManager _cancellationManager;
         public StatisticsViewModel(Repository repository)
         {
             _repository = repository;
             _bottomSheet = new SavedExercisesBottomSheet(this);
+
+            _statisticsManager = new StatisticsManager();
+            _progressReporter = new ProgressReporter(new Models.Entities.Statistics.ProgressBar());
+            _cancellationManager = new CancellationManager();
         }
 
         public void LoadData()
         {
-            PieChartSeries = new ObservableCollection<ISeries> {
-                new PieSeries<int> { Values = new int[] { 2 } },
-                new PieSeries<int> { Values = new int[] { 4 } },
-                new PieSeries<int> { Values = new int[] { 2 } },
-                new PieSeries<int> { Values = new int[] { 10 } },
-                new PieSeries<int> { Values = new int[] { 16 } },
-                new PieSeries<int> { Values = new int[] { 30 } },
-                new PieSeries<int> { Values = new int[] { 2 } }
-            };
 
-            BarChartSeries = new ObservableCollection<ISeries> 
+
+            BarChartSeries = new ObservableCollection<ISeries>
             {
-                new ColumnSeries<DateTimePoint>
+                new ColumnSeries<StatisticsExerciseStatus>
                 {
-                    Values = new ObservableCollection<DateTimePoint>
+                    Values = new ObservableCollection<StatisticsExerciseStatus>
                     {
-                        new DateTimePoint(new DateTime(2021, 1, 1), 50),
-                        new DateTimePoint(new DateTime(2021, 1, 2), 55),
-                        new DateTimePoint(new DateTime(2021, 1, 2), 55),
-                        new DateTimePoint(new DateTime(2021, 1, 2), 45),
-                        new DateTimePoint(new DateTime(2021, 1, 3), 60),
-                        new DateTimePoint(new DateTime(2021, 1, 4), 64),
-                        new DateTimePoint(new DateTime(2021, 1, 5), 70),
-                        new DateTimePoint(new DateTime(2021, 1, 6), 50),
-                        new DateTimePoint(new DateTime(2021, 1, 7), 75),
-                        new DateTimePoint(new DateTime(2021, 2, 8), 75),
-                        new DateTimePoint(new DateTime(2021, 2, 9), 85),
-                        new DateTimePoint(new DateTime(2021, 2, 10), 80),
-                        new DateTimePoint(new DateTime(2021, 2, 11), 94),
-                        new DateTimePoint(new DateTime(2021, 2, 11), 100),
-                        new DateTimePoint(new DateTime(2021, 1, 11), 50),
-                        new DateTimePoint(new DateTime(2021, 1, 12), 55),
-                        new DateTimePoint(new DateTime(2021, 1, 13), 55),
-                        new DateTimePoint(new DateTime(2021, 1, 14), 45),
-                        new DateTimePoint(new DateTime(2021, 1, 15), 60),
-                        new DateTimePoint(new DateTime(2021, 1, 16), 64),
-                        new DateTimePoint(new DateTime(2021, 1, 17), 70),
-                        new DateTimePoint(new DateTime(2021, 1, 18), 50),
-                        new DateTimePoint(new DateTime(2021, 2, 19), 75),
-                        new DateTimePoint(new DateTime(2021, 2, 20), 75),
-                        new DateTimePoint(new DateTime(2021, 2, 21), 85),
-                        new DateTimePoint(new DateTime(2021, 3, 22), 80),
-                        new DateTimePoint(new DateTime(2021, 2, 22), 94),
-                        new DateTimePoint(new DateTime(2021, 1, 30), 100)
+                        new StatisticsExerciseStatus(new DateTime(2004, 1, 1), 60),
+                        new StatisticsExerciseStatus(new DateTime(2004, 1, 1), 70),
+                        new StatisticsExerciseStatus(new DateTime(2004, 1, 1), 80),
+                        new StatisticsExerciseStatus(new DateTime(2004, 1, 1), 90),
+                        new StatisticsExerciseStatus(new DateTime(2004, 1, 1), 60),
+                        new StatisticsExerciseStatus(new DateTime(2004, 1, 1), 60),
                     }
                 }
             };
 
+        }
+
+        public async Task LoadDataWithProgressAsync(Exercise exercise)
+        {
+            var cancellationToken = _cancellationManager.GetCancellationToken();
+
+            try
+            {
+                var exerciseStatuses = await _repository.GetExerciseStatusesByExercise(exercise);
+                var total = exerciseStatuses.Count;
+                var count = 0;
+
+                var statistics = new List<StatisticsExerciseStatus>();
+
+                await Task.Run(async () =>
+                {
+                    foreach (var exerciseStatus in exerciseStatuses)
+                    {
+                        if (cancellationToken.IsCancellationRequested)
+                        {
+                            cancellationToken.ThrowIfCancellationRequested();
+                        }
+
+                        var statisticsExerciseStatus = new StatisticsExerciseStatus(exerciseStatus, exerciseStatus.TrainingDay.StartTime);
+                        statistics.Add(statisticsExerciseStatus);
+                        // Aktualizuj postęp
+                        UpdateProgress(++count, total);
+                        await CommunityToolkit.Maui.Alerts.Toast.Make("Toast").Show();
+                        _progressReporter.Report($"Obliczenia dla {exerciseStatus.Exercise.Name} zakończone.");
+                    }
+                }, cancellationToken);
+
+                BarChartSeries = new ObservableCollection<ISeries>
+                {
+                    new ColumnSeries<StatisticsExerciseStatus>
+                    {
+                        Values = new ObservableCollection<StatisticsExerciseStatus>(statistics)
+                    }
+                };
+            }
+            catch (System.OperationCanceledException)
+            {
+                // Obsługa anulowania
+                _progressReporter.Report("Obliczenia zostały anulowane.");
+            }
+            catch (Exception ex)
+            {
+                // Obsługa innych wyjątków
+                _progressReporter.Report($"Wystąpił błąd: {ex.Message}");
+            }
         }
 
         public async void LoadSavedExercises()
@@ -101,27 +122,65 @@ namespace GymBro.ViewModels
         }
 
         [RelayCommand]
-        private void AddSavedExercise(Exercise exercise)
+        private async Task AddSavedExercise(Exercise exercise)
         {
             CurrentExercise = exercise;
+
+            await LoadDataWithProgressAsync(exercise);
         }
 
         [ObservableProperty]
         private Exercise _currentExercise = new Exercise();
 
+        //[ObservableProperty]
+        //private static ObservableCollection<StatisticsExerciseStatus> _statisticsExerciseStatuses = new ObservableCollection<StatisticsExerciseStatus>()
+        //{
+        //                new StatisticsExerciseStatus(new DateOnly(2004, 1, 1), 60),
+        //                new StatisticsExerciseStatus(new DateOnly(2004, 1, 1), 60),
+        //                new StatisticsExerciseStatus(new DateOnly(2004, 1, 1), 60),
+        //                new StatisticsExerciseStatus(new DateOnly(2004, 1, 1), 60),
+        //                new StatisticsExerciseStatus(new DateOnly(2004, 1, 1), 60),
+        //                new StatisticsExerciseStatus(new DateOnly(2004, 1, 1), 60),
+        //};
+
+
+        // Metoda do aktualizacji postępu
+        private void UpdateProgress(int currentProgress, int total)
+        {
+            // Aktualizuj wartość postępu
+            this.Progress = (currentProgress * 100) / total;
+        }
+
+        // Właściwość do śledzenia postępu
+        [ObservableProperty]
+        private int _progress;
+
         [ObservableProperty]
         private ObservableCollection<Exercise> _savedExercises = new ObservableCollection<Exercise>();
 
         [ObservableProperty]
-        private ObservableCollection<ISeries> _pieChartSeries;
+        private ObservableCollection<ISeries> _pieChartSeries = new ObservableCollection<ISeries> {
+                new PieSeries<int> { Values = new int[] { 2 }},
+                new PieSeries<int> { Values = new int[] { 4 } },
+                new PieSeries<int> { Values = new int[] { 2 } },
+                new PieSeries<int> { Values = new int[] { 10 } },
+                new PieSeries<int> { Values = new int[] { 16 } },
+                new PieSeries<int> { Values = new int[] { 30 } },
+                new PieSeries<int> { Values = new int[] { 2 } }
+            };
 
-        [ObservableProperty]
+
+
+[ObservableProperty]
         private ObservableCollection<ISeries> _barChartSeries;
 
-        //public Axis[] XAxes { get; set; } =
-        //{
-        //    new DateTimeAxis(TimeSpan.FromDays(1), date => date.ToString("dd.MM"))
-        //};
+        public Axis[] XAxes { get; set; } =
+        {
+            new Axis
+            {
+                Labels = new string[] {"01.02", "01.02", "01.02", "01.02", "01.02", "01.02", "01.02", }
+            }
+        };
 
 
 

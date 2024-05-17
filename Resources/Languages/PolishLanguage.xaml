@@ -38,8 +38,8 @@
     <x:String x:Key="TrainingDayPageTitle">Trening</x:String>
     <x:String x:Key="CompletedDataExercisePopupTitle">Wprowadź dane ćwiczeń</x:String>
     <x:String x:Key="Weights">Cięzary</x:String>
-    <x:String x:Key="Repeats">Powtórzeń</x:String>
-    <x:String x:Key="Sets">Podejście</x:String>
+    <x:String x:Key="Repeats">Powtórzenia</x:String>
+    <x:String x:Key="Sets">Podejścia</x:String>
     <x:String x:Key="Note">Notatka (opcjonalnie)</x:String>
     <x:String x:Key="Advanced">Zaawansowane</x:String>
     <x:String x:Key="Done">Gotowe</x:String>
@@ -50,7 +50,7 @@
     <x:String x:Key="ExerciseDesc">Opisanie ćwiczenia</x:String>
     <x:String x:Key="ExerciseDescPlaceholder">Utwórz to w ćwiczeniu</x:String>
     <x:String x:Key="PrevWeights">Poprzednie powtórzenia - cięzary</x:String>
-    <x:String x:Key="NoPrevWeights">Nie ma poprzednich ciężarów</x:String>
+    <x:String x:Key="NoPrevWeights">Brak danych</x:String>
     <!--End: Training Day Page-->
 
     <!--Week day names-->

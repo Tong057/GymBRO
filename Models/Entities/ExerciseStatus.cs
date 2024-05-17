@@ -13,7 +13,7 @@ namespace GymBro.Models.Entities
 
         public Note? Note { get; set; }
 
-        public ICollection<ExerciseWeight> ExerciseWeights { get; set; } = new List<ExerciseWeight>();
+        public ICollection<ExerciseSet> ExerciseSets { get; set; } = new List<ExerciseSet>();
 
         public ExerciseStatus(Exercise exercise, Note note)
         {

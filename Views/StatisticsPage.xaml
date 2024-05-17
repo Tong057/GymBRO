@@ -50,11 +50,14 @@
                        FontSize="28"
                        Margin="0, 50, 10 ,0"/>
 
+            <ProgressBar Margin="10, 0" Progress="{Binding Progress}"/>
+
             <lvc:CartesianChart ZoomMode="X" 
-                                    Series="{Binding BarChartSeries}" 
-                                    XAxes="{Binding XAxes}" 
-                                    HeightRequest="550" 
-                                    Background="Transparent"/>
+                                HorizontalOptions="Fill"
+                                Series="{Binding BarChartSeries}" 
+                                XAxes="{Binding XAxes}" 
+                                HeightRequest="550" 
+                                Background="Transparent"/>
 
             <Button Text="{DynamicResource Select}"
                     FontFamily="BebasBold"

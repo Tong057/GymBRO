@@ -45,6 +45,10 @@
                 <sv:RadioCell Title="{DynamicResource Russian}" Value="Russian" />
                 <sv:RadioCell Title="{DynamicResource Polish}" Value="Polish" />
             </sv:Section>
+
+            <!--<sv:Section Title="Data" TextColor="Red">
+                <sv:CommandCell Title="Clear database" TitleColor="Red" Description="Everything will be deleted!" Command="ClearDatabaseCommand"/>
+            </sv:Section>-->
         </sv:SettingsView>
     </Grid>
     

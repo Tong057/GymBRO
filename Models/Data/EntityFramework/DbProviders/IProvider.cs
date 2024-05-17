@@ -22,9 +22,10 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
 		Task<ExerciseStatus>? GetLastExerciseStatus(Exercise exercise);
 		Task<TrainingDay>? GetNotEndedTrainingDayForTrainingPlan(TrainingPlan trainingPlan);
 		Task<List<ExerciseStatus>> GetAllExerciseStatuses();
+		Task<List<ExerciseStatus>> GetExerciseStatusesByExercise(Exercise exercise);
 
-		//Delete
-		Task DeleteTrainingPlan(TrainingPlan trainingPlan);
+        //Delete
+        Task DeleteTrainingPlan(TrainingPlan trainingPlan);
 		Task DeleteTrainingDay(TrainingDay trainingDay);
     }
 }

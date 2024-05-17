@@ -1,7 +1,7 @@
 ﻿using System;
 namespace GymBro.Models.Entities
 {
-    public class ExerciseWeight
+    public class ExerciseSet
     {
         public int Id { get; set; }
         public double? Weight { get; set; }
@@ -10,13 +10,13 @@ namespace GymBro.Models.Entities
         public int? ExerciseStatusId { get; set; }
         public ExerciseStatus? ExerciseStatus { get; set; }
 
-        public ExerciseWeight(double? weight, int? repeats)
+        public ExerciseSet(double? weight, int? repeats)
         {
             Weight = weight;
             Repeats = repeats;
         }
 
-        public ExerciseWeight()
+        public ExerciseSet()
         {
         }
     }

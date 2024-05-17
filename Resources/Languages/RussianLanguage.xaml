@@ -38,8 +38,8 @@
     <x:String x:Key="TrainingDayPageTitle">Тренировка</x:String>
     <x:String x:Key="CompletedDataExercisePopupTitle">Введите данные упражнения</x:String>
     <x:String x:Key="Weights">Веса</x:String>
-    <x:String x:Key="Repeats">Повторений</x:String>
-    <x:String x:Key="Sets">Подходов</x:String>
+    <x:String x:Key="Repeats">Повторения</x:String>
+    <x:String x:Key="Sets">Подходы</x:String>
     <x:String x:Key="Note">Записка (опционально)</x:String>
     <x:String x:Key="Advanced">Расширенный</x:String>
     <x:String x:Key="Done">Готово</x:String>
@@ -49,8 +49,8 @@
     <x:String x:Key="LastNotePlaceholder">Создай ее чтобы увидеть в тренировке</x:String>
     <x:String x:Key="ExerciseDesc">Описание упражнения</x:String>
     <x:String x:Key="ExerciseDescPlaceholder">Создай его в упражнении</x:String>
-    <x:String x:Key="PrevWeights">Прошлые повторения - веса</x:String>
-    <x:String x:Key="NoPrevWeights">Нет прошлый весов</x:String>
+    <x:String x:Key="PrevWeights">Последние повторения - веса</x:String>
+    <x:String x:Key="NoPrevWeights">Нет данных</x:String>
     <!--End: Training Day Page-->
 
     <!--Week day names-->

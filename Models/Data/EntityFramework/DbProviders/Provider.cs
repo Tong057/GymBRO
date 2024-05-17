@@ -76,7 +76,7 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
         {
             return await _context.ExerciseStatuses
                 .Include(exerciseStatus => exerciseStatus.Note)
-                .Include(exerciseStatus => exerciseStatus.ExerciseWeights)
+                .Include(exerciseStatus => exerciseStatus.ExerciseSets)
                 .Where(exerciseStatus => exerciseStatus.ExerciseId == exercise.Id)
                 .Where(exerciseStatus => exerciseStatus.TrainingDay.EndTime != null)
                 .OrderByDescending(exerciseStatus => exerciseStatus.TrainingDay.EndTime)
@@ -96,6 +96,14 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
         public async Task<List<ExerciseStatus>> GetAllExerciseStatuses()
         {
             return await _context.ExerciseStatuses.ToListAsync();
+        }
+
+        public async Task<List<ExerciseStatus>> GetExerciseStatusesByExercise(Exercise exercise)
+        {
+            return await _context.ExerciseStatuses
+                .Include(exStat => exStat.TrainingDay)
+                .Where(exStat => exStat.ExerciseId == exercise.Id)
+                .ToListAsync();
         }
 
         //Delete

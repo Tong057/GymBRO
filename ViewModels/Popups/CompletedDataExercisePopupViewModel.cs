@@ -18,7 +18,7 @@ namespace GymBro.ViewModels.Popups
         public event EventHandler<CompletedDataExerciseArgs> ExerciseDataCollected;
 
 		[ObservableProperty]
-        private ObservableCollection<ExerciseWeight> _weightCollection;
+        private ObservableCollection<ExerciseSet> _setCollection;
 
 
         [ObservableProperty]
@@ -39,9 +39,9 @@ namespace GymBro.ViewModels.Popups
         public CompletedDataExercisePopupViewModel(Exercise exercise)
 		{
 			Exercise = exercise;
-            WeightCollection = new ObservableCollection<ExerciseWeight>()
+            SetCollection = new ObservableCollection<ExerciseSet>()
             {
-                new ExerciseWeight()
+                new ExerciseSet()
             };
 		}
 
@@ -70,19 +70,19 @@ namespace GymBro.ViewModels.Popups
 
                 for (int i = 0; i < sets; i++)
                 {
-                    exerciseStatus.ExerciseWeights.Add(new ExerciseWeight(weights, repeats));
+                    exerciseStatus.ExerciseSets.Add(new ExerciseSet(weights, repeats));
                 }
             } else
             {
-                if (!WeightCollection.Where(weight => weight != null).Any())
+                if (!SetCollection.Where(weight => weight != null).Any())
                     return;
 
-                foreach(ExerciseWeight exerciseWeight in WeightCollection)
+                foreach(ExerciseSet exerciseSet in SetCollection)
                 {
-                    if (exerciseWeight == null)
+                    if (exerciseSet == null)
                         continue;
 
-                    exerciseStatus.ExerciseWeights.Add(exerciseWeight);
+                    exerciseStatus.ExerciseSets.Add(exerciseSet);
                 }
             }
             
@@ -94,7 +94,7 @@ namespace GymBro.ViewModels.Popups
         [RelayCommand]
         private void AddWeightRow()
         {
-            WeightCollection.Add(new ExerciseWeight());
+            SetCollection.Add(new ExerciseSet());
         }
 
         [RelayCommand]

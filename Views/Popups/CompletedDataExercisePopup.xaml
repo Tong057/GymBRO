@@ -142,7 +142,7 @@
                         PlaceholderColor="{DynamicResource SecondaryTextColor}"
                         TextColor="{DynamicResource PrimaryTextColor}"/>
 
-                <Label Text="{DynamicResource Weights}"
+                <Label Text="{DynamicResource Sets}"
                        FontFamily="BebasBold"
                        CharacterSpacing="2"
                        HorizontalOptions="Center" 
@@ -157,8 +157,8 @@
                     Grid.Row="3"
                     Grid.ColumnSpan="2"
                     MaximumHeightRequest="200"
-                    x:Name="WeightCollection"
-                    ItemsSource="{Binding WeightCollection}">
+                    x:Name="SetCollection"
+                    ItemsSource="{Binding SetCollection}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid ColumnDefinitions="*, *">

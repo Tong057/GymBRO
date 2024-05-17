@@ -37,7 +37,7 @@ namespace GymBro.Models.Data.EntityFramework
         public DbSet<TrainingDay> TrainingDays { get; set; }
         public DbSet<Note> Notes { get; set; }
         public DbSet<ExerciseStatus> ExerciseStatuses { get; set; }
-        public DbSet<ExerciseWeight> ExerciseWeights { get; set; }
+        public DbSet<ExerciseSet> ExerciseSets { get; set; }
     }
 }
 

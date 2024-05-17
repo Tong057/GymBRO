@@ -9,8 +9,7 @@
     Shell.FlyoutBehavior="Flyout"
     Shell.NavBarIsVisible="False"
     Shell.ItemTemplate="{StaticResource ShellItemTemplate}"
-    FlyoutBackgroundColor="{DynamicResource BackgroundColor}"
-    Title="GymBro">
+    FlyoutBackgroundColor="{DynamicResource BackgroundColor}">
 
     <Shell.FlyoutHeader>
         <StaticResource Key="ShellFlyoutHeader" />
@@ -24,8 +23,6 @@
             <ShellContent ContentTemplate="{DataTemplate local:TrainingDaysPage}" />
         </Tab>
         <Tab Title="{DynamicResource StatisticsTitle}" Icon="{StaticResource StatisticsTabIcon}">
-            <ShellContent ContentTemplate="{DataTemplate local:StatisticPage}" />
-        <Tab Title="S T A T I S T I C S" Icon="{StaticResource StatisticsTabIcon}">
             <ShellContent ContentTemplate="{DataTemplate local:StatisticsPage}" />
         </Tab>
     </FlyoutItem>
