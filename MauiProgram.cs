@@ -8,6 +8,7 @@ using GymBro.Views;
 using Microsoft.Extensions.Logging;
 using The49.Maui.BottomSheet;
 using GymBro.Views.Popups.Exercise;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace GymBro
 {
@@ -18,6 +19,7 @@ namespace GymBro
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseSkiaSharp(true)
                 .UseMauiCommunityToolkit()
                 .UseBottomSheet()
                 .ConfigureMauiHandlers(handlers =>
@@ -56,6 +58,8 @@ namespace GymBro
             builder.Services.AddTransient<TrainingDayPage>();
             builder.Services.AddTransient<TrainingDayViewModel>();
 
+            builder.Services.AddTransient<StatisticsPage>();
+            builder.Services.AddTransient<StatisticsViewModel>();
 
             //EntityFramework
             builder.Services.AddTransient<ApplicationContext>();

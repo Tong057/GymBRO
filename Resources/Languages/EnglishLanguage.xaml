@@ -76,7 +76,8 @@
     <x:String x:Key="TitlePlaceholder">Title</x:String>
     
     <!--End: Create / Edit training plan-->
-
+    <x:String x:Key="BestProgress">The best progress in</x:String>
+    <x:String x:Key="NoData">There is no data</x:String>
 
 
 </ResourceDictionary>
