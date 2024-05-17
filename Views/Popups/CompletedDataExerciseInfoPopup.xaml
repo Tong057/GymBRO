@@ -14,9 +14,9 @@
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="25"/>
         </Border.StrokeShape>
-
-        <Grid RowDefinitions="Auto, Auto, *, Auto" Padding="10" BackgroundColor="{DynamicResource BackgroundColor}">
-            <Label Text="Exercise Inforamtion"
+        <Grid
+            RowDefinitions="Auto, Auto, *, Auto" Padding="10" BackgroundColor="{DynamicResource BackgroundColor}">
+            <Label Text="{DynamicResource CompletedDataExerciseInfoPopupTitle}"
                     FontFamily="BebasBold"
                     CharacterSpacing="2"
                     HorizontalOptions="Center" 
@@ -29,17 +29,16 @@
 
             <VerticalStackLayout Grid.Row="1"
                                  Margin="0, 0, 0, 30">
-                <Label Text="Note from last Training"
+                <Label Text="{DynamicResource LastNote}"
                     FontFamily="BebasBold"
                     CharacterSpacing="2"
-                    HorizontalOptions="Start" 
+                    HorizontalOptions="Center" 
                     VerticalOptions="End"
                     HorizontalTextAlignment="Center" 
                     FontSize="18" 
-                    Margin="20, 0, 0, 0"
                     TextColor="{DynamicResource PrimaryTextColor}"/>
 
-                 <Editor Placeholder="Create it here to see it in next training"
+                 <Editor Placeholder="{DynamicResource LastNotePlaceholder}"
                     Text="{Binding LastExerciseStatus.Note.Content}"
                     Margin="10, 0, 10, 0" 
                     HorizontalOptions="Fill"
@@ -54,17 +53,16 @@
 
             <VerticalStackLayout Grid.Row="2"
                                  Margin="0, 0, 0, 30">
-                <Label Text="Exercise description"
+                <Label Text="{DynamicResource ExerciseDesc}"
                     FontFamily="BebasBold"
                     CharacterSpacing="2"
-                    HorizontalOptions="Start" 
+                    HorizontalOptions="Center" 
                     VerticalOptions="End"
                     HorizontalTextAlignment="Center" 
                     FontSize="18" 
-                    Margin="20, 0, 0, 0"
                     TextColor="{DynamicResource PrimaryTextColor}"/>
 
-                 <Editor Placeholder="Set description in exercise to see it here"
+                 <Editor Placeholder="{DynamicResource ExerciseDescPlaceholder}"
                     Text="{Binding Exercise.Description}"
                     Margin="10, 0, 10, 0" 
                     HorizontalOptions="Fill" 
@@ -79,15 +77,15 @@
 
             <VerticalStackLayout Grid.Row="3"
                                  Margin="0, 0, 0, 30">
-                <Label Text="Previous weights"
+                <Label Text="{DynamicResource PrevWeights}"
                     FontFamily="BebasBold"
                     CharacterSpacing="2"
-                    HorizontalOptions="Start" 
+                    HorizontalOptions="Center" 
                     VerticalOptions="End"
                     HorizontalTextAlignment="Center" 
                     FontSize="18" 
-                    Margin="20, 0, 0, 0"
-                    TextColor="{DynamicResource PrimaryTextColor}"/>
+                    TextColor="{DynamicResource PrimaryTextColor}"
+                    Grid.ColumnSpan="2"/>
 
                 <CollectionView
                     Margin="10, 0, 10, 0"
@@ -95,6 +93,19 @@
                     MaximumHeightRequest="150">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
+                            <Grid ColumnDefinitions="*, *">
+                                <Entry Text="{Binding Repeats, Mode=TwoWay}"
+                                        Placeholder="{DynamicResource Repeats}"
+                                        HorizontalOptions="Fill" 
+                                        HorizontalTextAlignment="Center"
+                                        FontSize="16"
+                                        MaxLength="5"
+                                        PlaceholderColor="{DynamicResource SecondaryTextColor}"
+                                        TextColor="{DynamicResource PrimaryTextColor}"
+                                        Keyboard="Numeric"
+                                        IsEnabled="False"
+                                        Grid.Column="0"/>
+
                                 <Entry Text="{Binding Weight, Mode=TwoWay}"
                                         Placeholder="{DynamicResource Weights}"
                                         HorizontalOptions="Fill" 
@@ -104,7 +115,10 @@
                                         PlaceholderColor="{DynamicResource SecondaryTextColor}"
                                         TextColor="{DynamicResource PrimaryTextColor}"
                                         Keyboard="Numeric"
-                                        IsEnabled="False"/>
+                                        IsEnabled="False"
+                                        Grid.Column="1"/>
+                            </Grid>
+                                
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
@@ -113,7 +127,7 @@
                     IsVisible="{Binding LastExerciseStatus, Converter={StaticResource IsNullConverter}}"
                     HorizontalTextAlignment="Center"
                     VerticalTextAlignment="Center"
-                    Text="There is no weights"
+                    Text="{DynamicResource NoPrevWeights}"
                     FontSize="16"/>
 
 

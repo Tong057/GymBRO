@@ -6,7 +6,7 @@
              Shell.NavBarIsVisible="False">
     <Grid>
         <WebView x:Name="WebView"
-                 Source="https://app.gymbro.site"
+                 Source="https://gymbro.site"
                  Navigating="OnNavigating"
                  Navigated="OnNavigated"
                  VerticalOptions="FillAndExpand"

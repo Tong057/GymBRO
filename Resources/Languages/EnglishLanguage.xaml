@@ -16,6 +16,11 @@
     <x:String x:Key="Polish">Polish</x:String>
     <!--End: Settings-->
 
+    <!--Start: FloyoutItems-->
+    <x:String x:Key="StatisticsTitle">S T A T I S T I C S</x:String>
+    <x:String x:Key="TrainingsTitle">T R A I N I N G S</x:String>
+    <!--End: FloyoutItems-->
+
     <!--Start: About-->
     <x:String x:Key="About">About</x:String>
     <x:String x:Key="ErrorMessage">Error! Try to reload.</x:String>
@@ -35,6 +40,18 @@
     <x:String x:Key="CompletedDataExercisePopupTitle">Enter exrcise data</x:String>
     <x:String x:Key="Weights">Weights</x:String>
     <x:String x:Key="Repeats">Repeats</x:String>
+    <x:String x:Key="Sets">Sets</x:String>
+    <x:String x:Key="Note">Note (optional)</x:String>
+    <x:String x:Key="Advanced">Advanced</x:String>
+    <x:String x:Key="Done">Done</x:String>
+    <x:String x:Key="Back">Back</x:String>
+    <x:String x:Key="CompletedDataExerciseInfoPopupTitle">Exercise information</x:String>
+    <x:String x:Key="LastNote">Last note</x:String>
+    <x:String x:Key="LastNotePlaceholder">Create it to see in the training</x:String>
+    <x:String x:Key="ExerciseDesc">Exercise description</x:String>
+    <x:String x:Key="ExerciseDescPlaceholder">Create it in exercise</x:String>
+    <x:String x:Key="PrevWeights">Previous repeats - weights</x:String>
+    <x:String x:Key="NoPrevWeights">There no previous weights</x:String>
     <!--End: Training Day Page-->
 
     <!--Week day names-->

@@ -16,6 +16,11 @@
     <x:String x:Key="Polish">Polski</x:String>
     <!--End: Settings -->
 
+    <!--Start: FloyoutItems-->
+    <x:String x:Key="StatisticsTitle">S T A T Y S T Y K A</x:String>
+    <x:String x:Key="TrainingsTitle">T R E N I N G I</x:String>
+    <!--End: FloyoutItems-->
+
     <!--Start: About-->
     <x:String x:Key="About">O aplikacji</x:String>
     <x:String x:Key="ErrorMessage">Błąd! Spróbuj ponownie załadować stronę.</x:String>
@@ -32,19 +37,31 @@
     <!--Start: Training Day Page-->
     <x:String x:Key="TrainingDayPageTitle">Trening</x:String>
     <x:String x:Key="CompletedDataExercisePopupTitle">Wprowadź dane ćwiczeń</x:String>
-    <x:String x:Key="Weights">Waga</x:String>
+    <x:String x:Key="Weights">Cięzary</x:String>
     <x:String x:Key="Repeats">Powtórzeń</x:String>
+    <x:String x:Key="Sets">Podejście</x:String>
+    <x:String x:Key="Note">Notatka (opcjonalnie)</x:String>
+    <x:String x:Key="Advanced">Zaawansowane</x:String>
+    <x:String x:Key="Done">Gotowe</x:String>
+    <x:String x:Key="Back">Powrót</x:String>
+    <x:String x:Key="CompletedDataExerciseInfoPopupTitle">Informacja o ćwiczeniu</x:String>
+    <x:String x:Key="LastNote">Ostatnia notatka</x:String>
+    <x:String x:Key="LastNotePlaceholder">Utwórz to, aby zobaczyć podczas treningu</x:String>
+    <x:String x:Key="ExerciseDesc">Opisanie ćwiczenia</x:String>
+    <x:String x:Key="ExerciseDescPlaceholder">Utwórz to w ćwiczeniu</x:String>
+    <x:String x:Key="PrevWeights">Poprzednie powtórzenia - cięzary</x:String>
+    <x:String x:Key="NoPrevWeights">Nie ma poprzednich ciężarów</x:String>
     <!--End: Training Day Page-->
 
     <!--Week day names-->
     <x:Array Type="{x:Type x:String}" x:Key="WeekNames">
         <x:String>Pon</x:String>
-        <x:String>Wto</x:String>
-        <x:String>Śro</x:String>
+        <x:String>Wt</x:String>
+        <x:String>Śr</x:String>
         <x:String>Czw</x:String>
-        <x:String>Pią</x:String>
+        <x:String>Pt</x:String>
         <x:String>Sob</x:String>
-        <x:String>Nie</x:String>
+        <x:String>Ndz</x:String>
     </x:Array>
 
     <x:Array Type="{x:Type x:String}" x:Key="FullWeekNames">
