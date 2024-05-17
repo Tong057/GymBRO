@@ -46,10 +46,16 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.png" />
+		<MauiIcon Include="Resources\AppIcon\appiconfig.png" />
+		<!--<ItemGroup>
+			<MauiIcon Include="Resources\AppIcon\appiconfg.svg" />
+		</ItemGroup>
+		<MauiIcon Include="Resources\Raw\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.png" Color="#512BD4" />-->
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#28C85A" BaseSize="128,128" />
+		<!--<MauiSplashScreen Include="Resources\Raw\splash.svg" Color="#28C85A" BaseSize="128,128" />-->
+		<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#243932" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -70,9 +76,12 @@
 	  <None Remove="Resources\Images\Icons\**" />
 	  <AndroidResource Remove="Platforms\Android\Resources\values\styles.xml" />
 	  <None Remove="Models\Converters\" />
+	  <None Remove="Resources\AppIcon\appicon.png" />
+	  <None Remove="Resources\AppIcon\appiconfig.png" />
 	  <None Remove="Resources\Fonts\BebasNeue-Bold.ttf" />
 	  <None Remove="Resources\Fonts\BebasNeue-Regular.ttf" />
 	  <None Remove="Models\Events\" />
+	  <None Remove="Resources\Splash\splash.png" />
 	  <None Remove="ViewModels\Popups\" />
 	</ItemGroup>
 	<ItemGroup>
@@ -209,4 +218,6 @@
 	<ItemGroup>
 	  <None Remove="Controls\DayBox\" />
 	</ItemGroup>
+
+
 </Project>

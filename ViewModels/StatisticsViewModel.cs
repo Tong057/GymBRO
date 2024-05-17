@@ -52,6 +52,9 @@ namespace GymBro.ViewModels
                 }
             };
 
+            PieChartSeries = new ObservableCollection<ISeries>();
+            PieChartSeries.Add(new PieSeries<double> { Values = new double[] {1}, Name="wadd" });
+
         }
 
         public async Task LoadDataWithProgressAsync(Exercise exercise)

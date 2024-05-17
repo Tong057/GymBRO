@@ -24,8 +24,7 @@ namespace GymBro
                 .UseBottomSheet()
                 .ConfigureMauiHandlers(handlers =>
                 {
-                    if (DeviceInfo.Platform != DevicePlatform.WinUI)
-                        handlers.AddSettingsViewHandler();
+                    handlers.AddSettingsViewHandler();
                 })
                 .ConfigureFonts(fonts =>
                 {
