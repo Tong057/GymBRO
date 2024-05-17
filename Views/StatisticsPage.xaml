@@ -8,6 +8,7 @@
              Title="Statistic">
     <ContentPage.Resources>
         <converters:ExerciseNameNullConverter x:Key="ExerciseNameConverter" />
+        <converters:ExerciseStringFormatConverter x:Key="ExerciseStringFormatConverter"/>
     </ContentPage.Resources>
 
     <ScrollView x:Name="ScrollView">
@@ -33,9 +34,15 @@
             <CollectionView ItemsSource="{Binding PieChartSeries}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Label Text="{Binding Values[0], StringFormat='Упражнение: +{0}kg'}"
-                               FontSize="20"
-                               Margin="10,5"/>
+                        <Label FontSize="20"
+                               Margin="10,5">
+                            <Label.Text>
+                                <MultiBinding Converter="{StaticResource ExerciseStringFormatConverter}">
+                                    <Binding Path="Name"/>
+                                    <Binding Path="Values[0]" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
@@ -70,6 +77,18 @@
                     HorizontalOptions="FillAndExpand"
                     Margin="10"
                     Command="{Binding OpenSavedExercisesBottomSheetCommand}"/>
+
+            <Button Text="X"
+                    FontFamily="BebasBold"
+                    FontSize="24"
+                    Background="Red"
+                    TextColor="White"
+                    Grid.Row="3"
+                    BackgroundColor="Transparent"
+                    CharacterSpacing="2"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="10"
+                    Command="{Binding CancelLoadingTaskCommand}"/> 
 
         </VerticalStackLayout>
     </ScrollView>

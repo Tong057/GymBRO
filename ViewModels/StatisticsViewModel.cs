@@ -11,100 +11,100 @@ using Kotlin.Properties;
 using CommunityToolkit.Maui.Alerts;
 using Android.OS;
 using Android.Widget;
+using LiveChartsCore.Defaults;
+using System.Threading;
 
 namespace GymBro.ViewModels
 {
     public partial class StatisticsViewModel : ObservableObject
     {
+        private CancellationTokenSource _cancellationTokenSource;
         private Repository _repository;
         private readonly SavedExercisesBottomSheet _bottomSheet;
-        // Dodaj pola dla obiektów związanych ze statystykami
-        private readonly StatisticsManager _statisticsManager;
-        private readonly ProgressReporter _progressReporter;
-        private readonly CancellationManager _cancellationManager;
         public StatisticsViewModel(Repository repository)
         {
             _repository = repository;
             _bottomSheet = new SavedExercisesBottomSheet(this);
-
-            _statisticsManager = new StatisticsManager();
-            _progressReporter = new ProgressReporter(new Models.Entities.Statistics.ProgressBar());
-            _cancellationManager = new CancellationManager();
         }
 
-        public void LoadData()
+        public async Task LoadData()
         {
-
-
-            BarChartSeries = new ObservableCollection<ISeries>
+            foreach(Exercise exercise in SavedExercises)
             {
-                new ColumnSeries<StatisticsExerciseStatus>
-                {
-                    Values = new ObservableCollection<StatisticsExerciseStatus>
-                    {
-                        new StatisticsExerciseStatus(new DateTime(2004, 1, 1), 60),
-                        new StatisticsExerciseStatus(new DateTime(2004, 1, 1), 70),
-                        new StatisticsExerciseStatus(new DateTime(2004, 1, 1), 80),
-                        new StatisticsExerciseStatus(new DateTime(2004, 1, 1), 90),
-                        new StatisticsExerciseStatus(new DateTime(2004, 1, 1), 60),
-                        new StatisticsExerciseStatus(new DateTime(2004, 1, 1), 60),
-                    }
-                }
-            };
+                List<ExerciseStatus> exerciseStatuses = await _repository.GetExerciseStatusesByExercise(exercise);
+                if (!exerciseStatuses.Any())
+                    continue;
 
+<<<<<<< HEAD
             PieChartSeries = new ObservableCollection<ISeries>();
             PieChartSeries.Add(new PieSeries<double> { Values = new double[] {1}, Name="wadd" });
 
         }
+=======
+                IEnumerable<StatisticsExerciseStatus> statisticsExercises = exerciseStatuses
+                    .Select(ex => new StatisticsExerciseStatus(ex, ex.TrainingDay.StartTime));
+>>>>>>> f45eb7d (Added progress bar)
 
-        public async Task LoadDataWithProgressAsync(Exercise exercise)
-        {
-            var cancellationToken = _cancellationManager.GetCancellationToken();
+                double max = statisticsExercises.MaxBy(ex => ex.WeightedAverageWeight).WeightedAverageWeight;
+                double min = statisticsExercises.MinBy(ex => ex.WeightedAverageWeight).WeightedAverageWeight;
 
-            try
+                _ratingProgressiveExercises.Add(exercise, max - min);
+
+                
+            }
+
+            int counter = 0;
+            _ratingProgressiveExercises.OrderByDescending(kvExercise => kvExercise.Value);
+            foreach (var kvExercise in _ratingProgressiveExercises)
             {
-                var exerciseStatuses = await _repository.GetExerciseStatusesByExercise(exercise);
-                var total = exerciseStatuses.Count;
-                var count = 0;
+                if (counter == 7)
+                    break;
 
-                var statistics = new List<StatisticsExerciseStatus>();
-
-                await Task.Run(async () =>
+                PieSeries<double> series = new PieSeries<double>()
                 {
-                    foreach (var exerciseStatus in exerciseStatuses)
-                    {
-                        if (cancellationToken.IsCancellationRequested)
-                        {
-                            cancellationToken.ThrowIfCancellationRequested();
-                        }
-
-                        var statisticsExerciseStatus = new StatisticsExerciseStatus(exerciseStatus, exerciseStatus.TrainingDay.StartTime);
-                        statistics.Add(statisticsExerciseStatus);
-                        // Aktualizuj postęp
-                        UpdateProgress(++count, total);
-                        await CommunityToolkit.Maui.Alerts.Toast.Make("Toast").Show();
-                        _progressReporter.Report($"Obliczenia dla {exerciseStatus.Exercise.Name} zakończone.");
-                    }
-                }, cancellationToken);
-
-                BarChartSeries = new ObservableCollection<ISeries>
-                {
-                    new ColumnSeries<StatisticsExerciseStatus>
-                    {
-                        Values = new ObservableCollection<StatisticsExerciseStatus>(statistics)
-                    }
+                    Values = new double[1] { _ratingProgressiveExercises[kvExercise.Key] },
+                    Name = kvExercise.Key.Name
                 };
+                PieChartSeries.Add(series);
+                counter++;
             }
-            catch (System.OperationCanceledException)
+        }
+
+        public async Task LoadDataWithProgressAsync(Exercise exercise, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var exerciseStatuses = await _repository.GetExerciseStatusesByExercise(exercise);
+            var statistics = new List<StatisticsExerciseStatus>();
+
+            foreach (var exerciseStatus in exerciseStatuses)
             {
-                // Obsługa anulowania
-                _progressReporter.Report("Obliczenia zostały anulowane.");
+                cancellationToken.ThrowIfCancellationRequested();
+                var statisticsExerciseStatus = new StatisticsExerciseStatus(exerciseStatus, exerciseStatus.TrainingDay.StartTime);
+                statistics.Add(statisticsExerciseStatus);
             }
-            catch (Exception ex)
+
+            int counter = 0;
+            ObservableCollection<DateTimePoint> points = new ObservableCollection<DateTimePoint>();
+            foreach (StatisticsExerciseStatus statisticsExercise in statistics)
             {
-                // Obsługa innych wyjątków
-                _progressReporter.Report($"Wystąpił błąd: {ex.Message}");
+                cancellationToken.ThrowIfCancellationRequested();
+                await Task.Delay(2000);
+                UpdateProgress(++counter, statistics.Count);
+                points.Add(new DateTimePoint(statisticsExercise.Date, statisticsExercise.WeightedAverageWeight));
+                    
             }
+
+            ColumnSeries<DateTimePoint> columnSeries = new ColumnSeries<DateTimePoint>()
+            {
+                Values = points
+            };
+            BarChartSeries.Add(columnSeries);
+        }
+
+        public async Task ShowMessage(string text)
+        {
+            await CommunityToolkit.Maui.Alerts.Toast.Make(text).Show();
         }
 
         public async void LoadSavedExercises()
@@ -119,6 +119,15 @@ namespace GymBro.ViewModels
         }
 
         [RelayCommand]
+        private async Task CancelLoadingTask()
+        {
+            if (_cancellationTokenSource == null)
+                return;
+
+            await _cancellationTokenSource.CancelAsync();
+        }
+
+        [RelayCommand]
         private async Task OpenSavedExercisesBottomSheet()
         {
             await _bottomSheet.ShowAsync();
@@ -128,61 +137,63 @@ namespace GymBro.ViewModels
         private async Task AddSavedExercise(Exercise exercise)
         {
             CurrentExercise = exercise;
+            BarChartSeries.Clear();
 
-            await LoadDataWithProgressAsync(exercise);
+            try
+            {
+                _cancellationTokenSource = new CancellationTokenSource();
+                ShowMessage("Starting loading");
+                await Task.Run(async () =>
+                {
+                    await LoadDataWithProgressAsync(exercise, _cancellationTokenSource.Token);
+                }, _cancellationTokenSource.Token);
+            }
+            catch (System.OperationCanceledException)
+            {
+                ShowMessage("Loading was canceled");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                ShowMessage("An error occurred. Cannot be loaded.");
+            }
+            finally
+            {
+                _cancellationTokenSource.Dispose();
+                _cancellationTokenSource = null;
+            }
+
+            
         }
+
+        private Dictionary<Exercise, double> _ratingProgressiveExercises = new Dictionary<Exercise, double>();
 
         [ObservableProperty]
         private Exercise _currentExercise = new Exercise();
 
-        //[ObservableProperty]
-        //private static ObservableCollection<StatisticsExerciseStatus> _statisticsExerciseStatuses = new ObservableCollection<StatisticsExerciseStatus>()
-        //{
-        //                new StatisticsExerciseStatus(new DateOnly(2004, 1, 1), 60),
-        //                new StatisticsExerciseStatus(new DateOnly(2004, 1, 1), 60),
-        //                new StatisticsExerciseStatus(new DateOnly(2004, 1, 1), 60),
-        //                new StatisticsExerciseStatus(new DateOnly(2004, 1, 1), 60),
-        //                new StatisticsExerciseStatus(new DateOnly(2004, 1, 1), 60),
-        //                new StatisticsExerciseStatus(new DateOnly(2004, 1, 1), 60),
-        //};
-
-
-        // Metoda do aktualizacji postępu
-        private void UpdateProgress(int currentProgress, int total)
+        private void UpdateProgress(double currentProgress, double total)
         {
-            // Aktualizuj wartość postępu
-            this.Progress = (currentProgress * 100) / total;
+            this.Progress = currentProgress / total;
         }
 
-        // Właściwość do śledzenia postępu
         [ObservableProperty]
-        private int _progress;
+        private double _progress;
 
         [ObservableProperty]
         private ObservableCollection<Exercise> _savedExercises = new ObservableCollection<Exercise>();
 
         [ObservableProperty]
-        private ObservableCollection<ISeries> _pieChartSeries = new ObservableCollection<ISeries> {
-                new PieSeries<int> { Values = new int[] { 2 }},
-                new PieSeries<int> { Values = new int[] { 4 } },
-                new PieSeries<int> { Values = new int[] { 2 } },
-                new PieSeries<int> { Values = new int[] { 10 } },
-                new PieSeries<int> { Values = new int[] { 16 } },
-                new PieSeries<int> { Values = new int[] { 30 } },
-                new PieSeries<int> { Values = new int[] { 2 } }
-            };
+        private ObservableCollection<ISeries> _pieChartSeries = new ObservableCollection<ISeries>();
 
 
 
-[ObservableProperty]
-        private ObservableCollection<ISeries> _barChartSeries;
+        [ObservableProperty]
+        private ObservableCollection<ISeries> _barChartSeries = new ObservableCollection<ISeries>();
 
-        public Axis[] XAxes { get; set; } =
+        [ObservableProperty]
+        private List<Axis> _xAxes = new List<Axis>()
         {
-            new Axis
-            {
-                Labels = new string[] {"01.02", "01.02", "01.02", "01.02", "01.02", "01.02", "01.02", }
-            }
+            new DateTimeAxis(TimeSpan.FromDays(1), date => date.ToString("MM.dd"))
         };
 
 

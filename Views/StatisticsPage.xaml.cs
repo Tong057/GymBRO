@@ -18,8 +18,9 @@ public partial class StatisticsPage : ContentPage
     {
         base.OnAppearing();
 
-        _statisticsVM.LoadData();
         _statisticsVM.LoadSavedExercises();
+        _statisticsVM.LoadData();
+        
     }
 
 

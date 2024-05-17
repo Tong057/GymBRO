@@ -102,6 +102,7 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
         {
             return await _context.ExerciseStatuses
                 .Include(exStat => exStat.TrainingDay)
+                .Include(exStat => exStat.ExerciseSets)
                 .Where(exStat => exStat.ExerciseId == exercise.Id)
                 .ToListAsync();
         }
