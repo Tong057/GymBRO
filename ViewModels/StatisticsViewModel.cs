@@ -7,17 +7,15 @@ using GymBro.Models.Data.EntityFramework.Repositories;
 using CommunityToolkit.Mvvm.Input;
 using GymBro.Views.BottomSheets;
 using GymBro.Models.Entities.Statistics;
-using CommunityToolkit.Maui.Alerts;
-using LiveChartsCore.Defaults;
-using System.Threading;
+using LiveChartsCore.SkiaSharpView.Painting;
 
 namespace GymBro.ViewModels
 {
     public partial class StatisticsViewModel : ObservableObject
     {
-        private CancellationTokenSource _cancellationTokenSource;
         private Repository _repository;
         private readonly SavedExercisesBottomSheet _bottomSheet;
+        private Dictionary<Exercise, double> _ratingProgressiveExercises = new Dictionary<Exercise, double>();
 
         public StatisticsViewModel(Repository repository)
         {
@@ -25,7 +23,7 @@ namespace GymBro.ViewModels
             _bottomSheet = new SavedExercisesBottomSheet(this);
         }
 
-        public async Task LoadData()
+        public async Task LoadPieDiagram()
         {
             foreach (Exercise exercise in SavedExercises)
             {
@@ -61,63 +59,33 @@ namespace GymBro.ViewModels
             }
         }
 
-        public async Task LoadDataWithProgressAsync(Exercise exercise, CancellationToken cancellationToken)
+        public async Task LoadDataWithProgressAsync(Exercise exercise)
         {
-            cancellationToken.ThrowIfCancellationRequested();
-
             var exerciseStatuses = await _repository.GetExerciseStatusesByExercise(exercise);
             var statistics = new List<StatisticsExerciseStatus>();
 
             foreach (var exerciseStatus in exerciseStatuses)
             {
-                cancellationToken.ThrowIfCancellationRequested();
                 var statisticsExerciseStatus = new StatisticsExerciseStatus(exerciseStatus, exerciseStatus.TrainingDay.StartTime);
                 statistics.Add(statisticsExerciseStatus);
             }
 
-            int counter = 0;
-            ObservableCollection<DateTimePoint> points = new ObservableCollection<DateTimePoint>();
+            ObservableCollection<double> values = new ObservableCollection<double>();
+            List<string> labels = new List<string>();
 
             foreach (StatisticsExerciseStatus statisticsExercise in statistics)
             {
-                cancellationToken.ThrowIfCancellationRequested();
-                //await Task.Delay(2000);
-                UpdateProgress(++counter, statistics.Count);
-                points.Add(new DateTimePoint(statisticsExercise.Date, statisticsExercise.WeightedAverageWeight));
+                values.Add(statisticsExercise.WeightedAverageWeight);
+                labels.Add(statisticsExercise.Date.ToString("MM.dd"));
             }
 
-            ColumnSeries<DateTimePoint> columnSeries = new ColumnSeries<DateTimePoint>
+            ColumnSeries<double> columnSeries = new ColumnSeries<double>
             {
-                Values = points
+                Values = values
             };
+
+            XAxes[0].Labels = labels;
             BarChartSeries.Add(columnSeries);
-        }
-
-        public async Task ShowMessage(string text)
-        {
-            await CommunityToolkit.Maui.Alerts.Toast.Make(text).Show();
-        }
-
-        public async void LoadSavedExercises()
-        {
-            SavedExercises.Clear();
-            IEnumerable<Exercise> savedExercises = await _repository.GetAllExercises();
-
-            foreach (var ex in savedExercises)
-            {
-                SavedExercises.Add(ex);
-            }
-        }
-
-        [RelayCommand]
-        private async Task CancelLoadingTask()
-        {
-            if (_cancellationTokenSource == null)
-                return;
-
-            _cancellationTokenSource.Cancel();
-            _cancellationTokenSource.Dispose();
-            _cancellationTokenSource = null;
         }
 
         [RelayCommand]
@@ -127,51 +95,29 @@ namespace GymBro.ViewModels
         }
 
         [RelayCommand]
-        private async Task AddSavedExercise(Exercise exercise)
+        private async Task SavedExerciseTapped(Exercise exercise)
         {
             CurrentExercise = exercise;
             BarChartSeries.Clear();
 
             try
             {
-                _cancellationTokenSource = new CancellationTokenSource();
-                ShowMessage("Starting loading");
                 await Task.Run(async () =>
                 {
-                    await LoadDataWithProgressAsync(exercise, _cancellationTokenSource.Token);
-                }, _cancellationTokenSource.Token);
-            }
-            catch (OperationCanceledException)
-            {
-                ShowMessage("Loading was canceled");
+                    await LoadDataWithProgressAsync(exercise);
+                });
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                ShowMessage("An error occurred. Cannot be loaded.");
-            }
-            finally
-            {
-                _cancellationTokenSource?.Dispose();
-                _cancellationTokenSource = null;
             }
         }
-
-        private Dictionary<Exercise, double> _ratingProgressiveExercises = new Dictionary<Exercise, double>();
 
         [ObservableProperty]
         private Exercise _currentExercise;
 
-        private void UpdateProgress(double currentProgress, double total)
-        {
-            this.Progress = currentProgress / total;
-        }
-
         [ObservableProperty]
-        private double _progress;
-
-        [ObservableProperty]
-        private ObservableCollection<Exercise> _savedExercises = new ObservableCollection<Exercise>();
+        private ObservableCollection<Exercise> _savedExercises;
 
         [ObservableProperty]
         private ObservableCollection<ISeries> _pieChartSeries = new ObservableCollection<ISeries>();
@@ -182,7 +128,22 @@ namespace GymBro.ViewModels
         [ObservableProperty]
         private List<Axis> _xAxes = new List<Axis>()
         {
-            new DateTimeAxis(TimeSpan.FromDays(1), date => date.ToString("MM.dd"))
+            new Axis
+            {
+                LabelsRotation = 15,
+                SeparatorsPaint = new SolidColorPaint { Color = SkiaSharp.SKColors.Gray },
+                Labels = new List<string>()
+            }
         };
+
+        public async void LoadSavedExercises()
+        {
+            SavedExercises = new ObservableCollection<Exercise>();
+
+            foreach (var ex in await _repository.GetAllExercises())
+            {
+                SavedExercises.Add(ex);
+            }
+        }
     }
 }

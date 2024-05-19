@@ -27,7 +27,7 @@
                     <DataTemplate>
                         <Frame Margin="0, 5" Padding="15" CornerRadius="15" BackgroundColor="{DynamicResource SecondaryColor}">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Path=BindingContext.AddSavedExerciseCommand, Source={x:Reference SavedExercisesCollection}}" CommandParameter="{Binding .}" />
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.SavedExerciseTappedCommand, Source={x:Reference SavedExercisesCollection}}" CommandParameter="{Binding .}" />
                             </Frame.GestureRecognizers>
                             <Label Text="{Binding Name}" 
                                    TextColor="{DynamicResource PrimaryTextColor}"

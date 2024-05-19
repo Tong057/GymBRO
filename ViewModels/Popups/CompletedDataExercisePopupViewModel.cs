@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GymBro.Controls.Popups;
@@ -19,7 +18,6 @@ namespace GymBro.ViewModels.Popups
 
 		[ObservableProperty]
         private ObservableCollection<ExerciseSet> _setCollection;
-
 
         [ObservableProperty]
         private string _weightEntryText = "";
@@ -54,7 +52,7 @@ namespace GymBro.ViewModels.Popups
         public void DoneButton()
         {
             Note note = string.IsNullOrEmpty(NoteEditorText.Trim()) ? null : new Note(NoteEditorText.Trim());
-            ExerciseStatus exerciseStatus = new ExerciseStatus(_exercise, note);
+            ExerciseStatus exerciseStatus = new ExerciseStatus(Exercise, note);
 
             if (!AdvancedLayout)
             {
@@ -79,13 +77,12 @@ namespace GymBro.ViewModels.Popups
 
                 foreach(ExerciseSet exerciseSet in SetCollection)
                 {
-                    if (exerciseSet == null)
+                    if (exerciseSet == null || exerciseSet.Repeats == null || exerciseSet.Weight == null)
                         continue;
 
                     exerciseStatus.ExerciseSets.Add(exerciseSet);
                 }
             }
-            
 
             OnExerciseDataCollected(exerciseStatus);
             Popup.Close();

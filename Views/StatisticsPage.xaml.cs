@@ -19,9 +19,7 @@ public partial class StatisticsPage : ContentPage
         base.OnAppearing();
 
         _statisticsVM.LoadSavedExercises();
-        _statisticsVM.LoadData();
-        
+        _statisticsVM.LoadPieDiagram();
     }
-
 
 }

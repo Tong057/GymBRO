@@ -90,4 +90,7 @@
     <x:String x:Key="ExerciseDescriptionPlaceholder">Описание (необязательно)</x:String>
     <x:String x:Key="TitlePlaceholder">Заголовок</x:String>
 
+    <x:String x:Key="BestProgress">Лучший прогресс в</x:String>
+    <x:String x:Key="NoData">Нет данных</x:String>
+
 </ResourceDictionary>

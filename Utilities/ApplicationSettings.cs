@@ -1,5 +1,4 @@
-﻿using AndroidX.ConstraintLayout.Core;
-using GymBro.Resources.Languages;
+﻿using GymBro.Resources.Languages;
 using GymBro.Resources.Themes;
 using System.Globalization;
 

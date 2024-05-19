@@ -19,8 +19,11 @@ namespace GymBro
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                .UseSkiaSharp(true)
                 .UseMauiCommunityToolkit()
+                .RegisterViews()
+                .RegisterViewModels()
+                .RegisterServices()
+                .UseSkiaSharp(true)
                 .UseBottomSheet()
                 .ConfigureMauiHandlers(handlers =>
                 {
@@ -40,60 +43,42 @@ namespace GymBro
             builder.Logging.AddDebug();
 #endif
 
-            //Pages
-            builder.Services.AddTransient<SettingsViewModel>();
-            builder.Services.AddTransient<SettingsPage>();
+            return builder.Build();
+        }
 
-            builder.Services.AddTransient<TrainingDaysViewModel>();
-            builder.Services.AddTransient<TrainingDaysPage>();
-
-            builder.Services.AddTransient<TrainingPlanViewModel>();
-            builder.Services.AddTransient<CreateTrainingPlanPage>();
-            builder.Services.AddTransient<EditTrainingPlanPage>();
-
-            builder.Services.AddTransient<CreateExercisePopup>();
-            builder.Services.AddTransient<EditExercisePopup>();
-
-            builder.Services.AddTransient<TrainingDayPage>();
-            builder.Services.AddTransient<TrainingDayViewModel>();
-
-            builder.Services.AddTransient<StatisticsPage>();
-            builder.Services.AddTransient<StatisticsViewModel>();
-
+        public static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
+        {
             //EntityFramework
             builder.Services.AddTransient<ApplicationContext>();
             builder.Services.AddTransient<IProvider, Provider>();
             builder.Services.AddSingleton<Repository>();
 
-            return builder.Build();
+            return builder;
         }
 
-        //public static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
-        //{
-        //    mauiAppBuilder.Services.AddTransient<ILoggingService, LoggingService>();
-        //    mauiAppBuilder.Services.AddTransient<ISettingsService, SettingsService>();
+        public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
+        {
+            builder.Services.AddTransient<SettingsViewModel>();
+            builder.Services.AddTransient<TrainingDaysViewModel>();
+            builder.Services.AddTransient<TrainingPlanViewModel>();
+            builder.Services.AddTransient<TrainingDayViewModel>();
+            builder.Services.AddTransient<StatisticsViewModel>();
 
-        //    // More services registered here.
+            return builder;
+        }
 
-        //    return mauiAppBuilder;
-        //}
+        public static MauiAppBuilder RegisterViews(this MauiAppBuilder builder)
+        {
+            builder.Services.AddTransient<SettingsPage>();
+            builder.Services.AddTransient<TrainingDaysPage>();
+            builder.Services.AddTransient<CreateTrainingPlanPage>();
+            builder.Services.AddTransient<EditTrainingPlanPage>();
+            builder.Services.AddTransient<CreateExercisePopup>();
+            builder.Services.AddTransient<EditExercisePopup>();
+            builder.Services.AddTransient<TrainingDayPage>();
+            builder.Services.AddTransient<StatisticsPage>();
 
-        //public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
-        //{
-        //    mauiAppBuilder.Services.AddSingleton<MainPageViewModel>();
-
-        //    // More view-models registered here.
-
-        //    return mauiAppBuilder;
-        //}
-
-        //public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
-        //{
-        //    mauiAppBuilder.Services.AddSingleton<MainPage>();
-
-        //    // More views registered here.
-
-        //    return mauiAppBuilder;
-        //}
+            return builder;
+        }
     }
 }

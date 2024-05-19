@@ -91,4 +91,7 @@
     <x:String x:Key="ExerciseDescriptionPlaceholder">Opis (opcjonalnie)</x:String>
     <x:String x:Key="TitlePlaceholder">Tytuł</x:String>
 
+    <x:String x:Key="BestProgress">Najlepszy postęp w</x:String>
+    <x:String x:Key="NoData">Brak danych</x:String>
+
 </ResourceDictionary>

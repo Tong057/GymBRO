@@ -13,7 +13,9 @@
     </ContentPage.Resources>
 
     <Grid RowDefinitions="Auto, *" RowSpacing="5" IgnoreSafeArea="True">
-        <navbar:CustomNavigationBar RightButtonCommand="{Binding GoToCreateTrainingPlanCommand}" RightButtonIconSource="{StaticResource AddIcon}" Grid.Row="0" />
+        <navbar:CustomNavigationBar RightButtonCommand="{Binding GoToCreateTrainingPlanCommand}" 
+                                    RightButtonIconSource="{StaticResource AddIcon}" 
+                                    Grid.Row="0" />
 
         <VerticalStackLayout
             Grid.Row="1"
@@ -66,7 +68,7 @@
                                 </SwipeItems>
                             </SwipeView.LeftItems>
 
-                            <Border Margin="10, 5" Padding="20" StrokeShape="RoundRectangle 15" Stroke="{Binding Day, Converter={StaticResource DayOfWeekToBackgroundColorConverter}}" StrokeThickness="4" BackgroundColor="{DynamicResource PrimaryColor}" >
+                            <Border Margin="10, 2" Padding="20" StrokeShape="RoundRectangle 15" Stroke="{Binding Day, Converter={StaticResource DayOfWeekToBackgroundColorConverter}}" StrokeThickness="4" BackgroundColor="{DynamicResource PrimaryColor}" >
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer
                                         NumberOfTapsRequired="1"

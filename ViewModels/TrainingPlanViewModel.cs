@@ -98,7 +98,7 @@ namespace GymBro.ViewModels
         }
 
         [RelayCommand]
-        private void AddSavedExercise(Exercise exercise)
+        private void SavedExerciseTapped(Exercise exercise)
         {
             if (!Exercises.Contains(exercise))
                 Exercises.Add(exercise);
