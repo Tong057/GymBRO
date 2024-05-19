@@ -9,6 +9,7 @@
 
     <ContentPage.Resources>
         <converters:DayOfWeekConverter x:Key="DayOfWeekConverter"/>
+        <converters:DayOfWeekToBackgroundColorConverter x:Key="DayOfWeekToBackgroundColorConverter" />
     </ContentPage.Resources>
 
     <Grid RowDefinitions="Auto, *" RowSpacing="5" IgnoreSafeArea="True">
@@ -65,13 +66,13 @@
                                 </SwipeItems>
                             </SwipeView.LeftItems>
 
-                            <Frame Margin="10, 5" Padding="20" CornerRadius="15" BackgroundColor="{DynamicResource PrimaryColor}">
-                                <Frame.GestureRecognizers>
+                            <Border Margin="10, 5" Padding="20" StrokeShape="RoundRectangle 15" Stroke="{Binding Day, Converter={StaticResource DayOfWeekToBackgroundColorConverter}}" StrokeThickness="4" BackgroundColor="{DynamicResource PrimaryColor}" >
+                                <Border.GestureRecognizers>
                                     <TapGestureRecognizer
                                         NumberOfTapsRequired="1"
                                         Command="{Binding Path=BindingContext.GoToTrainingDayPageCommand, Source={x:Reference TrainingPlansCollection}}"
                                         CommandParameter="{Binding Id}"/>
-                                </Frame.GestureRecognizers>
+                                </Border.GestureRecognizers>
                                 <Grid
                                     RowSpacing="10"
                                     ColumnSpacing="10"
@@ -104,7 +105,7 @@
                                         FontSize="18"/>
 
                                 </Grid>
-                            </Frame>
+                            </Border>
                         </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

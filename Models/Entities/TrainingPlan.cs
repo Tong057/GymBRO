@@ -5,19 +5,9 @@ namespace GymBro.Models.Entities
     {
         public int Id { get; set; }
 
-        private string _title;
-        public string Title
-        {
-            get => _title;
-            set => SetProperty(ref _title, value);
-        }
+        public string Title { get; set; }
 
-        private DayOfWeek _day;
-        public DayOfWeek Day
-        {
-            get => _day;
-            set => SetProperty(ref _day, value);
-        }
+        public DayOfWeek Day { get; set; }
 
         public ICollection<TrainingDay> TrainingDays { get; set; } = new List<TrainingDay>();
 

@@ -1,4 +1,5 @@
-﻿using GymBro.Resources.Languages;
+﻿using AndroidX.ConstraintLayout.Core;
+using GymBro.Resources.Languages;
 using GymBro.Resources.Themes;
 using System.Globalization;
 
@@ -11,6 +12,7 @@ namespace GymBro.Utilities
         {
             Application.Current.Resources.Clear();
             Preferences.Default.Set("app_theme", appTheme);
+
             switch (appTheme)
             {
                 case "Dark":
@@ -42,6 +44,7 @@ namespace GymBro.Utilities
         {
             Application.Current.Resources.Clear();
             Preferences.Default.Set("app_language", appLanguage);
+
             switch (appLanguage)
             {
                 case "English":

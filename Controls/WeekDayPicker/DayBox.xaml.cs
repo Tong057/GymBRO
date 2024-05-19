@@ -65,7 +65,6 @@ public partial class DayBox : ContentView
         set => SetValue(SelectedColorProperty, value);
     }
 
-
     private void UpdateFillColor()
     {
         Color color = IsChecked ? SelectedColor : UnselectedColor;
@@ -90,6 +89,11 @@ public partial class DayBox : ContentView
 
     private void OnTapped(object sender, TappedEventArgs e)
     {
+        if (Vibration.Default.IsSupported)
+        {
+            Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(100));
+        }
+
         IsChecked = !IsChecked;
         UpdateFillColor();
 

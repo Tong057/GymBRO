@@ -66,7 +66,34 @@ namespace GymBro
             builder.Services.AddSingleton<Repository>();
 
             return builder.Build();
-
         }
+
+        //public static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
+        //{
+        //    mauiAppBuilder.Services.AddTransient<ILoggingService, LoggingService>();
+        //    mauiAppBuilder.Services.AddTransient<ISettingsService, SettingsService>();
+
+        //    // More services registered here.
+
+        //    return mauiAppBuilder;
+        //}
+
+        //public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
+        //{
+        //    mauiAppBuilder.Services.AddSingleton<MainPageViewModel>();
+
+        //    // More view-models registered here.
+
+        //    return mauiAppBuilder;
+        //}
+
+        //public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
+        //{
+        //    mauiAppBuilder.Services.AddSingleton<MainPage>();
+
+        //    // More views registered here.
+
+        //    return mauiAppBuilder;
+        //}
     }
 }

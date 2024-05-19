@@ -7,10 +7,7 @@ using GymBro.Models.Data.EntityFramework.Repositories;
 using CommunityToolkit.Mvvm.Input;
 using GymBro.Views.BottomSheets;
 using GymBro.Models.Entities.Statistics;
-using Kotlin.Properties;
 using CommunityToolkit.Maui.Alerts;
-using Android.OS;
-using Android.Widget;
 using LiveChartsCore.Defaults;
 using System.Threading;
 
@@ -21,6 +18,7 @@ namespace GymBro.ViewModels
         private CancellationTokenSource _cancellationTokenSource;
         private Repository _repository;
         private readonly SavedExercisesBottomSheet _bottomSheet;
+
         public StatisticsViewModel(Repository repository)
         {
             _repository = repository;
@@ -29,7 +27,7 @@ namespace GymBro.ViewModels
 
         public async Task LoadData()
         {
-            foreach(Exercise exercise in SavedExercises)
+            foreach (Exercise exercise in SavedExercises)
             {
                 List<ExerciseStatus> exerciseStatuses = await _repository.GetExerciseStatusesByExercise(exercise);
                 if (!exerciseStatuses.Any())
@@ -38,24 +36,24 @@ namespace GymBro.ViewModels
                 IEnumerable<StatisticsExerciseStatus> statisticsExercises = exerciseStatuses
                     .Select(ex => new StatisticsExerciseStatus(ex, ex.TrainingDay.StartTime));
 
-                double max = statisticsExercises.MaxBy(ex => ex.WeightedAverageWeight).WeightedAverageWeight;
-                double min = statisticsExercises.MinBy(ex => ex.WeightedAverageWeight).WeightedAverageWeight;
+                double max = statisticsExercises.Max(ex => ex.WeightedAverageWeight);
+                double min = statisticsExercises.Min(ex => ex.WeightedAverageWeight);
 
                 _ratingProgressiveExercises.Add(exercise, max - min);
-
-                
             }
 
             int counter = 0;
-            _ratingProgressiveExercises.OrderByDescending(kvExercise => kvExercise.Value);
-            foreach (var kvExercise in _ratingProgressiveExercises)
+            var orderedExercises = _ratingProgressiveExercises.OrderByDescending(kv => kv.Value);
+            PieChartSeries = new ObservableCollection<ISeries>();
+
+            foreach (var kvExercise in orderedExercises)
             {
                 if (counter == 7)
                     break;
 
-                PieSeries<double> series = new PieSeries<double>()
+                PieSeries<double> series = new PieSeries<double>
                 {
-                    Values = new double[1] { _ratingProgressiveExercises[kvExercise.Key] },
+                    Values = new double[1] { kvExercise.Value },
                     Name = kvExercise.Key.Name
                 };
                 PieChartSeries.Add(series);
@@ -79,16 +77,16 @@ namespace GymBro.ViewModels
 
             int counter = 0;
             ObservableCollection<DateTimePoint> points = new ObservableCollection<DateTimePoint>();
+
             foreach (StatisticsExerciseStatus statisticsExercise in statistics)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                await Task.Delay(2000);
+                //await Task.Delay(2000);
                 UpdateProgress(++counter, statistics.Count);
                 points.Add(new DateTimePoint(statisticsExercise.Date, statisticsExercise.WeightedAverageWeight));
-                    
             }
 
-            ColumnSeries<DateTimePoint> columnSeries = new ColumnSeries<DateTimePoint>()
+            ColumnSeries<DateTimePoint> columnSeries = new ColumnSeries<DateTimePoint>
             {
                 Values = points
             };
@@ -117,7 +115,9 @@ namespace GymBro.ViewModels
             if (_cancellationTokenSource == null)
                 return;
 
-            await _cancellationTokenSource.CancelAsync();
+            _cancellationTokenSource.Cancel();
+            _cancellationTokenSource.Dispose();
+            _cancellationTokenSource = null;
         }
 
         [RelayCommand]
@@ -141,7 +141,7 @@ namespace GymBro.ViewModels
                     await LoadDataWithProgressAsync(exercise, _cancellationTokenSource.Token);
                 }, _cancellationTokenSource.Token);
             }
-            catch (System.OperationCanceledException)
+            catch (OperationCanceledException)
             {
                 ShowMessage("Loading was canceled");
             }
@@ -152,18 +152,15 @@ namespace GymBro.ViewModels
             }
             finally
             {
-                ShowMessage("Loading is finished");
-                _cancellationTokenSource.Dispose();
+                _cancellationTokenSource?.Dispose();
                 _cancellationTokenSource = null;
             }
-
-            
         }
 
         private Dictionary<Exercise, double> _ratingProgressiveExercises = new Dictionary<Exercise, double>();
 
         [ObservableProperty]
-        private Exercise _currentExercise = new Exercise();
+        private Exercise _currentExercise;
 
         private void UpdateProgress(double currentProgress, double total)
         {
@@ -179,8 +176,6 @@ namespace GymBro.ViewModels
         [ObservableProperty]
         private ObservableCollection<ISeries> _pieChartSeries = new ObservableCollection<ISeries>();
 
-
-
         [ObservableProperty]
         private ObservableCollection<ISeries> _barChartSeries = new ObservableCollection<ISeries>();
 
@@ -189,8 +184,5 @@ namespace GymBro.ViewModels
         {
             new DateTimeAxis(TimeSpan.FromDays(1), date => date.ToString("MM.dd"))
         };
-
-
-
     }
 }

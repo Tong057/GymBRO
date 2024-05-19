@@ -55,6 +55,7 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
         {
             return await _context.TrainingPlans
                 .Include(training => training.Exercises)
+                    .ThenInclude(exersises => exersises.Exercise)
                 .ToListAsync();
         }
 

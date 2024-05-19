@@ -16,7 +16,6 @@ namespace GymBro.Models.Data.EntityFramework
         {
             base.OnModelCreating(modelBuilder);
 
-            // may be delete
             modelBuilder.Entity<TrainingDay>()
                 .HasOne(td => td.TrainingPlan)
                 .WithMany(tp => tp.TrainingDays)
