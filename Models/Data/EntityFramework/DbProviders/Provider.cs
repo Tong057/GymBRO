@@ -102,6 +102,7 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
         public async Task<List<ExerciseStatus>> GetExerciseStatusesByExercise(Exercise exercise)
         {
             return await _context.ExerciseStatuses
+                .Include(exStat => exStat.Note)
                 .Include(exStat => exStat.TrainingDay)
                 .Include(exStat => exStat.ExerciseSets)
                 .Where(exStat => exStat.ExerciseId == exercise.Id)
@@ -118,6 +119,12 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
         public async Task DeleteTrainingDay(TrainingDay trainingDay)
         {
             _context.TrainingDays.Remove(trainingDay);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteExerciseStatus(ExerciseStatus exerciseStatus)
+        {
+            _context.ExerciseStatuses.Remove(exerciseStatus);
             await _context.SaveChangesAsync();
         }
     }

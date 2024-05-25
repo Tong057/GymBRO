@@ -14,12 +14,12 @@ public partial class StatisticsPage : ContentPage
         _statisticsVM = statisticsVM;
     }
 
-    protected override void OnAppearing()
+    protected async override void OnAppearing()
     {
         base.OnAppearing();
 
         _statisticsVM.LoadSavedExercises();
-        _statisticsVM.LoadPieDiagram();
+        await _statisticsVM.LoadPieDiagram();
     }
 
 }

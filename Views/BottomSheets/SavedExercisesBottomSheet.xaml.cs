@@ -18,4 +18,11 @@ public partial class SavedExercisesBottomSheet : BottomSheet
 
         BindingContext = statisticsVM;
     }
+
+    public SavedExercisesBottomSheet(ExerciseHistoryViewModel exerciseHistoryVM)
+    {
+        InitializeComponent();
+
+        BindingContext = exerciseHistoryVM;
+    }
 }

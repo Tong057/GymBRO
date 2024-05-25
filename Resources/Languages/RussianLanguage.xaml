@@ -93,4 +93,6 @@
     <x:String x:Key="BestProgress">Лучший прогресс в</x:String>
     <x:String x:Key="NoData">Нет данных</x:String>
 
+    <x:String x:Key="ExerciseHistory">История упражнений</x:String>
+
 </ResourceDictionary>

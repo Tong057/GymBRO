@@ -6,9 +6,10 @@ namespace GymBro.Controls.Popups;
 
 public partial class CompletedDataExerciseInfoPopup : Popup
 {
-    public CompletedDataExerciseInfoPopup(CompletedDataExerciseInfoPopupViewModel completedDataExerciseInfoPopupViewModel)
+    public CompletedDataExerciseInfoPopup(CompletedDataExerciseInfoPopupViewModel completedDataExerciseInfoPopupVM)
 	{
 		InitializeComponent();
-		BindingContext = completedDataExerciseInfoPopupViewModel;
+
+		BindingContext = completedDataExerciseInfoPopupVM;
     }
 }

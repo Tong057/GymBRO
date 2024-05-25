@@ -27,6 +27,10 @@
         </Tab>
     </FlyoutItem>
 
+    <FlyoutItem Title="{DynamicResource ExerciseHistory}" Icon="{StaticResource HistoryIcon}">
+        <ShellContent ContentTemplate="{DataTemplate local:ExerciseHistoryPage}" />
+    </FlyoutItem>
+
     <FlyoutItem Title="{DynamicResource Settings}" FlyoutIcon="{StaticResource SettingsIcon}">
         <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" />
     </FlyoutItem>

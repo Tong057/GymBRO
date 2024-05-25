@@ -59,6 +59,7 @@ namespace GymBro
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
             builder.Services.AddTransient<SettingsViewModel>();
+            builder.Services.AddTransient<ExerciseHistoryViewModel>();
             builder.Services.AddTransient<TrainingDaysViewModel>();
             builder.Services.AddTransient<TrainingPlanViewModel>();
             builder.Services.AddTransient<TrainingDayViewModel>();
@@ -70,6 +71,7 @@ namespace GymBro
         public static MauiAppBuilder RegisterViews(this MauiAppBuilder builder)
         {
             builder.Services.AddTransient<SettingsPage>();
+            builder.Services.AddTransient<ExerciseHistoryPage>();
             builder.Services.AddTransient<TrainingDaysPage>();
             builder.Services.AddTransient<CreateTrainingPlanPage>();
             builder.Services.AddTransient<EditTrainingPlanPage>();

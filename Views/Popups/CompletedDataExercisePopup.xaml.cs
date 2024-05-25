@@ -11,11 +11,12 @@ public partial class CompletedDataExercisePopup : Popup
 {
     CompletedDataExercisePopupViewModel _completedDataExercisePopupViewModel;
 
-    public CompletedDataExercisePopup(CompletedDataExercisePopupViewModel completedDataExercisePopupViewModel)
+    public CompletedDataExercisePopup(CompletedDataExercisePopupViewModel completedDataExercisePopupVM)
 	{
 		InitializeComponent();
-		BindingContext = completedDataExercisePopupViewModel;
-		completedDataExercisePopupViewModel.Popup = this;
-        _completedDataExercisePopupViewModel = completedDataExercisePopupViewModel;
+
+		BindingContext = completedDataExercisePopupVM;
+        completedDataExercisePopupVM.Popup = this;
+        _completedDataExercisePopupViewModel = completedDataExercisePopupVM;
     }
 }

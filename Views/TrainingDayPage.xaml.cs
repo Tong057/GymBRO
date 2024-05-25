@@ -5,12 +5,13 @@ namespace GymBro.Views;
 [QueryProperty(nameof(TrainingPlanId), "Id")]
 public partial class TrainingDayPage : ContentPage
 {
-	private readonly TrainingDayViewModel _trainingDayViewModel;
-	public TrainingDayPage(TrainingDayViewModel trainingDayViewModel)
+	private readonly TrainingDayViewModel _trainingDayVM;
+	public TrainingDayPage(TrainingDayViewModel trainingDayVM)
 	{
-		InitializeComponent();
-        _trainingDayViewModel = trainingDayViewModel;
-		BindingContext = trainingDayViewModel;
+        InitializeComponent();
+
+        BindingContext = trainingDayVM;
+        _trainingDayVM = trainingDayVM;
     }
 
     public string TrainingPlanId
@@ -26,7 +27,7 @@ public partial class TrainingDayPage : ContentPage
 
     private async void InitializeViewModel(int trainingPlanId)
     {
-        await _trainingDayViewModel.InitializeViewModelAsync(trainingPlanId);
+        await _trainingDayVM.InitializeViewModelAsync(trainingPlanId);
     }
 
 }

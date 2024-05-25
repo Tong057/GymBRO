@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:navbar="clr-namespace:GymBro.Controls.NavigationBar"
+             xmlns:converters="clr-namespace:GymBro.Utilities.Converters"
+             x:Class="GymBro.Views.ExerciseHistoryPage">
+    
+    <ContentPage.Resources>
+        <converters:ExerciseNameNullConverter x:Key="ExerciseNameConverter" />
+        <converters:DateToStringConverter x:Key="DateToStringConverter" />
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto, Auto, *, Auto">
+
+        <navbar:CustomNavigationBar Grid.Row="0" Title="{DynamicResource ExerciseHistory}"/>
+
+        <Label Text="{Binding CurrentExercise.Name, Converter={StaticResource ExerciseNameConverter}}"
+                       FontFamily="BebasBold"
+                       CharacterSpacing="2"
+                       Grid.Row="1"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       TextColor="{DynamicResource PrimaryTextColor}"
+                       FontSize="28" 
+                       Margin="15"/>
+
+        <ScrollView Grid.Row="2">
+            <CollectionView x:Name="EntriesCollection" ItemsSource="{Binding Entries, Mode=TwoWay}" Margin="10, 0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem Text="Delete"
+                               BackgroundColor="Transparent"
+                               Command="{Binding BindingContext.DeleteEntryCommand, Source={x:Reference EntriesCollection}}" 
+                               CommandParameter="{Binding .}"/>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+
+                            <Frame Margin="0, 5" Padding="20" CornerRadius="15" Background="{DynamicResource SecondaryColor}">
+                                <Label Text="{Binding TrainingDay.StartTime, Converter={StaticResource DateToStringConverter}}"  
+                               TextColor="White"
+                               FontSize="18"
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center" 
+                               HorizontalTextAlignment="Center" 
+                               VerticalTextAlignment="Center" />
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                                NumberOfTapsRequired="1"
+                                                Command="{Binding Path=BindingContext.ShowExerciseTrainingInformationPopupCommand, Source={x:Reference EntriesCollection}}"
+                                                CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+
+        <Button Text="{DynamicResource Select}"
+                    FontFamily="BebasBold"
+                    FontSize="24"
+                    Background="{DynamicResource SecondaryColor}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
+                    Grid.Row="3"
+                    BackgroundColor="Transparent"
+                    CharacterSpacing="2"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="15"
+                    Command="{Binding OpenSavedExercisesBottomSheetCommand}"/>
+    </Grid>
+</ContentPage>

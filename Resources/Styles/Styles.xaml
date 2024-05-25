@@ -131,6 +131,12 @@
                      Color="{DynamicResource PrimaryTextColor}" 
                      Size="32" />
 
+    <FontImageSource x:Key="HistoryIcon" 
+                     FontFamily="FontAwesomeSolid" 
+                     Glyph="{x:Static icons:FontAwesomeIcons.History}" 
+                     Color="{DynamicResource PrimaryTextColor}" 
+                     Size="32" />
+
     <FontImageSource x:Key="HomeIcon" 
                      FontFamily="FontAwesomeSolid" 
                      Glyph="{x:Static icons:FontAwesomeIcons.Home}" 

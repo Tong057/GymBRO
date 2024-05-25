@@ -19,5 +19,6 @@
         public const string ThumbsUp = "\uf164";
         public const string Trash = "\uf2ed";
         public const string Editing = "\uf044";
+        public const string History = "\uf1da";
     }
 }

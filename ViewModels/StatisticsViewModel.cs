@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 using GymBro.Views.BottomSheets;
 using GymBro.Models.Entities.Statistics;
 using LiveChartsCore.SkiaSharpView.Painting;
+using CommunityToolkit.Maui.Alerts;
 
 namespace GymBro.ViewModels
 {
@@ -59,7 +60,7 @@ namespace GymBro.ViewModels
             }
         }
 
-        public async Task LoadDataWithProgressAsync(Exercise exercise)
+        public async Task LoadBarChart(Exercise exercise)
         {
             var exerciseStatuses = await _repository.GetExerciseStatusesByExercise(exercise);
             var statistics = new List<StatisticsExerciseStatus>();
@@ -104,17 +105,17 @@ namespace GymBro.ViewModels
             {
                 await Task.Run(async () =>
                 {
-                    await LoadDataWithProgressAsync(exercise);
+                    await LoadBarChart(exercise);
                 });
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                Toast.Make($"An error occurred: {ex.Message}");
             }
         }
 
         [ObservableProperty]
-        private Exercise _currentExercise;
+        private Exercise _currentExercise = new Exercise();
 
         [ObservableProperty]
         private ObservableCollection<Exercise> _savedExercises;

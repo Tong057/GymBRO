@@ -80,6 +80,11 @@ namespace GymBro.Models.Data.EntityFramework.Repositories
         {
             await _provider.DeleteTrainingDay(trainingDay);
         }
+
+        public async Task DeleteExerciseStatus(ExerciseStatus exerciseStatus)
+        {
+            await _provider.DeleteExerciseStatus(exerciseStatus);
+        }
     }
 }
 

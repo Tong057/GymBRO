@@ -29,6 +29,11 @@ namespace GymBro.Models.Entities
         {
         }
 
+
+        public override string ToString()
+        {
+            return Name;
+        }
         [ObservableProperty]
         private bool _isBeingDragged;
 
