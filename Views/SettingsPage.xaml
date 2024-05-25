@@ -47,7 +47,6 @@
             </sv:Section>
 
             <sv:Section Title="Data">
-                <sv:CommandCell Title="Export database" Description="Save to have it in another place." Command="{Binding ExportDatabaseCommand}"/>
                 <sv:CommandCell Title="Drop database" TitleColor="Red" Description="Everything will be deleted!" Command="{Binding DropDatabaseCommand}"/>
             </sv:Section>
         </sv:SettingsView>

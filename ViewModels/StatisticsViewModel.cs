@@ -40,7 +40,7 @@ namespace GymBro.ViewModels
                 double max = statisticsExercises.Max(ex => ex.WeightedAverageWeight);
                 double min = statisticsExercises.Min(ex => ex.WeightedAverageWeight);
 
-                _ratingProgressiveExercises.Add(exercise, max - min);
+                _ratingProgressiveExercises.Add(exercise, (int)(max - min));
             }
 
             int counter = 0;

@@ -40,7 +40,7 @@
 
                             <Frame Margin="0, 5" Padding="20" CornerRadius="15" Background="{DynamicResource SecondaryColor}">
                                 <Label Text="{Binding TrainingDay.StartTime, Converter={StaticResource DateToStringConverter}}"  
-                               TextColor="White"
+                               TextColor="{DynamicResource PrimaryTextColor}"
                                FontSize="18"
                                HorizontalOptions="Center" 
                                VerticalOptions="Center" 

@@ -1,5 +1,7 @@
 ﻿using GymBro.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Maui.Storage;
+using System.Diagnostics;
 
 namespace GymBro.Models.Data.EntityFramework.DbProviders
 {
@@ -139,23 +141,6 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
             _context.ExerciseSets.RemoveRange(_context.ExerciseSets);
 
             _context.SaveChanges();
-        }
-
-        public async Task ExportDatabaseAsync(string exportPath)
-        {
-            var databasePath = Constants.DatabasePath;
-
-            var exportDirectory = Path.GetDirectoryName(exportPath);
-            if (!Directory.Exists(exportDirectory))
-            {
-                Directory.CreateDirectory(exportDirectory);
-            }
-
-            using (var sourceStream = new FileStream(databasePath, FileMode.Open, FileAccess.Read))
-            using (var destinationStream = new FileStream(exportPath, FileMode.Create, FileAccess.Write))
-            {
-                await sourceStream.CopyToAsync(destinationStream);
-            }
         }
     }
 }

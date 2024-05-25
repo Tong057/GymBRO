@@ -3,6 +3,8 @@ using CommunityToolkit.Mvvm.Input;
 using GymBro.Models.Data.EntityFramework.Repositories;
 using GymBro.Utilities;
 using CommunityToolkit.Maui.Storage;
+using CommunityToolkit.Maui.Alerts;
+using GymBro.Models.Data.EntityFramework;
 
 namespace GymBro.ViewModels
 {
@@ -36,12 +38,6 @@ namespace GymBro.ViewModels
         private void DropDatabase()
         {
             _repository.ClearAllData();
-        }
-
-        [RelayCommand]
-        private void ExportDatabase()
-        {
-            
         }
     }
 }

@@ -91,11 +91,6 @@ namespace GymBro.Models.Data.EntityFramework.Repositories
         {
             _provider.ClearAllData();
         }
-
-        public async Task ExportDatabaseAsync(string exportPath)
-        {
-            await _provider.ExportDatabaseAsync(exportPath);
-        }
     }
 }
 
