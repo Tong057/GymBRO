@@ -1,12 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using GymBro.Models.Data.EntityFramework.Repositories;
 using GymBro.Utilities;
+using CommunityToolkit.Maui.Storage;
 
 namespace GymBro.ViewModels
 {
     public partial class SettingsViewModel : ObservableObject
     {
-        public SettingsViewModel()
+        private Repository _repository;
+        public SettingsViewModel(Repository repository)
         {
+            _repository = repository;
             SelectedLanguage = ApplicationSettings.CurrentLanguage;
             SelectedTheme = ApplicationSettings.CurrentTheme;
         }
@@ -25,6 +30,18 @@ namespace GymBro.ViewModels
         partial void OnSelectedThemeChanged(string? value)
         {
             ApplicationSettings.SetTheme(value);
+        }
+
+        [RelayCommand]
+        private void DropDatabase()
+        {
+            _repository.ClearAllData();
+        }
+
+        [RelayCommand]
+        private void ExportDatabase()
+        {
+            
         }
     }
 }

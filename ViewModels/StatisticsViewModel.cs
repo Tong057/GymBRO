@@ -26,6 +26,8 @@ namespace GymBro.ViewModels
 
         public async Task LoadPieDiagram()
         {
+            _ratingProgressiveExercises.Clear();
+
             foreach (Exercise exercise in SavedExercises)
             {
                 List<ExerciseStatus> exerciseStatuses = await _repository.GetExerciseStatusesByExercise(exercise);

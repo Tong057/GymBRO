@@ -1,5 +1,6 @@
 ﻿using GymBro.Models.Data.EntityFramework.DbProviders;
 using GymBro.Models.Entities;
+using SQLitePCL;
 
 namespace GymBro.Models.Data.EntityFramework.Repositories
 {
@@ -84,6 +85,16 @@ namespace GymBro.Models.Data.EntityFramework.Repositories
         public async Task DeleteExerciseStatus(ExerciseStatus exerciseStatus)
         {
             await _provider.DeleteExerciseStatus(exerciseStatus);
+        }
+
+        public void ClearAllData()
+        {
+            _provider.ClearAllData();
+        }
+
+        public async Task ExportDatabaseAsync(string exportPath)
+        {
+            await _provider.ExportDatabaseAsync(exportPath);
         }
     }
 }

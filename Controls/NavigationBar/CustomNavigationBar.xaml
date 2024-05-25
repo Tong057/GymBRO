@@ -30,7 +30,7 @@
                          Clicked="MenuButton_Clicked" 
                          HorizontalOptions="End" 
                          VerticalOptions="Center" 
-                         Grid.Column="0" 
+                         Grid.Column="0"
                          IsVisible="True"/>
 
             <ImageButton x:Name="BackButton" 

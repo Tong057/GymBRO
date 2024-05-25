@@ -28,6 +28,8 @@ namespace GymBro.Models.Data.EntityFramework.DbProviders
         Task DeleteTrainingPlan(TrainingPlan trainingPlan);
 		Task DeleteTrainingDay(TrainingDay trainingDay);
 		Task DeleteExerciseStatus(ExerciseStatus exerciseStatus);
+		void ClearAllData();
+		Task ExportDatabaseAsync(string exportPath);
     }
 }
 

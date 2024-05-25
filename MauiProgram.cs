@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using The49.Maui.BottomSheet;
 using GymBro.Views.Popups.Exercise;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+using CommunityToolkit.Maui.Storage;
 
 namespace GymBro
 {
@@ -52,6 +53,7 @@ namespace GymBro
             builder.Services.AddTransient<ApplicationContext>();
             builder.Services.AddTransient<IProvider, Provider>();
             builder.Services.AddSingleton<Repository>();
+            builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
 
             return builder;
         }
