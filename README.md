@@ -1,4 +1,4 @@
-# GymBRO
+# [GymBRO](https://gymbro.site) - Shape Your Fitness Journey
 
 Welcome to the GymBRO repository! This project is a comprehensive workout planning application developed with .NET MAUI, providing a robust cross-platform solution for managing and tracking your fitness routines on mobile and desktop devices.
 
